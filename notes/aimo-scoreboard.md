@@ -515,3 +515,12 @@ Compare primary accuracy vs **949937** (0.5714). Do not invent scores.
 | 949938 | all-False | 0.5000 |
 | 949942 | always-True | 0.5000 |
 | **949937** | **conservative hybrid** | **0.5714** ← best |
+
+
+---
+
+## Policy — Codabench submit budget (Raj 2026-09-28 ~19:31 IST)
+
+**Do not auto-submit.** Ask Raj first. Limits: **10/day**, **300 total** (used **6/10** and **6/300** at screenshot time).
+
+Best official: **949937 = 0.57**. Prefer local/Kaggle measurement; propose one slot only when expected gain clearly beats chance/0.57.
