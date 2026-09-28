@@ -1,0 +1,417 @@
+{
+  "path": "/workspace/aimo-interp-getting-started/solutions/trained-probe/probe_artifacts/probe_artifact.pkl",
+  "size_bytes": 54729307,
+  "top_keys": [
+    "aggregation",
+    "alternative_strategy",
+    "artifact_type",
+    "best_layer_index",
+    "best_probe",
+    "control_tasks",
+    "fold_indices",
+    "groups",
+    "hf_model_id",
+    "layer_indices",
+    "layer_scores",
+    "model_id",
+    "permutation_types",
+    "probe_scores",
+    "recommended_strategy",
+    "schema_version",
+    "seeds",
+    "selection_metric",
+    "system_prompt",
+    "target_col",
+    "task_type"
+  ],
+  "schema_version": 2,
+  "artifact_type": "all_folds_layers_seed_probe_ensemble",
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "target_col": "model_is_robust",
+  "task_type": "classification",
+  "best_layer_index": 31,
+  "recommended_strategy": {
+    "name": "best_layer_mean_margin",
+    "layer_index": 31,
+    "description": "At inference, encode best_layer_index and average score-threshold margins across every stored seed/fold probe for that layer."
+  },
+  "system_prompt": "You are a precise math problem solver. Solve the given problem step by step, then output your final answer on the last line in the exact format:\nANSWER: <your answer>\nThis result should be an integer \u2026",
+  "layer_scores_best_layer": 31,
+  "layer_scores_best_value": 0.5059375,
+  "layer_scores_min": 0.5,
+  "layer_scores_max": 0.5059375,
+  "n_layers_scored": 37,
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "walk_highlights": [
+    [
+      "root.seeds.len",
+      5
+    ],
+    [
+      "root.fold_indices.len",
+      4
+    ],
+    [
+      "root.layer_indices.len",
+      37
+    ],
+    [
+      "root.control_tasks.len",
+      2
+    ],
+    [
+      "root.best_layer_index",
+      31
+    ],
+    [
+      "root.best_probe.layer_index",
+      31
+    ],
+    [
+      "root.best_probe.seed",
+      42
+    ],
+    [
+      "root.layer_scores",
+      {
+        "0": 0.5,
+        "1": 0.5,
+        "2": 0.5025000000000001,
+        "3": 0.5,
+        "4": 0.5,
+        "5": 0.5,
+        "6": 0.5,
+        "7": 0.5,
+        "8": 0.5,
+        "9": 0.5,
+        "10": 0.5,
+        "11": 0.5,
+        "12": 0.5,
+        "13": 0.5,
+        "14": 0.5,
+        "15": 0.5,
+        "16": 0.5,
+        "17": 0.5,
+        "18": 0.5,
+        "19": 0.5
+      }
+    ],
+    [
+      "root.probe_scores[0].layer_index",
+      0
+    ],
+    [
+      "root.probe_scores[0].seed",
+      42
+    ],
+    [
+      "root.probe_scores.len",
+      1480
+    ],
+    [
+      "root.recommended_strategy.layer_index",
+      31
+    ],
+    [
+      "root.groups[0].best_layer_index",
+      0
+    ],
+    [
+      "root.groups[0].best_probe.layer_index",
+      0
+    ],
+    [
+      "root.groups[0].best_probe.seed",
+      42
+    ],
+    [
+      "root.groups[0].layer_scores",
+      {
+        "0": 0.5,
+        "1": 0.5,
+        "2": 0.5,
+        "3": 0.5,
+        "4": 0.5,
+        "5": 0.5,
+        "6": 0.5,
+        "7": 0.5,
+        "8": 0.5,
+        "9": 0.5,
+        "10": 0.5,
+        "11": 0.5,
+        "12": 0.5,
+        "13": 0.5,
+        "14": 0.5,
+        "15": 0.5,
+        "16": 0.5,
+        "17": 0.5,
+        "18": 0.5,
+        "19": 0.5
+      }
+    ],
+    [
+      "root.groups[0].probes.0.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.0.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.1.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.1.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.2.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.2.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.3.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.3.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.4.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.4.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.5.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.5.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.6.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.6.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.7.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.7.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.8.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.8.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.9.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.9.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.10.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.10.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.11.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.11.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.12.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.12.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.13.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.13.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.14.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.14.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.15.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.15.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.16.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.16.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.17.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.17.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.18.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.18.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.19.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.19.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.20.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.20.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.21.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.21.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.22.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.22.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.23.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.23.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.24.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.24.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.25.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.25.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.26.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.26.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.27.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.27.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.28.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.28.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.29.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.29.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.30.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.30.threshold",
+      "array[5] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.31.weights",
+      "array[5, 4096] dtype=float64"
+    ],
+    [
+      "root.groups[0].probes.31.threshold",
+      "array[5] dtype=float64"
+    ]
+  ],
+  "plotted_best_layer": 31,
+  "plotted_best_score": 0.5059375
+}

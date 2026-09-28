@@ -1,0 +1,31 @@
+{
+  "best_probe_summary": {
+    "permutation_type": "OVERALL",
+    "control_task": "NONE",
+    "fold_index": 1,
+    "layer_index": 31,
+    "seed": 42,
+    "metric": "val balanced_acc",
+    "score": 0.7375
+  },
+  "arrays": [],
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "best_layer_index": 31,
+  "selection_metric": "val balanced_acc",
+  "layer_score_best": 0.5059375,
+  "n_layer_scores": 37,
+  "control_tasks": [
+    "NONE",
+    "RANDOMIZATION"
+  ],
+  "aggregation": "mean_margin",
+  "permutation_types": [
+    "OVERALL"
+  ]
+}

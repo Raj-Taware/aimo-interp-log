@@ -1,0 +1,58 @@
+[
+  {
+    "feature": "generation_min_logprob",
+    "importance": 0.21897293078324692
+  },
+  {
+    "feature": "generation_frac_selected_is_top1",
+    "importance": 0.20999468885035483
+  },
+  {
+    "feature": "generation_std_logprob",
+    "importance": 0.11821685814520079
+  },
+  {
+    "feature": "generation_min_k_logprob",
+    "importance": 0.07098714515149906
+  },
+  {
+    "feature": "generation_frac_high_conf_tokens",
+    "importance": 0.06513270822400871
+  },
+  {
+    "feature": "generation_mean_entropy",
+    "importance": 0.06049562646905442
+  },
+  {
+    "feature": "generation_mean_top2_margin",
+    "importance": 0.05828930266253465
+  },
+  {
+    "feature": "generation_mean_nll",
+    "importance": 0.04591611420953152
+  },
+  {
+    "feature": "generation_ppl",
+    "importance": 0.041185573208824704
+  },
+  {
+    "feature": "generation_mean_top1_prob",
+    "importance": 0.037478159375998035
+  },
+  {
+    "feature": "generation_mean_prob",
+    "importance": 0.03672246082684747
+  },
+  {
+    "feature": "generation_mean_logprob",
+    "importance": 0.036608432092898914
+  },
+  {
+    "feature": "generation_max_logprob",
+    "importance": 0.0
+  },
+  {
+    "feature": "generation_frac_low_conf_tokens",
+    "importance": 0.0
+  }
+]

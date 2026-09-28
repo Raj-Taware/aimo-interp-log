@@ -1,0 +1,92 @@
+{
+  "n_cases": 24,
+  "n_robust": 9,
+  "n_not_robust": 15,
+  "base_rate_true": 0.375,
+  "base_rate_false": 0.625,
+  "unique_problems": 8,
+  "models": [
+    {
+      "model_id": "Qwen/Qwen3.5-397B-A17B-FP8:low",
+      "n": 5,
+      "n_robust": 1,
+      "robust_rate": 0.2
+    },
+    {
+      "model_id": "gpt-oss-120b:low",
+      "n": 5,
+      "n_robust": 0,
+      "robust_rate": 0.0
+    },
+    {
+      "model_id": "lukealonso/GLM-5.1-NVFP4:low",
+      "n": 4,
+      "n_robust": 4,
+      "robust_rate": 1.0
+    },
+    {
+      "model_id": "gpt-5.2-2025-12-11:low",
+      "n": 3,
+      "n_robust": 3,
+      "robust_rate": 1.0
+    },
+    {
+      "model_id": "gemini-3.1-pro-preview:low",
+      "n": 3,
+      "n_robust": 0,
+      "robust_rate": 0.0
+    },
+    {
+      "model_id": "huikang-gpt-oss-120b-aimo3:low",
+      "n": 3,
+      "n_robust": 1,
+      "robust_rate": 0.3333333333333333
+    },
+    {
+      "model_id": "qwen3-8b:low",
+      "n": 1,
+      "n_robust": 0,
+      "robust_rate": 0.0
+    }
+  ],
+  "length_stats": {
+    "chars_mean": 262.5416666666667,
+    "chars_median": 282.0,
+    "chars_min": 142,
+    "chars_max": 405,
+    "chars_std": 83.45995090938588,
+    "words_mean": 47.416666666666664,
+    "words_median": 54.0,
+    "words_min": 22,
+    "words_max": 70
+  },
+  "length_by_label": {
+    "robust_chars_mean": 227.22222222222223,
+    "not_robust_chars_mean": 283.73333333333335,
+    "robust_words_mean": 41.666666666666664,
+    "not_robust_words_mean": 50.86666666666667
+  },
+  "permutation_type_note": "permutation_type absent from imported val-sample cases.jsonl (only id, model_id, problem)",
+  "metadata": {
+    "cases": 24,
+    "config": "default",
+    "dataset": "aimo-interp/val-sample",
+    "duplicate_rows_removed": 4,
+    "label_counts": {
+      "false": 15,
+      "true": 9
+    },
+    "revision": "1ae454ec1fad9727084eda8f9f3c9ae2239b21de",
+    "schema_version": 2,
+    "source": "https://huggingface.co/datasets/aimo-interp/val-sample/tree/1ae454ec1fad9727084eda8f9f3c9ae2239b21de",
+    "source_rows": 28,
+    "split": "validation"
+  },
+  "problem_appears_on_n_models_dist": {
+    "1": 3,
+    "2": 1,
+    "4": 2,
+    "5": 1,
+    "6": 1
+  }
+}

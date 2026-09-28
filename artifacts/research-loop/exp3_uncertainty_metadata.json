@@ -1,0 +1,105 @@
+{
+  "path": "/workspace/aimo-interp-getting-started/solutions/uncertainty-profiling/uncertainty_artifacts/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.joblib",
+  "size_bytes": 1007536,
+  "type": "dict",
+  "top_keys": [
+    "artifact_type",
+    "cv_results",
+    "decision_threshold",
+    "estimator",
+    "feature_names",
+    "generation_config",
+    "library_versions",
+    "model_id",
+    "schema_version",
+    "selected_params",
+    "training_provenance"
+  ],
+  "schema_version": 1,
+  "artifact_type": "uncertainty_regressor",
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "decision_threshold": 0.5759658815999995,
+  "feature_names": [
+    "generation_mean_logprob",
+    "generation_mean_prob",
+    "generation_mean_nll",
+    "generation_ppl",
+    "generation_min_logprob",
+    "generation_max_logprob",
+    "generation_std_logprob",
+    "generation_min_k_logprob",
+    "generation_mean_entropy",
+    "generation_mean_top1_prob",
+    "generation_mean_top2_margin",
+    "generation_frac_selected_is_top1",
+    "generation_frac_high_conf_tokens",
+    "generation_frac_low_conf_tokens"
+  ],
+  "n_features": 14,
+  "selected_params": {
+    "family": "random_forest",
+    "max_depth": null,
+    "max_features": 1.0,
+    "min_samples_leaf": 1,
+    "n_estimators": 500
+  },
+  "library_versions": {
+    "python": "3.12.0",
+    "joblib": "1.5.3",
+    "accelerate": "1.13.0",
+    "numpy": "2.5.1",
+    "pandas": "3.0.3",
+    "scikit_learn": "1.8.0",
+    "torch": "2.12.1+cu130",
+    "transformers": "5.13.0"
+  },
+  "training_provenance": {
+    "source_dataset": "aimo-interp/augmented-sample-math-agg",
+    "source_revision": "f972ced0705096f8d7ca7fac30825900b8b7fb6a",
+    "source_model_ids": [
+      "qwen3-8b:low"
+    ],
+    "feature_model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+    "target_column": "absolute_accuracy_decay",
+    "label_column": "model_is_robust",
+    "group_column": "original_problem",
+    "row_count": 141,
+    "group_count": 137,
+    "n_splits": 5,
+    "seed": 42
+  },
+  "cv_results_keys": [
+    "best",
+    "candidates",
+    "mean_baseline",
+    "selection_metric",
+    "tie_breakers"
+  ],
+  "cv_numeric": {
+    "best.decision_threshold": 0.5759658815999995,
+    "best.balanced_accuracy": 0.6261904761904762,
+    "best.accuracy": 0.6879432624113475,
+    "best.mae": 0.3428500720399866,
+    "best.mse": 0.16583514124384838,
+    "best.r2": -0.06262002209776663,
+    "mean_baseline.decision_threshold": 0.6204258773704172,
+    "mean_baseline.balanced_accuracy": 0.5083333333333333,
+    "mean_baseline.accuracy": 0.5531914893617021,
+    "mean_baseline.mae": 0.3386856227595915,
+    "mean_baseline.mse": 0.15687704132912392,
+    "mean_baseline.r2": -0.005219303179323287
+  },
+  "estimator_type": "Pipeline",
+  "estimator_n_features_in_": 14,
+  "generation_config": {
+    "max_prompt_length": 2048,
+    "max_new_tokens": 4096,
+    "batch_size": 8,
+    "cache_implementation": "static",
+    "chat_template_role": "user",
+    "do_sample": false,
+    "min_k_fraction": 0.2,
+    "high_conf_threshold": 0.9,
+    "low_conf_threshold": 0.1
+  }
+}

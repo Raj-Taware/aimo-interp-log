@@ -1,0 +1,23 @@
+{
+  "n_groups_folds": 8,
+  "weights_per_layer": 5,
+  "weight_shape": [
+    4096
+  ],
+  "bias_shape": [],
+  "bias0": -0.005835928954184055,
+  "best_layer_index": 31,
+  "decision_rule": "mean margin >= 0 (threshold 0)",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46
+  ],
+  "selection_metric": "val balanced_acc",
+  "layer_selection_score_best": 0.5059375,
+  "best_single_probe_score_l31": 0.7375,
+  "mean_probe_score_l31_NONE": 0.511875,
+  "hidden_dim": 4096
+}

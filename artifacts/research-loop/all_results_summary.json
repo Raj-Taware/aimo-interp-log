@@ -1,0 +1,814 @@
+{
+  "exp1": {
+    "n_cases": 24,
+    "n_robust": 9,
+    "n_not_robust": 15,
+    "base_rate_true": 0.375,
+    "base_rate_false": 0.625,
+    "unique_problems": 8,
+    "models": [
+      {
+        "model_id": "Qwen/Qwen3.5-397B-A17B-FP8:low",
+        "n": 5,
+        "n_robust": 1,
+        "robust_rate": 0.2
+      },
+      {
+        "model_id": "gpt-oss-120b:low",
+        "n": 5,
+        "n_robust": 0,
+        "robust_rate": 0.0
+      },
+      {
+        "model_id": "lukealonso/GLM-5.1-NVFP4:low",
+        "n": 4,
+        "n_robust": 4,
+        "robust_rate": 1.0
+      },
+      {
+        "model_id": "gpt-5.2-2025-12-11:low",
+        "n": 3,
+        "n_robust": 3,
+        "robust_rate": 1.0
+      },
+      {
+        "model_id": "gemini-3.1-pro-preview:low",
+        "n": 3,
+        "n_robust": 0,
+        "robust_rate": 0.0
+      },
+      {
+        "model_id": "huikang-gpt-oss-120b-aimo3:low",
+        "n": 3,
+        "n_robust": 1,
+        "robust_rate": 0.3333333333333333
+      },
+      {
+        "model_id": "qwen3-8b:low",
+        "n": 1,
+        "n_robust": 0,
+        "robust_rate": 0.0
+      }
+    ],
+    "length_stats": {
+      "chars_mean": 262.5416666666667,
+      "chars_median": 282.0,
+      "chars_min": 142,
+      "chars_max": 405,
+      "chars_std": 83.45995090938588,
+      "words_mean": 47.416666666666664,
+      "words_median": 54.0,
+      "words_min": 22,
+      "words_max": 70
+    },
+    "length_by_label": {
+      "robust_chars_mean": 227.22222222222223,
+      "not_robust_chars_mean": 283.73333333333335,
+      "robust_words_mean": 41.666666666666664,
+      "not_robust_words_mean": 50.86666666666667
+    },
+    "permutation_type_note": "permutation_type absent from imported val-sample cases.jsonl (only id, model_id, problem)",
+    "metadata": {
+      "cases": 24,
+      "config": "default",
+      "dataset": "aimo-interp/val-sample",
+      "duplicate_rows_removed": 4,
+      "label_counts": {
+        "false": 15,
+        "true": 9
+      },
+      "revision": "1ae454ec1fad9727084eda8f9f3c9ae2239b21de",
+      "schema_version": 2,
+      "source": "https://huggingface.co/datasets/aimo-interp/val-sample/tree/1ae454ec1fad9727084eda8f9f3c9ae2239b21de",
+      "source_rows": 28,
+      "split": "validation"
+    },
+    "problem_appears_on_n_models_dist": {
+      "1": 3,
+      "2": 1,
+      "4": 2,
+      "5": 1,
+      "6": 1
+    }
+  },
+  "exp2": {
+    "path": "/workspace/aimo-interp-getting-started/solutions/trained-probe/probe_artifacts/probe_artifact.pkl",
+    "size_bytes": 54729307,
+    "top_keys": [
+      "aggregation",
+      "alternative_strategy",
+      "artifact_type",
+      "best_layer_index",
+      "best_probe",
+      "control_tasks",
+      "fold_indices",
+      "groups",
+      "hf_model_id",
+      "layer_indices",
+      "layer_scores",
+      "model_id",
+      "permutation_types",
+      "probe_scores",
+      "recommended_strategy",
+      "schema_version",
+      "seeds",
+      "selection_metric",
+      "system_prompt",
+      "target_col",
+      "task_type"
+    ],
+    "schema_version": 2,
+    "artifact_type": "all_folds_layers_seed_probe_ensemble",
+    "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+    "target_col": "model_is_robust",
+    "task_type": "classification",
+    "best_layer_index": 31,
+    "recommended_strategy": {
+      "name": "best_layer_mean_margin",
+      "layer_index": 31,
+      "description": "At inference, encode best_layer_index and average score-threshold margins across every stored seed/fold probe for that layer."
+    },
+    "system_prompt": "You are a precise math problem solver. Solve the given problem step by step, then output your final answer on the last line in the exact format:\nANSWER: <your answer>\nThis result should be an integer \u2026",
+    "layer_scores_best_layer": 31,
+    "layer_scores_best_value": 0.5059375,
+    "layer_scores_min": 0.5,
+    "layer_scores_max": 0.5059375,
+    "n_layers_scored": 37,
+    "seeds": [
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "walk_highlights": [
+      [
+        "root.seeds.len",
+        5
+      ],
+      [
+        "root.fold_indices.len",
+        4
+      ],
+      [
+        "root.layer_indices.len",
+        37
+      ],
+      [
+        "root.control_tasks.len",
+        2
+      ],
+      [
+        "root.best_layer_index",
+        31
+      ],
+      [
+        "root.best_probe.layer_index",
+        31
+      ],
+      [
+        "root.best_probe.seed",
+        42
+      ],
+      [
+        "root.layer_scores",
+        {
+          "0": 0.5,
+          "1": 0.5,
+          "2": 0.5025000000000001,
+          "3": 0.5,
+          "4": 0.5,
+          "5": 0.5,
+          "6": 0.5,
+          "7": 0.5,
+          "8": 0.5,
+          "9": 0.5,
+          "10": 0.5,
+          "11": 0.5,
+          "12": 0.5,
+          "13": 0.5,
+          "14": 0.5,
+          "15": 0.5,
+          "16": 0.5,
+          "17": 0.5,
+          "18": 0.5,
+          "19": 0.5
+        }
+      ],
+      [
+        "root.probe_scores[0].layer_index",
+        0
+      ],
+      [
+        "root.probe_scores[0].seed",
+        42
+      ],
+      [
+        "root.probe_scores.len",
+        1480
+      ],
+      [
+        "root.recommended_strategy.layer_index",
+        31
+      ],
+      [
+        "root.groups[0].best_layer_index",
+        0
+      ],
+      [
+        "root.groups[0].best_probe.layer_index",
+        0
+      ],
+      [
+        "root.groups[0].best_probe.seed",
+        42
+      ],
+      [
+        "root.groups[0].layer_scores",
+        {
+          "0": 0.5,
+          "1": 0.5,
+          "2": 0.5,
+          "3": 0.5,
+          "4": 0.5,
+          "5": 0.5,
+          "6": 0.5,
+          "7": 0.5,
+          "8": 0.5,
+          "9": 0.5,
+          "10": 0.5,
+          "11": 0.5,
+          "12": 0.5,
+          "13": 0.5,
+          "14": 0.5,
+          "15": 0.5,
+          "16": 0.5,
+          "17": 0.5,
+          "18": 0.5,
+          "19": 0.5
+        }
+      ],
+      [
+        "root.groups[0].probes.0.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.0.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.1.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.1.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.2.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.2.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.3.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.3.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.4.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.4.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.5.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.5.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.6.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.6.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.7.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.7.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.8.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.8.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.9.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.9.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.10.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.10.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.11.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.11.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.12.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.12.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.13.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.13.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.14.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.14.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.15.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.15.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.16.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.16.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.17.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.17.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.18.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.18.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.19.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.19.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.20.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.20.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.21.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.21.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.22.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.22.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.23.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.23.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.24.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.24.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.25.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.25.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.26.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.26.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.27.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.27.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.28.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.28.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.29.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.29.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.30.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.30.threshold",
+        "array[5] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.31.weights",
+        "array[5, 4096] dtype=float64"
+      ],
+      [
+        "root.groups[0].probes.31.threshold",
+        "array[5] dtype=float64"
+      ]
+    ],
+    "plotted_best_layer": 31,
+    "plotted_best_score": 0.5059375
+  },
+  "exp3": {
+    "path": "/workspace/aimo-interp-getting-started/solutions/uncertainty-profiling/uncertainty_artifacts/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.joblib",
+    "size_bytes": 1007536,
+    "type": "dict",
+    "top_keys": [
+      "artifact_type",
+      "cv_results",
+      "decision_threshold",
+      "estimator",
+      "feature_names",
+      "generation_config",
+      "library_versions",
+      "model_id",
+      "schema_version",
+      "selected_params",
+      "training_provenance"
+    ],
+    "schema_version": 1,
+    "artifact_type": "uncertainty_regressor",
+    "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+    "decision_threshold": 0.5759658815999995,
+    "feature_names": [
+      "generation_mean_logprob",
+      "generation_mean_prob",
+      "generation_mean_nll",
+      "generation_ppl",
+      "generation_min_logprob",
+      "generation_max_logprob",
+      "generation_std_logprob",
+      "generation_min_k_logprob",
+      "generation_mean_entropy",
+      "generation_mean_top1_prob",
+      "generation_mean_top2_margin",
+      "generation_frac_selected_is_top1",
+      "generation_frac_high_conf_tokens",
+      "generation_frac_low_conf_tokens"
+    ],
+    "n_features": 14,
+    "selected_params": {
+      "family": "random_forest",
+      "max_depth": null,
+      "max_features": 1.0,
+      "min_samples_leaf": 1,
+      "n_estimators": 500
+    },
+    "library_versions": {
+      "python": "3.12.0",
+      "joblib": "1.5.3",
+      "accelerate": "1.13.0",
+      "numpy": "2.5.1",
+      "pandas": "3.0.3",
+      "scikit_learn": "1.8.0",
+      "torch": "2.12.1+cu130",
+      "transformers": "5.13.0"
+    },
+    "training_provenance": {
+      "source_dataset": "aimo-interp/augmented-sample-math-agg",
+      "source_revision": "f972ced0705096f8d7ca7fac30825900b8b7fb6a",
+      "source_model_ids": [
+        "qwen3-8b:low"
+      ],
+      "feature_model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "target_column": "absolute_accuracy_decay",
+      "label_column": "model_is_robust",
+      "group_column": "original_problem",
+      "row_count": 141,
+      "group_count": 137,
+      "n_splits": 5,
+      "seed": 42
+    },
+    "cv_results_keys": [
+      "best",
+      "candidates",
+      "mean_baseline",
+      "selection_metric",
+      "tie_breakers"
+    ],
+    "cv_numeric": {
+      "best.decision_threshold": 0.5759658815999995,
+      "best.balanced_accuracy": 0.6261904761904762,
+      "best.accuracy": 0.6879432624113475,
+      "best.mae": 0.3428500720399866,
+      "best.mse": 0.16583514124384838,
+      "best.r2": -0.06262002209776663,
+      "mean_baseline.decision_threshold": 0.6204258773704172,
+      "mean_baseline.balanced_accuracy": 0.5083333333333333,
+      "mean_baseline.accuracy": 0.5531914893617021,
+      "mean_baseline.mae": 0.3386856227595915,
+      "mean_baseline.mse": 0.15687704132912392,
+      "mean_baseline.r2": -0.005219303179323287
+    },
+    "estimator_type": "Pipeline",
+    "estimator_n_features_in_": 14,
+    "generation_config": {
+      "max_prompt_length": 2048,
+      "max_new_tokens": 4096,
+      "batch_size": 8,
+      "cache_implementation": "static",
+      "chat_template_role": "user",
+      "do_sample": false,
+      "min_k_fraction": 0.2,
+      "high_conf_threshold": 0.9,
+      "low_conf_threshold": 0.1
+    }
+  },
+  "exp4": {
+    "agg": {
+      "dataset": "math-robust-agg (qwen3-8b:low)",
+      "n": 141,
+      "n_robust": 36,
+      "base_rate_robust": 0.2553191489361702,
+      "majority_accuracy": 0.7446808510638299,
+      "oof_accuracy": 0.6170212765957447,
+      "oof_balanced_accuracy": 0.5785714285714285,
+      "oof_f1": 0.4,
+      "oof_roc_auc": 0.606084656084656,
+      "cv": "StratifiedKFold n_splits=5",
+      "features": [
+        "chars",
+        "words",
+        "digit_frac",
+        "letter_frac",
+        "latexish",
+        "dollar_count",
+        "newline_count",
+        "n_numbers",
+        "mean_number",
+        "max_number_log1p",
+        "has_triangle",
+        "has_fibonacci",
+        "has_prime",
+        "has_gcd",
+        "has_mod",
+        "avg_word_len"
+      ],
+      "note": "CONTROL: problem-text features only; submission must use model signals. Bounds label predictability from text alone.",
+      "coef_ranked": [
+        {
+          "feature": "words",
+          "coef": 0.8214370925457201
+        },
+        {
+          "feature": "digit_frac",
+          "coef": -0.7493445118964001
+        },
+        {
+          "feature": "n_numbers",
+          "coef": 0.6712930972948514
+        },
+        {
+          "feature": "chars",
+          "coef": -0.4224298108277663
+        },
+        {
+          "feature": "has_gcd",
+          "coef": -0.3342660887759164
+        },
+        {
+          "feature": "latexish",
+          "coef": -0.28511402342741526
+        },
+        {
+          "feature": "newline_count",
+          "coef": -0.27418646876084335
+        },
+        {
+          "feature": "has_prime",
+          "coef": -0.2586808035068215
+        },
+        {
+          "feature": "has_fibonacci",
+          "coef": 0.23729717396349154
+        },
+        {
+          "feature": "has_triangle",
+          "coef": 0.14267386010656946
+        },
+        {
+          "feature": "max_number_log1p",
+          "coef": -0.08348039616422566
+        },
+        {
+          "feature": "letter_frac",
+          "coef": 0.08283206715276627
+        },
+        {
+          "feature": "avg_word_len",
+          "coef": 0.06673617449446358
+        },
+        {
+          "feature": "mean_number",
+          "coef": -0.06507099336962426
+        },
+        {
+          "feature": "dollar_count",
+          "coef": 0.06421122356501277
+        },
+        {
+          "feature": "has_mod",
+          "coef": 0.002805377380733388
+        }
+      ]
+    },
+    "val_sample": {
+      "dataset": "val-sample",
+      "n": 24,
+      "n_robust": 9,
+      "base_rate_robust": 0.375,
+      "majority_accuracy": 0.625,
+      "n_unique_problem_groups": 8,
+      "oof_accuracy": 0.5833333333333334,
+      "oof_balanced_accuracy": 0.5111111111111111,
+      "oof_f1": 0.2857142857142857,
+      "oof_roc_auc": 0.6666666666666666,
+      "cv": "GroupKFold by problem text n_splits=5"
+    }
+  },
+  "exp5": {
+    "agg_n": 141,
+    "final_n": 675,
+    "agg_robust_rate": 0.2553191489361702,
+    "agg_model_ids": {
+      "qwen3-8b:low": 141
+    },
+    "final_perm_types": {
+      "OVERALL": 141,
+      "distract": 127,
+      "rename": 105,
+      "rephrase": 105,
+      "typos": 99,
+      "domain": 98
+    },
+    "agg_decay_stats": {
+      "abs_decay_mean": 0.6217082340425533,
+      "abs_decay_median": 0.75,
+      "abs_decay_std": 0.3964558436659505,
+      "base_acc_mean": 0.9940898368794325,
+      "perm_acc_mean": 0.37238160283687943
+    },
+    "decay_by_robust": {
+      "robust_abs_decay_mean": 0.0,
+      "not_robust_abs_decay_mean": 0.834865342857143,
+      "robust_base_acc_mean": 1.0,
+      "not_robust_base_acc_mean": 0.9920634952380952
+    },
+    "per_permutation_decay": [
+      {
+        "permutation_type": "domain",
+        "n": 98,
+        "mean_abs_decay": 0.6922629489795918,
+        "median_abs_decay": 0.8,
+        "mean_base": 0.9925170102040816,
+        "mean_perm": 0.3002540612244898,
+        "robust_rate": 0.12244897959183673
+      },
+      {
+        "permutation_type": "distract",
+        "n": 127,
+        "mean_abs_decay": 0.14737371653543307,
+        "median_abs_decay": 0.0,
+        "mean_base": 0.9934383228346457,
+        "mean_perm": 0.8460646062992125,
+        "robust_rate": 0.25984251968503935
+      },
+      {
+        "permutation_type": "rephrase",
+        "n": 105,
+        "mean_abs_decay": 0.0436134380952381,
+        "median_abs_decay": 0.0,
+        "mean_base": 0.9930158761904762,
+        "mean_perm": 0.9494024380952382,
+        "robust_rate": 0.22857142857142856
+      },
+      {
+        "permutation_type": "rename",
+        "n": 105,
+        "mean_abs_decay": 0.02786147619047619,
+        "median_abs_decay": 0.0,
+        "mean_base": 0.9961904761904762,
+        "mean_perm": 0.968329,
+        "robust_rate": 0.2761904761904762
+      },
+      {
+        "permutation_type": "typos",
+        "n": 99,
+        "mean_abs_decay": 0.005320030303030303,
+        "median_abs_decay": 0.0,
+        "mean_base": 0.9925925959595959,
+        "mean_perm": 0.9872725656565657,
+        "robust_rate": 0.23232323232323232
+      }
+    ],
+    "decay_threshold_best": {
+      "thr": 0.01,
+      "acc": 1.0,
+      "bal": 1.0
+    },
+    "decay_neg_auc": 1.0
+  },
+  "exp6": {
+    "figure": "13_hybrid_pipeline_diagram.png",
+    "mermaid": "/workspace/aimo-research-loop/artifacts/hybrid_pipeline.mmd.md"
+  }
+}

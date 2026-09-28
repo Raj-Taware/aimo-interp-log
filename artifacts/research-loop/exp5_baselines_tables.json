@@ -1,0 +1,82 @@
+{
+  "agg_n": 141,
+  "final_n": 675,
+  "agg_robust_rate": 0.2553191489361702,
+  "agg_model_ids": {
+    "qwen3-8b:low": 141
+  },
+  "final_perm_types": {
+    "OVERALL": 141,
+    "distract": 127,
+    "rename": 105,
+    "rephrase": 105,
+    "typos": 99,
+    "domain": 98
+  },
+  "agg_decay_stats": {
+    "abs_decay_mean": 0.6217082340425533,
+    "abs_decay_median": 0.75,
+    "abs_decay_std": 0.3964558436659505,
+    "base_acc_mean": 0.9940898368794325,
+    "perm_acc_mean": 0.37238160283687943
+  },
+  "decay_by_robust": {
+    "robust_abs_decay_mean": 0.0,
+    "not_robust_abs_decay_mean": 0.834865342857143,
+    "robust_base_acc_mean": 1.0,
+    "not_robust_base_acc_mean": 0.9920634952380952
+  },
+  "per_permutation_decay": [
+    {
+      "permutation_type": "domain",
+      "n": 98,
+      "mean_abs_decay": 0.6922629489795918,
+      "median_abs_decay": 0.8,
+      "mean_base": 0.9925170102040816,
+      "mean_perm": 0.3002540612244898,
+      "robust_rate": 0.12244897959183673
+    },
+    {
+      "permutation_type": "distract",
+      "n": 127,
+      "mean_abs_decay": 0.14737371653543307,
+      "median_abs_decay": 0.0,
+      "mean_base": 0.9934383228346457,
+      "mean_perm": 0.8460646062992125,
+      "robust_rate": 0.25984251968503935
+    },
+    {
+      "permutation_type": "rephrase",
+      "n": 105,
+      "mean_abs_decay": 0.0436134380952381,
+      "median_abs_decay": 0.0,
+      "mean_base": 0.9930158761904762,
+      "mean_perm": 0.9494024380952382,
+      "robust_rate": 0.22857142857142856
+    },
+    {
+      "permutation_type": "rename",
+      "n": 105,
+      "mean_abs_decay": 0.02786147619047619,
+      "median_abs_decay": 0.0,
+      "mean_base": 0.9961904761904762,
+      "mean_perm": 0.968329,
+      "robust_rate": 0.2761904761904762
+    },
+    {
+      "permutation_type": "typos",
+      "n": 99,
+      "mean_abs_decay": 0.005320030303030303,
+      "median_abs_decay": 0.0,
+      "mean_base": 0.9925925959595959,
+      "mean_perm": 0.9872725656565657,
+      "robust_rate": 0.23232323232323232
+    }
+  ],
+  "decay_threshold_best": {
+    "thr": 0.01,
+    "acc": 1.0,
+    "bal": 1.0
+  },
+  "decay_neg_auc": 1.0
+}

@@ -1,0 +1,95 @@
+{
+  "models": {
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "artifact_path": "/kaggle/working/probe_artifacts/probe_deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.pkl",
+      "best_layer_index": 9,
+      "candidate_layers": [
+        9,
+        18,
+        27,
+        32,
+        36
+      ],
+      "feature_dim": 4096,
+      "per_layer": {
+        "18": {
+          "fold_val_accs": [
+            0.8333333333333334,
+            0.5,
+            0.5,
+            0.6666666666666666
+          ],
+          "mean_fold_val_acc": 0.625,
+          "n_folds_used": 4,
+          "oof_accuracy": 0.625,
+          "oof_balanced_accuracy": 0.5,
+          "oof_n": 24,
+          "train_accuracy_full_fit": 0.6666666666666666
+        },
+        "27": {
+          "fold_val_accs": [
+            0.8333333333333334,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "mean_fold_val_acc": 0.5833333333333334,
+          "n_folds_used": 4,
+          "oof_accuracy": 0.5833333333333334,
+          "oof_balanced_accuracy": 0.4666666666666667,
+          "oof_n": 24,
+          "train_accuracy_full_fit": 0.6666666666666666
+        },
+        "32": {
+          "fold_val_accs": [
+            0.8333333333333334,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "mean_fold_val_acc": 0.5833333333333334,
+          "n_folds_used": 4,
+          "oof_accuracy": 0.5833333333333334,
+          "oof_balanced_accuracy": 0.4666666666666667,
+          "oof_n": 24,
+          "train_accuracy_full_fit": 0.6666666666666666
+        },
+        "36": {
+          "fold_val_accs": [
+            0.8333333333333334,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "mean_fold_val_acc": 0.5833333333333334,
+          "n_folds_used": 4,
+          "oof_accuracy": 0.5833333333333334,
+          "oof_balanced_accuracy": 0.4666666666666667,
+          "oof_n": 24,
+          "train_accuracy_full_fit": 0.6666666666666666
+        },
+        "9": {
+          "fold_val_accs": [
+            0.8333333333333334,
+            0.5,
+            0.5,
+            0.6666666666666666
+          ],
+          "mean_fold_val_acc": 0.625,
+          "n_folds_used": 4,
+          "oof_accuracy": 0.625,
+          "oof_balanced_accuracy": 0.5,
+          "oof_n": 24,
+          "train_accuracy_full_fit": 0.6666666666666666
+        }
+      },
+      "safe_model_id": "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B"
+    }
+  },
+  "n_robust": 9,
+  "n_rows": 24,
+  "n_unique_problems": 8,
+  "train_models": [
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B"
+  ]
+}
