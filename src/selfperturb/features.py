@@ -31,6 +31,11 @@ from .perturbations import PERTURBATIONS, perturb_all
 # comparable when we train one model on several checkpoints.
 DEPTH_FRACTIONS = (0.25, 0.5, 0.65, 0.8, 0.9, 1.0)
 MAX_PROMPT_TOKENS = 2048
+# Appended after the chat template's assistant turn, so the last position is
+# the model committing to the first token of its answer. Reasoning models
+# otherwise always emit the same opening token (``<think>``) here, which made
+# the next-token distribution constant -- entropy 0, top-1 1.0 -- on every case.
+ANSWER_PREFIX = "The final answer is $\\boxed{"
 
 
 def load_model(model_id: str, dtype: torch.dtype | None = None):
@@ -76,12 +81,14 @@ def build_prompt(tokenizer, problem: str, system_prompt: str = "") -> str:
             messages.append({"role": "system", "content": system_prompt})
         messages.append({"role": "user", "content": problem})
         try:
-            return tokenizer.apply_chat_template(
+            templated = tokenizer.apply_chat_template(
                 messages, tokenize=False, add_generation_prompt=True
             )
+            return templated + ANSWER_PREFIX
         except Exception:
             pass
-    return f"{system_prompt}\n\n{problem}" if system_prompt else problem
+    body = f"{system_prompt}\n\n{problem}" if system_prompt else problem
+    return f"{body}\n\n{ANSWER_PREFIX}"
 
 
 @torch.no_grad()
@@ -153,6 +160,10 @@ def case_features(tokenizer, model, problem: str, system_prompt: str = "") -> np
                 float(np.linalg.norm(b) / (np.linalg.norm(a) + 1e-9))  # norm ratio
             )
         features.append(_kl(base_probs, probs[index]))
+        # Some perturbations cannot apply (no symbols to rename, no numbers to
+        # respell). Unchanged text gives cosine exactly 1.0, which would read as
+        # "perfectly stable"; this flag lets the classifier tell the two apart.
+        features.append(float(variants[names[index - 1]] != problem))
 
     # Absolute doubt on the untouched problem: how sure is it before it starts?
     top = np.sort(base_probs)[::-1]
@@ -168,5 +179,6 @@ def feature_names() -> list[str]:
             names.append(f"{perturbation}_cos_d{fraction}")
             names.append(f"{perturbation}_norm_d{fraction}")
         names.append(f"{perturbation}_kl")
+        names.append(f"{perturbation}_applied")
     names.extend(["base_entropy", "base_top1", "base_margin"])
     return names

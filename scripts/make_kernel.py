@@ -68,11 +68,20 @@ report = {{
     "robust_fraction": float(labels.mean()),
     "wall_seconds_total": round(elapsed, 1),
 }}
-# Sanity: answer-preserving edits should move the representation less than
-# number changes do. If rename drifts as much as number_jitter, something is off.
-for name in ("rename", "typos", "distract", "rephrase", "domain", "number_jitter"):
-    index = columns.index(f"{{name}}_cos_d0.5")
-    report[f"mean_cos_mid_{{name}}"] = round(float(features[:, index].mean()), 4)
+# Per perturbation: how often it applied, and mid-depth drift where it did.
+# Robust vs spurious drift is the signal the whole method rests on.
+for name in ("rename", "numerals", "typos", "distract", "rephrase", "number_jitter"):
+    applied = features[:, columns.index(f"{{name}}_applied")] > 0.5
+    cosine = features[:, columns.index(f"{{name}}_cos_d0.5")]
+    entry = {{"applied": int(applied.sum())}}
+    for label, mask in (("robust", applied & labels), ("spurious", applied & ~labels)):
+        if mask.any():
+            entry[f"cos_mid_{{label}}"] = round(float(cosine[mask].mean()), 4)
+    report[name] = entry
+for name in ("base_entropy", "base_top1", "base_margin"):
+    column = features[:, columns.index(name)]
+    report[name] = {{"robust": round(float(column[labels].mean()), 4),
+                    "spurious": round(float(column[~labels].mean()), 4)}}
 print(json.dumps(report, indent=2))
 Path("/kaggle/working/smoke_report.json").write_text(json.dumps(report, indent=2))
 '''

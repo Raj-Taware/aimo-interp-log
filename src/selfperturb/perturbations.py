@@ -12,21 +12,27 @@ Design constraints, all forced by the evaluation container:
 * standard library only (no network, no extra packages);
 * deterministic given (text, seed) so repeated runs score identically;
 * cheap -- a perturbation is a string edit, not a model call;
-* LaTeX-safe -- math spans are masked out before editing and restored after,
-  so the answer-preserving perturbations never touch mathematical content.
-  ``number_jitter`` is the deliberate exception: it edits numbers wherever they
-  live, math included, because changing a quantity is the whole point of it.
+* LaTeX-aware -- prose edits mask math spans out and restore them after.
+  ``rename`` and ``numerals`` edit *inside* math on purpose, and only in
+  answer-preserving ways (consistent variable renaming, digits to words).
+  ``number_jitter`` edits numbers wherever they live, because changing a
+  quantity is the whole point of it.
+
+Olympiad statements carry their entities as math symbols ($r$, $m$, points
+$A$, $B$), not as named people and objects, so renaming works on the symbols.
+A first version renamed only English names and nouns and left 96% of real
+problems untouched -- a no-op perturbation is a constant feature.
 
 Two kinds of perturbation live here, and the distinction matters:
 
-* **Answer-preserving** (rename, typos, distract, rephrase, domain): the
+* **Answer-preserving** (rename, numerals, typos, distract, rephrase): the
   deductive chain is untouched, so a robust model's answer should not change.
-  These mirror the organizers' categories.
-* **Answer-changing** (number_jitter): the answer legitimately differs. This is
-  useless as a correctness check but valuable as a *sensitivity probe* -- we
-  measure representation drift, never correctness, so a model that barely reacts
-  to a changed quantity is telling us it is pattern-matching rather than reading
-  the numbers.
+  They mirror the organizers' categories except ``domain``, which needs a
+  language model to do honestly and is not attempted.
+* **Answer-changing** (number_jitter): the answer legitimately differs. Useless
+  as a correctness check but valuable as a *sensitivity probe* -- we measure
+  representation drift, never correctness, so a model that barely reacts to a
+  changed quantity is telling us it is not reading the numbers.
 """
 
 from __future__ import annotations
@@ -41,27 +47,25 @@ _MATH_PATTERN = re.compile(
 )
 _MASK = "\x00MATH{}\x00"
 
-# Substitution tables. Each is applied whole-word and case-sensitively on the
-# capitalized form, so "Ann" -> "Zara" but "annual" is left alone.
+# Inside math, a lone letter not glued to a LaTeX command or another letter is
+# a symbol we may rename: the m in \frac{m}{n}, the x in \sin x.
+_SYMBOL = re.compile(r"(?<![\\A-Za-z])[A-Za-z](?![A-Za-z])")
+# Letters whose meaning is fixed by convention, never renamed.
+_RESERVED = set("deiEIO")
+# Arguments of these commands are names, not variables: \mathbb{R}, \text{cm}.
+_LITERAL_ARGUMENT = re.compile(
+    r"\\(?:mathbb|mathrm|text|operatorname|mathcal|mathfrak)\s*\{[^{}]*\}"
+)
+
 _NAMES = {
     "Alice": "Priya", "Bob": "Tomas", "Carol": "Ingrid", "Dave": "Kenji",
     "Eve": "Noor", "Ann": "Zara", "Tom": "Rafael", "John": "Hiroshi",
     "Mary": "Lucia", "Sarah": "Amara", "Mike": "Dmitri", "Anna": "Fatima",
 }
-_OBJECTS = {
-    "apples": "crates", "apple": "crate", "balls": "tokens", "ball": "token",
-    "boxes": "bins", "box": "bin", "cards": "tiles", "card": "tile",
-    "coins": "beads", "coin": "bead", "marbles": "pebbles", "marble": "pebble",
-    "students": "engineers", "student": "engineer", "books": "ledgers",
-    "book": "ledger", "candies": "rations", "candy": "ration",
-}
-# Domain shift shoves the same structure into another setting.
-_DOMAIN = {
-    "school": "shipyard", "class": "crew", "classroom": "workshop",
-    "teacher": "foreman", "shop": "depot", "store": "depot",
-    "garden": "reactor bay", "farm": "refinery", "game": "trial",
-    "player": "operator", "team": "squadron", "race": "launch sequence",
-}
+_NUMBER_WORDS = (
+    "zero one two three four five six seven eight nine ten eleven twelve "
+    "thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty"
+).split()
 _DISTRACTORS = (
     "The recorded measurements were taken on a Tuesday.",
     "An unrelated note in the margin mentions a value of 37.",
@@ -100,12 +104,9 @@ def _unmask_math(text: str, spans: list[str]) -> str:
 
 
 def _apply_table(text: str, table: dict[str, str]) -> str:
-    """Whole-word substitution, preserving leading capitalization."""
+    """Whole-word substitution."""
     for source, target in table.items():
-        pattern = re.compile(rf"\b{re.escape(source)}\b")
-        text = pattern.sub(target, text)
-        capitalized = re.compile(rf"\b{re.escape(source.capitalize())}\b")
-        text = capitalized.sub(target.capitalize(), text)
+        text = re.sub(rf"\b{re.escape(source)}\b", target, text)
     return text
 
 
@@ -121,16 +122,87 @@ def _prose_only(function):
     return wrapper
 
 
-@_prose_only
+def _edit_math(text: str, edit) -> str:
+    """Apply ``edit`` to each math span, shielding literal command arguments."""
+
+    def _span(match: re.Match[str]) -> str:
+        span = match.group(0)
+        shields: list[str] = []
+
+        def _shield(inner: re.Match[str]) -> str:
+            shields.append(inner.group(0))
+            return f"\x01{len(shields) - 1}\x01"
+
+        span = edit(_LITERAL_ARGUMENT.sub(_shield, span))
+        for index, original in enumerate(shields):
+            span = span.replace(f"\x01{index}\x01", original)
+        return span
+
+    return _MATH_PATTERN.sub(_span, text)
+
+
 def rename(text: str, seed: int = 0) -> str:
-    """Swap people and objects for different ones. Answer-preserving."""
-    return _apply_table(_apply_table(text, _NAMES), _OBJECTS)
+    """Consistently rename math symbols (and common names). Answer-preserving.
+
+    Every occurrence of a symbol maps to the same fresh letter of the same case,
+    chosen from letters the problem never uses, so the structure is unchanged.
+    """
+    used: set[str] = set()
+    _edit_math(text, lambda span: used.update(_SYMBOL.findall(span)) or span)
+    renamable = sorted(letter for letter in used if letter not in _RESERVED)
+
+    rng = random.Random(seed)
+    mapping: dict[str, str] = {}
+    for letter in renamable:
+        pool = [
+            candidate
+            for candidate in (
+                "abcfghjkmnpqrstuvwxyz" if letter.islower() else "ABCFGHJKMNPQRSTUVWXYZ"
+            )
+            if candidate not in used and candidate not in mapping.values()
+        ]
+        if pool:
+            mapping[letter] = rng.choice(pool)
+
+    renamed = _edit_math(
+        text, lambda span: _SYMBOL.sub(lambda m: mapping.get(m.group(0), m.group(0)), span)
+    )
+    masked, spans = _mask_math(renamed)
+    return _unmask_math(_apply_table(masked, _NAMES), spans)
 
 
-@_prose_only
-def domain(text: str, seed: int = 0) -> str:
-    """Move the same structure into an unrelated setting. Answer-preserving."""
-    return _apply_table(_apply_table(text, _DOMAIN), _OBJECTS)
+_WORD_VALUES = {word: value for value, word in enumerate(_NUMBER_WORDS) if value >= 2}
+# Either a small integer or its word, standing alone: not part of a decimal,
+# fraction, or percentage. "one" and 0/1 are skipped -- too often structural
+# ("no one", "at least 1").
+_PROSE_NUMBER = re.compile(
+    r"(?<![\d.,/])\b(\d{1,2}|" + "|".join(_WORD_VALUES) + r")\b(?![\d%]|\.\d|/)",
+    re.IGNORECASE,
+)
+
+
+def numerals(text: str, seed: int = 0) -> str:
+    """Swap small numbers between digits and words. Answer-preserving.
+
+    Most statements write quantities in prose ("Ten treeks", "the digit 6"),
+    not as bare ``$3$`` spans, so both directions are swapped in one pass:
+    6 -> six, Ten -> 10, and ``$3$`` -> three.
+    """
+
+    def _span_to_word(match: re.Match[str]) -> str:
+        value = int(match.group(1))
+        return _NUMBER_WORDS[value] if 2 <= value <= 20 else match.group(0)
+
+    def _swap(match: re.Match[str]) -> str:
+        token = match.group(0)
+        if token.isdigit():
+            value = int(token)
+            return _NUMBER_WORDS[value] if 2 <= value <= 20 else token
+        return str(_WORD_VALUES[token.lower()])
+
+    text = re.sub(r"\$(\d{1,2})\$", _span_to_word, text)
+    masked, spans = _mask_math(text)
+    return _unmask_math(_PROSE_NUMBER.sub(_swap, masked), spans)
 
 
 @_prose_only
@@ -197,14 +269,14 @@ def number_jitter(text: str, seed: int = 0) -> str:
 # Ordered so feature vectors keep a stable column order across runs.
 PERTURBATIONS = {
     "rename": rename,
-    "domain": domain,
+    "numerals": numerals,
     "typos": typos,
     "distract": distract,
     "rephrase": rephrase,
     "number_jitter": number_jitter,
 }
 
-ANSWER_PRESERVING = ("rename", "domain", "typos", "distract", "rephrase")
+ANSWER_PRESERVING = ("rename", "numerals", "typos", "distract", "rephrase")
 
 
 def perturb_all(text: str, seed: int = 0) -> dict[str, str]:

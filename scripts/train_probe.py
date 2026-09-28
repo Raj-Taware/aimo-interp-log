@@ -137,7 +137,9 @@ def export(features, labels, columns, destination: Path, report: dict) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--features", type=Path, default=Path("data/features"))
-    parser.add_argument("--out", type=Path, default=Path("artifacts/selfperturb_probe.npz"))
+    # Inference looks for probe_artifacts/<safe_model_id>.npz, then generic.npz;
+    # build_bundle.py ships everything in artifacts/probe_artifacts/.
+    parser.add_argument("--out", type=Path, default=Path("artifacts/probe_artifacts/generic.npz"))
     arguments = parser.parse_args()
 
     features, labels, groups, models, columns = load_features(arguments.features)
