@@ -4,8 +4,8 @@ Exposes ``are_robust(model_id, reasoning_effort, problems) -> list[bool]``.
 
 On CPU / without local HF weights this solution returns a deterministic
 all-False prediction of the correct length (valid coverage baseline). When
-GPU + per-model artifacts are present, :mod:`cascade` runs short-trace
-uncertainty → cheap K=1–2 counterfactuals → last-token probes, aborting under
+GPU + per-model artifacts are present, :mod:`cascade` runs last-token probes
+(optional CF agreement veto) → uncertainty stub → all-False, aborting under
 the 3600s whole-run budget.
 """
 

@@ -9,7 +9,7 @@ Decision policies (see ``DECISION_POLICY``):
 - ``legacy`` — mean margin >= 0 (Codabench 949901 → 0.4286; over-predicted True)
 - ``conservative`` — high True bar only (949937 → 0.5714; best so far)
 - ``symmetric_confident`` — ±margin bars + stronger seed agreement; cascade
-  allows True-rate up to 0.50 on balanced hidden set (candidate to beat 0.571)
+  allows True-rate up to 0.50 (Codabench 949966 → 0.50; not default)
 
 Public val-sample labels are noisy proxies of hidden H — not a reconstruction
 target. Artifacts should be trained offline per Competition model id.
@@ -37,9 +37,9 @@ RECOMMENDED_STRATEGY = "best_layer_mean_margin"
 # ---------------------------------------------------------------------------
 # Decision policy (single switch; cascade reads the same name)
 # ---------------------------------------------------------------------------
-# Active candidate for Codabench A/B vs 949937 (0.5714). Flip to "conservative"
-# to restore the prior winning config without code surgery.
-DECISION_POLICY = "symmetric_confident"
+# Active default = winning Codabench 949937. symmetric_confident (949966) regressed
+# to 0.50 — keep selectable via POLICY_THRESHOLDS but do not ship as default.
+DECISION_POLICY = "conservative"
 
 POLICY_THRESHOLDS: dict[str, dict[str, float | None]] = {
     # Codabench 949901 — mean margin >= 0

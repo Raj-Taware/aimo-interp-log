@@ -1,7 +1,8 @@
 # Hybrid Cascade (budget-aware Small Models Track)
 
-Method taste: **short early-trace uncertainty + cheap K=1–2 counterfactuals +
-per-model last-token probes**, fused under a **cascade abort &lt; 3600s**.
+Method taste: **per-model last-token probes** (primary) with an optional
+**K=1–2 counterfactual agreement veto**, plus a reserved short early-trace
+uncertainty stage, fused under a **cascade abort &lt; 3600s**.
 Public `model_is_robust` / val-sample labels are **proxies**, not a
 reconstruction of the unpublished private labelling rule H.
 
@@ -10,9 +11,9 @@ reconstruction of the unpublished private labelling rule H.
 ```text
 hybrid-cascade/
 ├── solution.py              # are_robust(model_id, reasoning_effort, problems)
-├── cascade.py               # order, wall budget, all-False fallback
-├── uncertainty_features.py  # short early-trace stage (GPU)
-├── counterfactual.py        # K=1–2 light transforms (GPU)
+├── cascade.py               # probe-first + CF veto, wall budget, all-False
+├── uncertainty_features.py  # short early-trace stage (GPU stub without artifact)
+├── counterfactual.py        # K=1–2 light transforms + GPU generate (veto)
 ├── probe_infer.py           # per-model last-token probes (GPU)
 ├── artifacts/               # per-model probe_*.pkl (4 Small IDs)
 └── README.md
@@ -22,17 +23,21 @@ Small-track packaging: build with `uv run scripts/build.py solutions --small`
 so the ZIP root contains blank `small.txt`
 → `dist/solution-hybrid-cascade-small.zip`.
 
-## Cascade order
+## Cascade order (Codabench GPU)
 
 | Step | Module | What it does | Needs GPU? | Needs local HF weights? | Needs bundled artifact? |
 |---:|---|---|---|---|---|
-| 1 | `uncertainty_features` | Greedy short gen (≪4096 tokens), early-trace aggregates → soft score | **Yes** | **Yes** | Optional short-trace `.joblib` per model |
-| 2 | `counterfactual` | Original + K=1–2 light offline transforms; answer agreement ⇒ robust | **Yes** | **Yes** | No (behavioural) |
-| 3 | `probe_infer` | Last prompt-token @ selected layer; policy gate (see below) | **Yes** | **Yes** | **Yes** — one probe pack per Small ID |
+| 1 | `probe_infer` | Last prompt-token @ selected layer; conservative policy gate | **Yes** | **Yes** | **Yes** — one probe pack per Small ID |
+| 1b | `counterfactual` veto | Original + K=1–2 transforms; fuse via probe∧agree | **Yes** | **Yes** | No (behavioural) |
+| 2 | standalone CF | Only if probes unavailable | **Yes** | **Yes** | No |
+| 3 | `uncertainty_features` | Short gen early-trace aggregates → soft score | **Yes** | **Yes** | Optional short-trace `.joblib` |
 | 4 | fallback | Deterministic `False` × N | No | No | No |
 
 - If a stage returns `None` (no CUDA, no artifact, no cache) or raises, the
   cascade **skips** to the next stage.
+- CF **agreement veto**: when both probe and CF votes are available, a case is
+  True only if the probe says True **and** answers agree across transforms.
+  Disagreement / unparseable answers force False (precision bias; 949901 failure mode).
 - If wall time exceeds ~80% of **3600s**, remaining expensive stages are
   aborted and the fallback is used so coverage stays 1.0 / invalid=0.
 - Predictions are always **native Python `bool`**, same length/order as
@@ -71,7 +76,8 @@ Official Small (rmtaware) anchors (measured):
 | 949901 | hybrid default (`legacy`) | 0.4286 |
 | 949938 | all-False | 0.5000 |
 | 949942 | always-True | 0.5000 |
-| **949937** | **conservative hybrid** | **0.5714** ← best |
+| 949966 | `symmetric_confident` | 0.5000 |
+| **949937** | **conservative hybrid** | **0.5714** ← best / **active default** |
 
 Hidden labels are **balanced** (chance = 0.50). Local val-sample False-rate
 0.625 is a misleading prior.
@@ -79,19 +85,8 @@ Hidden labels are **balanced** (chance = 0.50). Local val-sample False-rate
 | Policy | Probe True gate | Cascade `MAX_STAGE_TRUE_RATE` | Status |
 |---|---|---:|---|
 | `legacy` | mean margin ≥ 0 | 1.01 (off) | 949901 |
-| `conservative` | mean ≥ 0.5 **and** ≥75% seeds ≥ 0 | 0.35 | 949937 (best) |
-| **`symmetric_confident`** (active) | mean ≥ **+0.30** **and** ≥**90%** seeds ≥ 0; symmetrically mean ≤ **−0.30** **and** ≥90% seeds ≤ 0 → False; dead zone → False | **0.50** | candidate to beat 0.571 |
-
-**Why `symmetric_confident` vs 0.571 hypothesis**
-
-1. Soften True margin 0.5 → 0.30 to raise recall of genuine Trues that
-   conservative rejected.
-2. Harden seed agreement 0.75 → 0.90 (~11/12 seeds) to keep precision.
-3. Raise cascade True-rate abort 0.35 → 0.50 so near-balanced probe batches
-   are not discarded to all-False on a balanced hidden set.
-4. Gate False symmetrically (±τ) so the rule is not True-only.
-
-Flip `DECISION_POLICY = "conservative"` to restore 949937 behaviour.
+| **`conservative`** (active) | mean ≥ 0.5 **and** ≥75% seeds ≥ 0 | 0.35 | **949937 (best)** |
+| `symmetric_confident` | mean ≥ +0.30 **and** ≥90% seeds ≥ 0; ±τ False gate; dead zone → False | 0.50 | 949966 → 0.50; do not ship |
 
 `are_robust(model_id, reasoning_effort, problems) -> list[bool]` unchanged.
 No CUDA / missing artifact / missing local weights still → all-False.
@@ -99,14 +94,14 @@ No CUDA / missing artifact / missing local weights still → all-False.
 ## Local validate & package
 
 ```bash
+uv run python -m unittest tests.test_hybrid_cascade_conservative -v
 uv run scripts/build.py solutions --small
-# optional distinct name for A/B:
-cp dist/solution-hybrid-cascade-small.zip \
-   dist/solution-hybrid-cascade-small-symmetric-confident.zip
-uv run scripts/run_local.py dist/solution-hybrid-cascade-small-symmetric-confident.zip --small \
+uv run scripts/run_local.py dist/solution-hybrid-cascade-small.zip --small \
   --input-dir data/val-sample/input \
   --reference-dir data/val-sample/reference
 ```
 
 Expect on CPU: coverage `1.0`, invalid_predictions `0`, accuracy equal to the
 all-False base rate on the local label mix (report the measured JSON only).
+
+**Do not submit to Codabench without Raj approval** (10/day, 300 total).

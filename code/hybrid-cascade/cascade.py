@@ -1,16 +1,18 @@
 """Budget-aware hybrid cascade with hard abort under 3600s.
 
-Cascade order (cheap → expensive; abort on failure / time pressure):
+Cascade order (Codabench GPU path after 2026-09-28 hardening):
 
-1. **Short early-trace uncertainty** (`uncertainty_features`) — needs GPU +
-   local HF checkpoint + optional short-trace artifact.
-2. **Cheap K=1–2 counterfactuals** (`counterfactual`) — needs GPU + local
-   checkpoint; light offline transforms only.
-3. **Per-model last-token probes** (`probe_infer`) — needs GPU + local
-   checkpoint + per-model probe artifact for each of the 4 Small IDs.
-4. **Deterministic all-False fallback** — always valid; used on this CPU box
-   and whenever earlier stages return ``None``, raise, or (under a gating
-   policy) over-predict True above ``MAX_STAGE_TRUE_RATE``.
+1. **Per-model last-token probes** (`probe_infer`) — primary signal that produced
+   official 949937 = 0.5714 under ``DECISION_POLICY=conservative``.
+2. **Optional CF agreement veto** (`counterfactual`) — when CUDA + local weights
+   allow K=1–2 answer-stability checks, fuse with probes via
+   ``fuse_probe_with_cf_veto`` (True only if probe∧agree). If CF is unavailable
+   or raises, bare probe votes are kept.
+3. **Short early-trace uncertainty** (`uncertainty_features`) — still a stub
+   without a bundled short-trace artifact; reserved fallback.
+4. **Deterministic all-False fallback** — coverage-safe when stages return
+   ``None``, raise, or (under a gating policy) over-predict True above
+   ``MAX_STAGE_TRUE_RATE``.
 
 Any stage that cannot run (no CUDA, no artifact, no local weights) returns
 ``None``; exceptions are swallowed into the fallback so coverage stays 1.0 and
@@ -23,7 +25,10 @@ import time
 from dataclasses import dataclass
 from typing import Callable, Sequence
 
-from counterfactual import counterfactual_stability_votes
+from counterfactual import (
+    counterfactual_stability_votes,
+    fuse_probe_with_cf_veto,
+)
 from probe_infer import DECISION_POLICY, last_token_probe_votes
 from uncertainty_features import short_trace_scores, scores_to_votes
 
@@ -34,7 +39,8 @@ HEADROOM_FRAC = 0.80
 
 # Per-policy True-rate abort caps. Conservative (949937) used 0.35; on a
 # balanced hidden set (all-False=always-True=0.50) that can discard calibrated
-# near-balanced probe batches → all-False. symmetric_confident raises to 0.50.
+# near-balanced probe batches → all-False. symmetric_confident raises to 0.50
+# (Codabench 949966 → 0.50; do not ship as default).
 CASCADE_TRUE_RATE_CAPS: dict[str, float] = {
     "legacy": 1.01,  # effectively never reject on True-rate alone
     "conservative": 0.35,
@@ -138,6 +144,15 @@ def reject_overconfident_votes(
     return true_rate > max_true_rate
 
 
+def _accept_or_none(votes: list[bool] | None) -> list[bool] | None:
+    """Apply True-rate gate; return votes or ``None`` to continue cascade."""
+    if votes is None:
+        return None
+    if CONSERVATIVE_MODE and reject_overconfident_votes(votes):
+        return None
+    return votes
+
+
 def run_cascade(
     model_id: str,
     reasoning_effort: str,
@@ -158,20 +173,48 @@ def run_cascade(
 
     state = CascadeState(t0=time.monotonic(), budget_s=budget_s)
 
-    stages: list[Callable[[], list[bool] | None]] = [
-        lambda: _uncertainty_stage(model_id, texts),
-        lambda: _counterfactual_stage(model_id, texts),
-        lambda: _probe_stage(model_id, texts),
-    ]
-    names = ("uncertainty_short_trace", "counterfactual_k2", "last_token_probe")
+    # 1) Probes (primary). 2) Optional CF agreement veto when both available.
+    probe_votes = _try_stage("last_token_probe", lambda: _probe_stage(model_id, texts), n, state)
+    if probe_votes is not None:
+        cf_votes = _try_stage(
+            "counterfactual_k2_veto",
+            lambda: _counterfactual_stage(model_id, texts),
+            n,
+            state,
+        )
+        if cf_votes is not None:
+            try:
+                fused = fuse_probe_with_cf_veto(probe_votes, cf_votes)
+            except Exception:
+                fused = probe_votes
+            accepted = _accept_or_none(fused)
+            if accepted is not None:
+                return accepted
+        else:
+            accepted = _accept_or_none(probe_votes)
+            if accepted is not None:
+                return accepted
 
-    for name, stage in zip(names, stages):
-        votes = _try_stage(name, stage, n, state)
-        if votes is None:
-            continue
-        if CONSERVATIVE_MODE and reject_overconfident_votes(votes):
-            # Uncertain / over-predicting True → skip stage, prefer fallback.
-            continue
-        return votes
+    # 3) Standalone CF (only if probes unavailable) — rare on Codabench with 4 pkls.
+    cf_only = _try_stage(
+        "counterfactual_k2",
+        lambda: _counterfactual_stage(model_id, texts),
+        n,
+        state,
+    )
+    accepted = _accept_or_none(cf_only)
+    if accepted is not None:
+        return accepted
+
+    # 4) Uncertainty stub / optional artifact path.
+    unc = _try_stage(
+        "uncertainty_short_trace",
+        lambda: _uncertainty_stage(model_id, texts),
+        n,
+        state,
+    )
+    accepted = _accept_or_none(unc)
+    if accepted is not None:
+        return accepted
 
     return all_false_fallback(n)

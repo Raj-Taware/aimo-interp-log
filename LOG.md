@@ -51,3 +51,11 @@ Times in Asia/Calcutta (IST) unless noted. Scores are **measured** only.
 - Checksums: `SHA256SUMS.txt`.
 
 | ~19:30 | API submit **949966** symmetric_confident → **0.50** (regression; drop) |
+
+## 2026-09-28 ~19:35 IST — Diagnosis + CF veto hardening (no submit)
+
+- Audited cascade: only probes fire on Codabench; uncertainty + CF were no-ops.
+- Root cause of 0.5714 ceiling: probes trained on n=24 **cross-model** val-sample proxies (bal_acc≈chance); threshold A/Bs exhausted.
+- Offline plan ranked: (1) model-matched denser probe retrain on Kaggle →0.70 gate, (2) short-trace uncertainty artifacts, (3) CF veto smoke, (4) multi-layer probes, (5) calibrated fusion →0.80+.
+- Implemented: restore `DECISION_POLICY=conservative`; wire CF GPU generate+extract+agree; probe-first cascade with `fuse_probe_with_cf_veto`; 16 unit tests OK.
+- **No Codabench submit.** Kaggle retrain needs Raj GPU/login.

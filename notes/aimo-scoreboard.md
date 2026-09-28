@@ -535,3 +535,68 @@ Best official: **949937 = 0.57**. Prefer local/Kaggle measurement; propose one s
 - Gap ≈ **0.29** absolute above chance (0.50) we only have +0.07 from probes
 
 **Implication:** next gains from stronger offline methods (GPU stages that fire on Codabench, better probes / features), not more constant/threshold A/Bs. Submit only with Raj OK.
+
+
+---
+
+## 2026-09-28 ~19:35 IST — Diagnosis + offline plan + CF veto hardening
+
+**Constraint:** no Codabench submit; no Codabench password/API. Box still no GPU.
+
+### What actually runs on Codabench GPU vs no-ops (code audit)
+
+| Stage | Module | Codabench GPU (Docker, cached HF) | CPU box |
+|---|---|---|---|
+| Last-token probes | `probe_infer.py` | **FIRES** when `probe_<safe>.pkl` present for the exact Small HF id + CUDA + local cache. Produced 949901/949937/949966 scores. | Always `None` (no CUDA) |
+| Short-trace uncertainty | `uncertainty_features.py` | **NO-OP** — returns `None` even with CUDA unless a bundled `uncertainty_*.joblib` exists; GPU body still unimplemented (`return None` after artifact+gpu checks). | `None` |
+| Counterfactual K=1–2 | `counterfactual.py` | **Was stub** (computed transforms then `return None`). **Now wired** (greedy gen ≤512 new tokens, extract ANSWER/boxed/int, agree ⇒ True). Cascade uses it as **probe∧CF veto** when both available. | Still `None` |
+| Fallback | `cascade.py` | all-False if stages skip / True-rate abort | all-False (local 0.625 on val-sample) |
+
+**Cascade order change (this append):** probes **first** (protect 0.5714 path) → optional CF agreement veto → standalone CF if probes missing → uncertainty stub → all-False. Active `DECISION_POLICY` restored to **`conservative`** (symmetric_confident left selectable; 949966 proved it collapses to chance).
+
+### Diagnosis — why stuck at 0.5714
+
+1. **Probes are the only real signal** that reached Codabench scoring. Uncertainty never fires; CF was a stub. Threshold A/Bs alone cannot close a ~0.29 gap to LB top ~0.86.
+2. **Probe training data is broken for Small track:**
+   - Val-sample n=24 labels; model_ids are **non-Small aliases** (`Qwen/Qwen3.5-397B…`, `gpt-oss-120b:low`, `qwen3-8b:low`, … — only 1× qwen3-8b).
+   - Kaggle script encoded those 24 problems through each Small checkpoint but supervised with **cross-model proxy labels** → OOF bal_acc ≈ 0.50–0.63 (≈chance / local majority).
+   - Layer selection scores ~0.58–0.625 on n=24 are smoke, not transferable H signal.
+3. **Hidden H is balanced** (all-False=always-True=0.50). Conservative probes add only **+0.07** over chance. Legacy mean≥0 over-predicted True → 0.43. Soft symmetric → 0.50.
+4. **Stages not firing** is secondary for the current ZIP (probes do fire); the ceiling is **weak features**, not missing CF. Enabling CF veto is a precision hedge (949901 failure mode), not a path to 0.80 alone.
+5. Soft threshold variants failed empirically — stop burning submit slots on τ/φ sweeps until offline OOF bal_acc on **model-matched, larger-n** data clearly beats ~0.60.
+
+### Ranked offline experiment plan (no Codabench until gate)
+
+| # | Target | Hypothesis | What to change | Measure WITHOUT Codabench | Ask Raj for ONE submit when |
+|---|---|---|---|---|---|
+| **1** | →0.70 | Model-matched probes on denser public labels beat n=24 cross-model noise | Kaggle: train per Small ID on `aimo-interp/augmented-sample-math-agg` (+ filtered variants) / any public rows with `model_is_robust` or decay→label for **that** checkpoint; GroupKFold by problem text; keep schema-v2 export | Kaggle OOF **balanced accuracy ≥ 0.68** and accuracy ≥ 0.70 on held-out groups; calibrate conservative τ on OOF margins (not on H) | New 4-pkl ZIP + `conservative` + (optional) CF veto; expected ≫ 0.57 on same gates |
+| **2** | →0.70 | Early-trace uncertainty adds orthogonal signal | Port uncertainty-profiling features with **short** max_new_tokens; train RF/HGB on math-agg decay; ship `uncertainty_<safe>.joblib` ×4; wire `short_trace_scores` body | Kaggle OOF bal_acc ≥ 0.65 for uncertainty alone; cascade local GPU smoke (if available) coverage=1 | Uncertainty+probe fusion beats probe-only OOF by ≥0.03 absolute |
+| **3** | →0.70–0.75 | CF disagreement is a high-precision spurious detector | After Kaggle GPU smoke of new CF path: sweep max_new_tokens (256/512/1024) and transform strength; keep agreement **veto** (not first-hit CF) | On Kaggle: disagreement rate, precision of CF-False vs proxy labels; timing budget share ≪ 0.5×3600 for full Small set | CF veto improves OOF precision without collapsing recall below probe-only |
+| **4** | →0.75+ | Multi-layer / multi-token probes beat last-prompt-token only | Baselines encode.py style: mean of last-k tokens, or concat mid+late layers; optional PCA; same CV | Layer/token ablations OOF bal_acc; pick winner per model | Winner ensemble OOF ≥ 0.72 |
+| **5** | →0.80+ | White-box + behavioural fusion under budget | Calibrated logit blend of probe margin, CF agree, uncertainty score; True-rate cap retained | Stacking OOF on grouped CV; dummy Full Run timing on Kaggle | Stack OOF ≥ 0.78 and dummy timing &lt; 0.8×3600 |
+| **6** | hygiene | Threshold A/B without new features wastes slots | Do **not** submit τ/φ-only ZIPs | — | Never, unless tied to #1–5 artifact change |
+
+**Submit rule (Raj):** ask before any Codabench upload. Budget 10/day, 300 total (6 used 2026-09-28). Prefer one slot after experiment **#1** clears the OOF gate.
+
+### Implemented offline (this turn) — ONE hardening package
+
+| Change | Detail |
+|---|---|
+| `DECISION_POLICY` | Restored **`conservative`** (949937). `symmetric_confident` remains in `POLICY_THRESHOLDS` but is not default. |
+| `counterfactual.py` | Real GPU path: local_files_only load, greedy gen, `extract_final_answer`, `agreement_to_bool`, `fuse_probe_with_cf_veto`. CPU → `None`. |
+| `cascade.py` | Probe-first; CF as agreement veto when both available; True-rate gate; uncertainty last before all-False. |
+| Tests | 16 OK (`uv run python -m unittest tests.test_hybrid_cascade_conservative -v`). |
+| Docs | `solutions/hybrid-cascade/README.md` updated; code synced to `aimo-interp-log/code/hybrid-cascade/`. |
+
+**Not done:** Codabench submit; Kaggle retrain; uncertainty GPU body; new probe pkls.
+
+### Kaggle steps that need Raj
+
+- Login / GPU notebook (`rajtaware10/aimo-interp-small-probes` or new) for experiment **#1** (and #2–3).
+- Attach HF datasets (`augmented-sample-math-agg` / filtered) or upload enriched CSV with **Small-track model_id** rows.
+- Optional: HF token secret if any Small checkpoint is gated on Kaggle download.
+- Box cannot train probes (no GPU / no HF cache).
+
+### Explicit
+
+**No Codabench submit done this turn.** No Codabench password/API used.
