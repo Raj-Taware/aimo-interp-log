@@ -524,3 +524,14 @@ Compare primary accuracy vs **949937** (0.5714). Do not invent scores.
 **Do not auto-submit.** Ask Raj first. Limits: **10/day**, **300 total** (used **6/10** and **6/300** at screenshot time).
 
 Best official: **949937 = 0.57**. Prefer local/Kaggle measurement; propose one slot only when expected gain clearly beats chance/0.57.
+
+
+---
+
+## Leaderboard snapshot (Raj 2026-09-28 ~19:32 IST)
+
+- **Small track top:** ~**0.86**
+- **Us (`rmtaware`):** **0.57** · rank ~**29** (submission 949937 conservative)
+- Gap ≈ **0.29** absolute above chance (0.50) we only have +0.07 from probes
+
+**Implication:** next gains from stronger offline methods (GPU stages that fire on Codabench, better probes / features), not more constant/threshold A/Bs. Submit only with Raj OK.
