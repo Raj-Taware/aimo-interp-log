@@ -17,8 +17,11 @@ evaluation container.
 
 from __future__ import annotations
 
+import os
+
 import numpy as np
 import torch
+import transformers
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from .perturbations import PERTURBATIONS, perturb_all
@@ -31,7 +34,12 @@ MAX_PROMPT_TOKENS = 2048
 
 
 def load_model(model_id: str, dtype: torch.dtype | None = None):
-    """Load tokenizer + model from the offline cache, in eval mode."""
+    """Load tokenizer + model in eval mode.
+
+    Offline-only when ``HF_HUB_OFFLINE=1`` (set inside the evaluation container);
+    elsewhere -- Kaggle, Lightning -- the checkpoint is downloaded on first use.
+    """
+    local_only = os.environ.get("HF_HUB_OFFLINE") == "1"
     if torch.cuda.is_available():
         # T4 (compute 7.5) has no bf16; the eval worker's Blackwell card does.
         resolved = dtype or (
@@ -41,15 +49,18 @@ def load_model(model_id: str, dtype: torch.dtype | None = None):
     else:
         resolved, device_map = torch.float32, None
 
-    tokenizer = AutoTokenizer.from_pretrained(model_id, local_files_only=True)
+    tokenizer = AutoTokenizer.from_pretrained(model_id, local_files_only=local_only)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "left"  # keeps the last token at index -1
+    # transformers 5 renamed ``torch_dtype`` to ``dtype``; 4.x silently ignores
+    # the new name and loads fp32, which would not fit an 8B model on a T4 pair.
+    dtype_key = "dtype" if int(transformers.__version__.split(".")[0]) >= 5 else "torch_dtype"
     model = AutoModelForCausalLM.from_pretrained(
         model_id,
-        dtype=resolved,
-        local_files_only=True,
+        local_files_only=local_only,
         device_map=device_map,
+        **{dtype_key: resolved},
     )
     if device_map is None:
         model.to("cpu")
@@ -91,10 +102,14 @@ def encode(tokenizer, model, prompts: list[str]) -> tuple[np.ndarray, np.ndarray
     batch = {name: value.to(model.device) for name, value in batch.items()}
     output = model(**batch, output_hidden_states=True, return_dict=True, use_cache=False)
 
-    # Left padding means the real final token is always at position -1.
-    hidden = torch.stack([state[:, -1, :] for state in output.hidden_states], dim=1)
+    # Left padding means the real final token is always at position -1. With
+    # device_map="auto" over two GPUs, layers live on different devices, so
+    # each slice moves to CPU before stacking.
+    hidden = torch.stack(
+        [state[:, -1, :].float().cpu() for state in output.hidden_states], dim=1
+    )
     probs = torch.softmax(output.logits[:, -1, :].float(), dim=-1)
-    return hidden.float().cpu().numpy(), probs.cpu().numpy()
+    return hidden.numpy(), probs.cpu().numpy()
 
 
 def _layer_indices(n_states: int) -> list[int]:

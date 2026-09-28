@@ -4,9 +4,7 @@ Run once per checkpoint. Qwen3.5-4B fits a single T4 in fp16; the 7-8B
 checkpoints want 2xT4 (``device_map="auto"``) or the H100 slot.
 
     python scripts/dump_features.py \
-        --model Qwen/Qwen3.5-4B \
-        --dataset aimo-interp/aimo-interp-challenge-sample-full \
-        --out data/features
+        --model deepseek-ai/DeepSeek-R1-0528-Qwen3-8B --out data/features
 
 Writes ``<out>/<safe_model_id>.npz`` holding the feature matrix, labels, and
 problem texts. Progress is flushed every ``--flush-every`` cases, so a killed
@@ -17,58 +15,48 @@ the H100 time arrives in fixed five-hour slots.
 from __future__ import annotations
 
 import argparse
+import random
 import re
 import sys
 import time
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 from selfperturb.features import case_features, feature_names, load_model  # noqa: E402
 
-# Column-name candidates, since the public dumps are not consistent with each other.
-PROBLEM_COLUMNS = ("original_problem", "problem", "problem_text")
-LABEL_COLUMNS = ("model_is_robust", "is_robust")
-MODEL_COLUMNS = ("model_id", "model")
+HF_PARQUET = "https://huggingface.co/api/datasets/aimo-interp/{name}/parquet/default/validation/0.parquet"
+DEFAULT_SOURCES = (HF_PARQUET.format(name="augmented-sample-math-agg"),)
 
-
-def _pick(row, candidates, default=None):
-    for name in candidates:
-        if name in row and row[name] is not None:
-            return row[name]
-    return default
+# The public dumps label rows with evaluation-time aliases, not checkpoint ids.
+# The getting-started README confirms qwen3-8b:low resolves to this checkpoint.
+ROW_ALIASES = {
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": ("qwen3-8b:low",),
+}
 
 
 def safe_id(model_id: str) -> str:
     return re.sub(r"[^A-Za-z0-9._-]+", "_", model_id).strip("_")
 
 
-def load_rows(dataset: str, model_id: str, split: str):
-    """Rows for one checkpoint: (problem_text, label) pairs."""
-    from datasets import load_dataset  # dev-time only; absent from the eval image
-
-    data = load_dataset(dataset, split=split)
-    rows = []
-    for row in data:
-        problem = _pick(row, PROBLEM_COLUMNS)
-        label = _pick(row, LABEL_COLUMNS)
-        row_model = _pick(row, MODEL_COLUMNS, "")
-        if problem is None or label is None:
-            continue
-        # Match loosely: dumps mix aliases ("qwen3-8b:low") with full checkpoint ids.
-        if model_id and row_model and model_id.split("/")[-1].lower() not in str(row_model).lower():
-            continue
-        rows.append((str(problem), bool(label)))
-    return rows
+def load_rows(sources, model_id: str) -> list[tuple[str, bool]]:
+    """(problem_text, label) pairs for one checkpoint, one row per problem."""
+    frame = pd.concat([pd.read_parquet(source) for source in sources], ignore_index=True)
+    wanted = {model_id, *ROW_ALIASES.get(model_id, ())}
+    frame = frame[frame["model_id"].isin(wanted)].dropna(subset=["model_is_robust"])
+    # One label per (model, problem); the public dumps repeat a few problems,
+    # and a duplicate would leak across CV folds.
+    frame = frame.drop_duplicates(subset=["original_problem"])
+    return list(zip(frame["original_problem"].astype(str), frame["model_is_robust"].astype(bool)))
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--model", required=True)
-    parser.add_argument("--dataset", default="aimo-interp/aimo-interp-challenge-sample-full")
-    parser.add_argument("--split", default="train")
+    parser.add_argument("--source", action="append", help="parquet path or URL; repeatable")
     parser.add_argument("--out", type=Path, default=Path("data/features"))
     parser.add_argument("--system-prompt", default="")
     parser.add_argument("--flush-every", type=int, default=10)
@@ -78,11 +66,15 @@ def main() -> None:
     arguments.out.mkdir(parents=True, exist_ok=True)
     destination = arguments.out / f"{safe_id(arguments.model)}.npz"
 
-    rows = load_rows(arguments.dataset, arguments.model, arguments.split)
+    rows = load_rows(arguments.source or DEFAULT_SOURCES, arguments.model)
+    # The public dumps arrive sorted by label, so a --limit prefix would be one
+    # class only. A fixed seed keeps the order identical across resumed runs.
+    random.Random(0).shuffle(rows)
     if arguments.limit:
         rows = rows[: arguments.limit]
     if not rows:
-        raise SystemExit(f"no rows matched model {arguments.model!r} in {arguments.dataset}")
+        raise SystemExit(f"no labelled rows for {arguments.model!r}")
+    print(f"{len(rows)} labelled cases for {arguments.model}", flush=True)
 
     # Resume: keep whatever a previous slot already computed.
     features: list[np.ndarray] = []
@@ -93,7 +85,7 @@ def main() -> None:
         features = list(cached["features"])
         labels = list(cached["labels"])
         problems = list(cached["problems"])
-        print(f"resuming from {len(features)}/{len(rows)} cases")
+        print(f"resuming from {len(features)}/{len(rows)} cases", flush=True)
 
     def flush() -> None:
         np.savez(
@@ -105,8 +97,11 @@ def main() -> None:
             model_id=arguments.model,
         )
 
-    tokenizer, model = load_model(arguments.model)
     started = time.time()
+    tokenizer, model = load_model(arguments.model)
+    print(f"model loaded in {time.time() - started:.1f}s", flush=True)
+
+    started, done_before = time.time(), len(features)
     for index in range(len(features), len(rows)):
         problem, label = rows[index]
         features.append(case_features(tokenizer, model, problem, arguments.system_prompt))
@@ -114,11 +109,11 @@ def main() -> None:
         problems.append(problem)
         if (index + 1) % arguments.flush_every == 0:
             flush()
-            rate = (time.time() - started) / (index + 1 - 0)
+            rate = (time.time() - started) / (index + 1 - done_before)
             print(f"{index + 1}/{len(rows)} cases  {rate:.2f}s/case", flush=True)
 
     flush()
-    print(f"wrote {destination} with {len(features)} cases")
+    print(f"wrote {destination} with {len(features)} cases", flush=True)
 
 
 if __name__ == "__main__":

@@ -10,8 +10,8 @@ Three failure modes end a run at zero, and all three are handled here:
 * **Wrong types** -- the harness requires ``type(x) is bool``. numpy bools fail
   the check, so predictions are cast explicitly.
 
-This module is copied into the submission ZIP alongside ``perturbations.py``
-and ``features.py``; it must not import anything outside the container runtime.
+The ``selfperturb`` package is copied next to this file by
+``scripts/build_bundle.py``; nothing outside the container runtime is imported.
 """
 
 from __future__ import annotations
@@ -23,13 +23,14 @@ from pathlib import Path
 
 import numpy as np
 
-from features import build_prompt, case_features, load_model
+from selfperturb.features import case_features, load_model
 
 ARTIFACT_DIR = "probe_artifacts"
 # Leave room for model loading and the final scoring pass.
 DEFAULT_BUDGET_SECONDS = float(os.environ.get("SELFPERTURB_BUDGET", "2700"))
-# Returned when we cannot score a case. The public dumps skew robust.
-FALLBACK = True
+# Returned when we cannot score a case. Every labelled public dump skews
+# non-robust (74% in augmented-sample-math-agg, 68% in val-sample).
+FALLBACK = False
 
 
 def _safe_id(model_id: str) -> str:
@@ -75,7 +76,4 @@ def predict_robustness(model_id: str, problem_texts: list[str]) -> list[bool]:
             predictions[index] = _score(artifact, features)
         except Exception:
             predictions[index] = FALLBACK
-    return predictions
-
-
-__all__ = ["predict_robustness", "build_prompt"]
+    return [bool(prediction) for prediction in predictions]
