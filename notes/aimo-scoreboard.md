@@ -490,3 +490,28 @@ CPU box cannot exercise margin/True-rate gates; measured 0.625 is packaging / lo
 Submit **one** ZIP: `dist/solution-hybrid-cascade-small-symmetric-confident.zip`  
 SHA256 `307c7db46b4b705db2c68b0911f895131da313ddbdc23714f95574e6f483d6ac`  
 Compare primary accuracy vs **949937** (0.5714). Do not invent scores.
+
+
+---
+
+## 2026-09-28 ~19:30 IST — symmetric_confident Codabench A/B (MEASURED)
+
+**Submission id:** `949966` · `solution-hybrid-cascade-small-symmetric-confident.zip`
+
+| metric | score |
+|---|---:|
+| **accuracy** | **0.5000000000** |
+| coverage | 1.0 |
+| invalid_predictions | 0 |
+
+**Regression vs conservative 0.5714.** Softer τ / higher True-rate abort collapsed to chance. Keep **DECISION_POLICY=conservative** as default; do not ship symmetric_confident.
+
+### Official Small scoreboard
+
+| Sub | method | accuracy |
+|---|---|---:|
+| 949901 | hybrid default | 0.4286 |
+| 949966 | symmetric_confident | 0.5000 |
+| 949938 | all-False | 0.5000 |
+| 949942 | always-True | 0.5000 |
+| **949937** | **conservative hybrid** | **0.5714** ← best |

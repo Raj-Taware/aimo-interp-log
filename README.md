@@ -16,11 +16,12 @@
 | 949938 | all-False control | 0.5000 | 1.0 | 0 |
 | 949942 | always-True control | 0.5000 | 1.0 | 0 |
 | **949937** | **conservative hybrid** | **0.5714** | **1.0** | **0** |
+| 949966 | symmetric_confident | 0.5000 | 1.0 | 0 |
 
 **Best official so far: 0.5714** (submission 949937).  
 Hidden Small labels are **balanced** (all-False = always-True = 0.50). Local val-sample False-rate 0.625 is **not** the official ceiling.
 
-Pending A/B (built, not necessarily scored yet in this snapshot): `submissions/solution-hybrid-cascade-small-symmetric-confident.zip`.
+`symmetric_confident` (949966) **regressed to 0.50** — keep conservative as default.
 
 ## Local val-sample (`run_local --small`, n=24)
 

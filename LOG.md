@@ -49,3 +49,5 @@ Times in Asia/Calcutta (IST) unless noted. Scores are **measured** only.
 - Probe training: Kaggle notebook + `training/kaggle_aimo_small_probes.py`.
 - Packaging: root `solution.py` + helpers + `artifacts/*.pkl` for offline Docker.
 - Checksums: `SHA256SUMS.txt`.
+
+| ~19:30 | API submit **949966** symmetric_confident → **0.50** (regression; drop) |
