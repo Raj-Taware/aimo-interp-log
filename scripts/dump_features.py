@@ -61,12 +61,19 @@ def main() -> None:
     parser.add_argument("--system-prompt", default="")
     parser.add_argument("--flush-every", type=int, default=10)
     parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument(
+        "--problems-of",
+        help="take the problem set (and labels) of another model. The labels then "
+        "describe THAT model, not --model: use only for unlabelled analysis such "
+        "as per-model threshold calibration, never for training.",
+    )
     arguments = parser.parse_args()
 
     arguments.out.mkdir(parents=True, exist_ok=True)
     destination = arguments.out / f"{safe_id(arguments.model)}.npz"
 
-    rows = load_rows(arguments.source or DEFAULT_SOURCES, arguments.model)
+    labels_from = arguments.problems_of or arguments.model
+    rows = load_rows(arguments.source or DEFAULT_SOURCES, labels_from)
     # The public dumps arrive sorted by label, so a --limit prefix would be one
     # class only. A fixed seed keeps the order identical across resumed runs.
     random.Random(0).shuffle(rows)
@@ -95,6 +102,7 @@ def main() -> None:
             problems=np.asarray(problems, dtype=object),
             columns=np.asarray(feature_names(), dtype=object),
             model_id=arguments.model,
+            labels_from=labels_from,
         )
 
     started = time.time()
