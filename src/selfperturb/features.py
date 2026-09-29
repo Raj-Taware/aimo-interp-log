@@ -49,10 +49,12 @@ def load_model(model_id: str, dtype: torch.dtype | None = None):
     """
     local_only = os.environ.get("HF_HUB_OFFLINE") == "1"
     if torch.cuda.is_available():
-        # T4 (compute 7.5) has no bf16; the eval worker's Blackwell card does.
-        resolved = dtype or (
-            torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
-        )
+        # Always fp16 on GPU. Training features come from T4s, which have no
+        # bf16; picking bf16 on the eval card (which has it) would score test
+        # features at lower precision than the classifier was trained on --
+        # and these features live at rounding scale. All four small models ran
+        # fp16 with zero NaN/inf across 137 problems.
+        resolved = dtype or torch.float16
         device_map = "auto"
     else:
         resolved, device_map = torch.float32, None
@@ -106,29 +108,23 @@ def encode(tokenizer, model, prompts: list[str]) -> tuple[np.ndarray, np.ndarray
     excludes left padding), so it reflects the whole statement rather than the
     answer-prefix position alone.
     """
-    batch = tokenizer(
-        prompts,
-        return_tensors="pt",
-        padding=True,
-        truncation=True,
-        max_length=MAX_PROMPT_TOKENS,
-    )
-    batch = {name: value.to(model.device) for name, value in batch.items()}
-    output = model(**batch, output_hidden_states=True, return_dict=True, use_cache=False)
-
-    # Left padding means the real final token is always at position -1. With
-    # device_map="auto" over two GPUs, layers live on different devices, so
-    # each slice moves to CPU before stacking.
-    last = torch.stack(
-        [state[:, -1, :].float().cpu() for state in output.hidden_states], dim=1
-    )
-    mask = batch["attention_mask"].float().cpu().unsqueeze(-1)  # (n, seq, 1)
-    pooled = torch.stack(
-        [(state.float().cpu() * mask).sum(1) / mask.sum(1) for state in output.hidden_states],
-        dim=1,
-    )
-    probs = torch.softmax(output.logits[:, -1, :].float(), dim=-1)
-    return last.numpy(), pooled.numpy(), probs.cpu().numpy()
+    # One prompt per forward pass, deliberately. The drift features are
+    # differences in the third decimal of a cosine, at fp16 rounding scale, and
+    # batching made each prompt's numerics depend on its batch-mates' padding:
+    # the same feature on the same 137 problems correlated only r=0.62 (median)
+    # between two runs whose batches differed. Unbatched, a prompt's features
+    # depend on that prompt alone.
+    lasts, pools, dists = [], [], []
+    for prompt in prompts:
+        batch = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=MAX_PROMPT_TOKENS)
+        batch = {name: value.to(model.device) for name, value in batch.items()}
+        output = model(**batch, output_hidden_states=True, return_dict=True, use_cache=False)
+        # With device_map="auto" over two GPUs, layers live on different
+        # devices, so each slice moves to CPU before stacking.
+        lasts.append(torch.stack([state[0, -1, :].float().cpu() for state in output.hidden_states]))
+        pools.append(torch.stack([state[0].float().cpu().mean(0) for state in output.hidden_states]))
+        dists.append(torch.softmax(output.logits[0, -1, :].float(), dim=-1).cpu())
+    return torch.stack(lasts).numpy(), torch.stack(pools).numpy(), torch.stack(dists).numpy()
 
 
 def _layer_indices(n_states: int, fractions=DEPTH_FRACTIONS) -> list[int]:
