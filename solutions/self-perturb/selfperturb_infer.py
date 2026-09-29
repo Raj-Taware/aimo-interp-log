@@ -50,7 +50,9 @@ def _load_artifact(model_id: str):
 
 
 def _score(artifact, features: np.ndarray) -> bool:
-    """Standardize, apply the linear probe, threshold at zero."""
+    """Select the artifact's columns, standardize, apply the probe, threshold at zero."""
+    if "feature_index" in artifact:
+        features = features[artifact["feature_index"]]
     standardized = (features - artifact["mean"]) / np.clip(artifact["scale"], 1e-6, None)
     margin = float(np.dot(standardized, artifact["coef"]) + float(artifact["intercept"]))
     return bool(margin >= 0.0)

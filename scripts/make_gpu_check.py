@@ -69,6 +69,9 @@ for model_id in MODELS:
         entry["feature_dim"] = int(vector.shape[0])
         entry["seconds_per_case"] = round(time.time() - started, 2)
         entry["features_finite"] = bool(__import__("numpy").isfinite(vector).all())
+        # Compared offline against the training dump's row for this problem:
+        # the artifact is only valid if the bundle reproduces training features.
+        entry["features_problem0"] = [float(v) for v in vector]
         del model; __import__("gc").collect(); torch.cuda.empty_cache()
         # 3. The exact submission entry point, twice, for determinism.
         started = time.time()

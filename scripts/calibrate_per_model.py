@@ -2,25 +2,30 @@
 
 Only one small-track model (DeepSeek) has public labels. Applying its
 classifier to the others naively fails in a measured way: features sit on
-different scales per checkpoint, and the predicted robust rate swings from
-14% (Qwen3.5-4B, Olmo-3) to 60% (Skywork) on the same problems. The hidden
+different scales per checkpoint, and the predicted robust rate swung from 14%
+(Qwen3.5-4B, Olmo-3) to 60% (Skywork) on the same problems. The hidden
 small-track labels are balanced (official all-False = always-True = 0.50), so
 those skews cost accuracy directly.
 
-Label-free fix, per checkpoint:
+Training: the same procedure ``scripts/evaluate.py`` scores with nested CV --
+select k features and the regularization strength by inner CV, then fit. Run
+once on all labelled cases, so the nested-CV figure is the honest estimate of
+this exact artifact.
 
-* **standardize** each feature with that model's own mean and spread over a
-  shared problem set (no labels needed), so the DeepSeek-trained weights see
-  every model on a common scale;
+Label-free calibration, per checkpoint:
+
+* **standardize** each selected feature with that model's own mean and spread
+  over a shared problem set, so the DeepSeek-trained weights see every model
+  on a common scale;
 * **threshold** at that model's median margin, so it predicts ~50% robust,
   matching the known class balance.
 
-Writes ``artifacts/probe_artifacts/<safe_model_id>.npz`` per model, which the
-inference code loads in preference to ``generic.npz``.
+Writes ``artifacts/probe_artifacts/<safe_model_id>.npz`` per model; inference
+loads it in preference to ``generic.npz``.
 
-    python scripts/calibrate_per_model.py \
-        --labelled data/features/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.npz \
-        --unlabelled data/kaggle_out_v3/features/*.npz
+    python scripts/calibrate_per_model.py --subset v3new \
+        --labelled data/kaggle_out_v5/features/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.npz \
+        --unlabelled data/kaggle_out_v5/features/{Qwen,Skywork,allenai}*.npz
 """
 
 from __future__ import annotations
@@ -28,15 +33,21 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from pathlib import Path
 
 import numpy as np
+from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import balanced_accuracy_score, roc_auc_score
-from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import GridSearchCV, StratifiedKFold
+from sklearn.pipeline import make_pipeline
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from evaluate import GRID, nested_cv  # noqa: E402  (same grid the estimate used)
 
 OUT = Path("artifacts/probe_artifacts")
-C = 0.1
+V2_WIDTH = 87
 
 
 def safe_id(model_id: str) -> str:
@@ -50,46 +61,68 @@ def model_scale(features: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     return mean, np.where(scale > 1e-9, scale, 1.0)
 
 
-def cross_validated(features, labels) -> dict:
-    """Out-of-fold AUC and balanced accuracy at the median-margin threshold."""
-    margins = np.zeros(len(labels))
-    for seed in range(5):
-        for train, test in StratifiedKFold(5, shuffle=True, random_state=seed).split(features, labels):
-            model = LogisticRegression(C=C, max_iter=3000, class_weight="balanced")
-            model.fit(features[train], labels[train])
-            margins[test] += model.decision_function(features[test]) / 5
-    prediction = margins >= np.median(margins)
-    return {
-        "oof_auc": round(float(roc_auc_score(labels, margins)), 4),
-        "oof_balanced_at_median": round(float(balanced_accuracy_score(labels, prediction)), 4),
-    }
-
-
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--labelled", type=Path, required=True)
     parser.add_argument("--unlabelled", type=Path, nargs="+", default=[])
+    parser.add_argument(
+        "--subset",
+        choices=("all", "v2", "v3new"),
+        default="all",
+        help="v2 = the original 87 features; v3new = only those added after them",
+    )
     arguments = parser.parse_args()
 
     labelled = np.load(arguments.labelled, allow_pickle=True)
     columns = [str(c) for c in labelled["columns"]]
-    mean, scale = model_scale(labelled["features"])
-    standardized = (labelled["features"] - mean) / scale
+    candidates = {
+        "all": np.arange(len(columns)),
+        "v2": np.arange(V2_WIDTH),
+        "v3new": np.arange(V2_WIDTH, len(columns)),
+    }[arguments.subset]
     labels = labelled["labels"].astype(bool)
+    mean, scale = model_scale(labelled["features"][:, candidates])
+    standardized = (labelled["features"][:, candidates] - mean) / scale
 
-    report = {"trained_on": str(labelled["model_id"]), "cv": cross_validated(standardized, labels)}
-    classifier = LogisticRegression(C=C, max_iter=3000, class_weight="balanced").fit(standardized, labels)
-    coef = classifier.coef_.reshape(-1)
+    accuracy, spread, balanced, auc = nested_cv(standardized, labels, "balanced")
+    pipeline = make_pipeline(
+        SelectKBest(f_classif), LogisticRegression(max_iter=3000, class_weight="balanced")
+    )
+    search = GridSearchCV(
+        pipeline,
+        GRID,
+        cv=StratifiedKFold(5, shuffle=True, random_state=0),
+        scoring="balanced_accuracy",
+    ).fit(standardized, labels)
+    best = search.best_estimator_
+    keep = best.named_steps["selectkbest"].get_support()
+    feature_index = candidates[keep]
+    coef = best.named_steps["logisticregression"].coef_.reshape(-1)
+    base_intercept = float(best.named_steps["logisticregression"].intercept_[0])
+
+    report = {
+        "trained_on": str(labelled["model_id"]),
+        "subset": arguments.subset,
+        "chosen": {key: str(value) for key, value in search.best_params_.items()},
+        "selected_features": [columns[i] for i in feature_index],
+        "nested_cv_estimate": {
+            "balanced": round(float(balanced), 4),
+            "auc": round(float(auc), 4),
+            "accuracy": round(float(accuracy), 4),
+            "accuracy_std": round(float(spread), 4),
+        },
+        "models": {},
+    }
 
     OUT.mkdir(parents=True, exist_ok=True)
-    report["models"] = {}
     for path in [arguments.labelled, *arguments.unlabelled]:
         dump = np.load(path, allow_pickle=True)
         assert [str(c) for c in dump["columns"]] == columns, f"{path}: feature columns differ"
-        model_mean, model_scale_ = model_scale(dump["features"])
-        margins = ((dump["features"] - model_mean) / model_scale_) @ coef + classifier.intercept_[0]
+        selected = dump["features"][:, feature_index]
+        model_mean, model_scale_ = model_scale(selected)
+        margins = ((selected - model_mean) / model_scale_) @ coef + base_intercept
         # Shift so this model's median margin sits exactly at the decision boundary.
-        intercept = float(classifier.intercept_[0] - np.median(margins))
+        intercept = base_intercept - float(np.median(margins))
         model_id = str(dump["model_id"])
         destination = OUT / f"{safe_id(model_id)}.npz"
         np.savez(
@@ -98,16 +131,18 @@ def main() -> None:
             scale=model_scale_.astype(np.float32),
             coef=coef.astype(np.float32),
             intercept=np.float32(intercept),
-            columns=np.asarray(columns, dtype=object),
-            report=json.dumps({"calibrated_on": str(path.name), "trained_on": report["trained_on"]}),
+            feature_index=feature_index.astype(np.int64),
+            columns=np.asarray([columns[i] for i in feature_index], dtype=object),
+            report=json.dumps({"calibrated_on": path.name, "trained_on": report["trained_on"]}),
         )
         calibrated = margins - np.median(margins)
-        entry = {"artifact": destination.name, "pred_robust_rate": round(float((calibrated >= 0).mean()), 3)}
-        # For other models these are DeepSeek's labels: shared-fragility proxy only.
-        entry["auc_vs_" + ("own_labels_in_sample" if path == arguments.labelled else "deepseek_labels")] = round(
-            float(roc_auc_score(labels, calibrated)), 4
-        )
-        report["models"][model_id] = entry
+        key = "auc_in_sample" if path == arguments.labelled else "auc_vs_deepseek_labels"
+        report["models"][model_id] = {
+            "artifact": destination.name,
+            "pred_robust_rate": round(float((calibrated >= 0).mean()), 3),
+            # For other models these are DeepSeek's labels: shared-fragility proxy only.
+            key: round(float(roc_auc_score(labels, calibrated)), 4),
+        }
 
     print(json.dumps(report, indent=2))
     (OUT.parent / "calibration_report.json").write_text(json.dumps(report, indent=2))
