@@ -69,7 +69,7 @@ for model_id in MODELS:
         entry["feature_dim"] = int(vector.shape[0])
         entry["seconds_per_case"] = round(time.time() - started, 2)
         entry["features_finite"] = bool(__import__("numpy").isfinite(vector).all())
-        del model; torch.cuda.empty_cache()
+        del model; __import__("gc").collect(); torch.cuda.empty_cache()
         # 3. The exact submission entry point, twice, for determinism.
         started = time.time()
         first = solution.are_robust(model_id, PROBLEMS)
@@ -83,6 +83,9 @@ for model_id in MODELS:
         entry["status"] = "error"
         entry["error"] = f"{{type(error).__name__}}: {{error}}"
         traceback.print_exc()
+    # Memory still held after the bundle's own cleanup means the bundle leaks.
+    __import__("gc").collect()
+    entry["gpu_mb_after"] = [round(torch.cuda.memory_allocated(i) / 2**20) for i in range(torch.cuda.device_count())]
     report["models"][model_id] = entry
     print(json.dumps(entry, indent=2), flush=True)
     # Four checkpoints total ~50 GB; clear each before the next download.

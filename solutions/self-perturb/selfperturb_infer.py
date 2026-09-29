@@ -16,12 +16,14 @@ The ``selfperturb`` package is copied next to this file by
 
 from __future__ import annotations
 
+import gc
 import os
 import re
 import time
 from pathlib import Path
 
 import numpy as np
+import torch
 
 from selfperturb.features import case_features, load_model
 
@@ -68,12 +70,22 @@ def predict_robustness(model_id: str, problem_texts: list[str]) -> list[bool]:
         return predictions
 
     system_prompt = str(artifact["system_prompt"]) if "system_prompt" in artifact else ""
-    for index, problem in enumerate(problem_texts):
-        if time.time() >= deadline:
-            break  # remaining cases keep the fallback; a late run scores nothing
-        try:
-            features = case_features(tokenizer, model, problem, system_prompt)
-            predictions[index] = _score(artifact, features)
-        except Exception:
-            predictions[index] = FALLBACK
+    try:
+        for index, problem in enumerate(problem_texts):
+            if time.time() >= deadline:
+                break  # remaining cases keep the fallback; a late run scores nothing
+            try:
+                features = case_features(tokenizer, model, problem, system_prompt)
+                predictions[index] = _score(artifact, features)
+            except Exception:
+                predictions[index] = FALLBACK
+    finally:
+        # The harness calls us once per model in one process. HF models hold
+        # reference cycles, so without an explicit collect each checkpoint
+        # stays resident and the next one runs out of memory -- measured on
+        # Kaggle, where the third and fourth models OOM'd.
+        del model
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
     return [bool(prediction) for prediction in predictions]
