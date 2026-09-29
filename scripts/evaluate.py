@@ -71,11 +71,23 @@ def single_feature_scan(features, labels, columns, permutations=200):
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("dump", type=Path)
+    parser.add_argument(
+        "--subset",
+        choices=("all", "v2", "v3new"),
+        default="all",
+        help="v2 = the original 87 features (a prefix of every later dump); "
+        "v3new = only the features added after them",
+    )
     arguments = parser.parse_args()
 
     dump = np.load(arguments.dump, allow_pickle=True)
     features, labels = dump["features"], dump["labels"]
     columns = [str(name) for name in dump["columns"]]
+    v2_width = 87
+    if arguments.subset == "v2":
+        features, columns = features[:, :v2_width], columns[:v2_width]
+    elif arguments.subset == "v3new":
+        features, columns = features[:, v2_width:], columns[v2_width:]
     varying = features.std(0) > 1e-9
     features, columns = features[:, varying], [c for c, keep in zip(columns, varying) if keep]
 
