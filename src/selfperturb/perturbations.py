@@ -240,6 +240,33 @@ def distract(text: str, seed: int = 0) -> str:
     return " ".join(sentences)
 
 
+_DISTRACT_POSITIONS = ("start", "middle", "before_question")
+
+
+def distract_variants(text: str, k: int = 5) -> list[str]:
+    """``k`` distracted copies: different sentences at different positions.
+
+    One inserted sentence is a noisy probe -- the model's reaction depends on
+    which sentence and where. Drift aggregated over several is steadier. The
+    positions cycle through the opening, the middle, and just before the final
+    sentence, which is usually the question itself.
+    """
+    masked, spans = _mask_math(text)
+    sentences = re.split(r"(?<=[.!?])\s+", masked.strip())
+    variants = []
+    for index in range(k):
+        sentence = _DISTRACTORS[index % len(_DISTRACTORS)]
+        kind = _DISTRACT_POSITIONS[index % len(_DISTRACT_POSITIONS)]
+        if len(sentences) < 2:
+            edited = [sentence, *sentences] if kind == "start" else [*sentences, sentence]
+        else:
+            position = {"start": 0, "middle": max(1, len(sentences) // 2),
+                        "before_question": len(sentences) - 1}[kind]
+            edited = sentences[:position] + [sentence] + sentences[position:]
+        variants.append(_unmask_math(" ".join(edited), spans))
+    return variants
+
+
 @_prose_only
 def rephrase(text: str, seed: int = 0) -> str:
     """Wrap the statement in neutral framing. Answer-preserving."""
