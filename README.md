@@ -23,6 +23,20 @@ Cost is seven prompt-only forward passes per case, no generation — roughly two
 orders of magnitude under the generation-based uncertainty baseline, which also
 wins the runtime tiebreak.
 
+## Official Codabench scores (Small Model Track)
+
+Hidden labels are balanced: all-False and always-True both score 0.50 (other
+agent's controls 949938 / 949942). The board is ~14 cases, so one case is
+~7 points.
+
+| Submission | Method | Accuracy | Coverage | Invalid |
+| --- | --- | ---: | ---: | ---: |
+| 949937 | other agent's conservative hybrid probes | 0.5714 (8/14) | 1.0 | 0 |
+| **951038** | **self-perturb v2, per-model calibrated** (tag `v2-calibrated-submission`) | **0.7143 (10/14)** | 1.0 | 0 |
+
+P(>=10/14 by chance) = 1471/16384 ~= 0.09. Offline estimate beforehand:
+DeepSeek OOF balanced accuracy 0.648 (~9/14). Consistent, not conclusive.
+
 ## Layout
 
 ```text
