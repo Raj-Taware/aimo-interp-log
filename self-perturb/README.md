@@ -33,10 +33,18 @@ agent's controls 949938 / 949942). The board is ~14 cases, so one case is
 | --- | --- | ---: | ---: | ---: |
 | 949937 | other agent's conservative hybrid probes | 0.5714 (8/14) | 1.0 | 0 |
 | **951038** | **self-perturb v2, per-model calibrated** (tag `v2-calibrated-submission`) | **0.7143 (10/14)** | 1.0 | 0 |
-| pending | self-perturb v3, multi-distractor, env-matched (tag `v3-multidistract-submission`) | — | — | — |
+| (2026-10-02) | self-perturb v3, multi-distractor, env-matched (tag `v3-multidistract-submission`) | 0.5000 (7/14) — **all 14 predicted robust** | 1.0 | 0 |
+| pending | **v3b**: v3 + per-batch median threshold (tag `v3b-batch-median`) | — | — | — |
 
 P(>=10/14 by chance) = 1471/16384 ~= 0.09. Offline estimate beforehand:
 DeepSeek OOF balanced accuracy 0.648 (~9/14). Consistent, not conclusive.
+
+**v3 failure:** competition problems are ~3x longer than the MATH training
+problems (median 54 vs 16 words); v3's margin tracks length, so every case
+cleared the training-median threshold. v3b splits each model's batch at its
+own median instead (label-free; hidden labels are balanced). Replay on 17
+unseen problems with all margins shifted positive: old threshold 17/17
+robust, v3b 8/17 with balanced accuracy 0.80.
 
 ## Layout
 
