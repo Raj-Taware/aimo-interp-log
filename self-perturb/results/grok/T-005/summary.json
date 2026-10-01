@@ -1,0 +1,233 @@
+{
+  "n_problems": 137,
+  "n_robust": 36,
+  "dump": "results/feature-dumps/2026-09-29_v3-features_tf5.13_unbatched-fp16/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.npz",
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "feature_names_verified_exact": true,
+  "nested_cv": {
+    "L": {
+      "balanced_mean": 0.6618809523809523,
+      "auc_mean": 0.7461445578231292,
+      "n_features": 2,
+      "feature_names": [
+        "log_n_tokens",
+        "log_n_words"
+      ]
+    },
+    "X1": {
+      "balanced_mean": 0.5556666666666666,
+      "auc_mean": 0.5752976190476191,
+      "n_features": 8,
+      "feature_names": [
+        "rename_kl",
+        "numerals_kl",
+        "typos_kl",
+        "distract_kl",
+        "rephrase_kl",
+        "number_jitter_kl",
+        "multidistract_kl_mean",
+        "multidistract_kl_max"
+      ]
+    },
+    "X2": {
+      "balanced_mean": 0.5784285714285713,
+      "auc_mean": 0.6088996598639456,
+      "n_features": 3,
+      "feature_names": [
+        "base_entropy",
+        "base_top1",
+        "base_margin"
+      ]
+    },
+    "X3": {
+      "balanced_mean": 0.5856190476190476,
+      "auc_mean": 0.6602942176870747,
+      "n_features": 3,
+      "feature_names": [
+        "g_md_cos_mean_d0.25_minus_g_rephrase_cos_d0.25",
+        "g_md_poolcos_mean_d0.25_minus_g_rephrase_poolcos_d0.25",
+        "g_typos_cos_d0.25_minus_g_rephrase_cos_d0.25"
+      ]
+    },
+    "L+X1": {
+      "balanced_mean": 0.6417619047619048,
+      "auc_mean": 0.7261615646258504,
+      "n_features": 10,
+      "feature_names": [
+        "log_n_tokens",
+        "log_n_words",
+        "rename_kl",
+        "numerals_kl",
+        "typos_kl",
+        "distract_kl",
+        "rephrase_kl",
+        "number_jitter_kl",
+        "multidistract_kl_mean",
+        "multidistract_kl_max"
+      ]
+    },
+    "L+X2": {
+      "balanced_mean": 0.6650476190476191,
+      "auc_mean": 0.7348163265306122,
+      "n_features": 5,
+      "feature_names": [
+        "log_n_tokens",
+        "log_n_words",
+        "base_entropy",
+        "base_top1",
+        "base_margin"
+      ]
+    },
+    "L+X3": {
+      "balanced_mean": 0.6570714285714285,
+      "auc_mean": 0.7334200680272108,
+      "n_features": 5,
+      "feature_names": [
+        "log_n_tokens",
+        "log_n_words",
+        "g_md_cos_mean_d0.25_minus_g_rephrase_cos_d0.25",
+        "g_md_poolcos_mean_d0.25_minus_g_rephrase_poolcos_d0.25",
+        "g_typos_cos_d0.25_minus_g_rephrase_cos_d0.25"
+      ]
+    }
+  },
+  "paired_vs_L": {
+    "L+X1": {
+      "mean_diff": -0.020119047619047613,
+      "n_wins": 11,
+      "n_ties": 3,
+      "n_losses": 11,
+      "pct_non_tied_wins": 50.0,
+      "criterion_met": false
+    },
+    "L+X2": {
+      "mean_diff": 0.0031666666666666774,
+      "n_wins": 10,
+      "n_ties": 5,
+      "n_losses": 10,
+      "pct_non_tied_wins": 50.0,
+      "criterion_met": false
+    },
+    "L+X3": {
+      "mean_diff": -0.004809523809523806,
+      "n_wins": 8,
+      "n_ties": 7,
+      "n_losses": 10,
+      "pct_non_tied_wins": 44.44444444444444,
+      "criterion_met": false
+    }
+  },
+  "coef_bootstrap": {
+    "L+X1": [
+      {
+        "feature": "rename_kl",
+        "coef": 0.13272234207102937,
+        "bootstrap_se": 0.24036335463089606,
+        "coef_over_se": 0.5521737798793784,
+        "best_C": 0.1
+      },
+      {
+        "feature": "numerals_kl",
+        "coef": 0.26976443822417073,
+        "bootstrap_se": 0.2887471878472159,
+        "coef_over_se": 0.9342582355015367,
+        "best_C": 0.1
+      },
+      {
+        "feature": "typos_kl",
+        "coef": 0.12852570261146956,
+        "bootstrap_se": 0.23941532561760495,
+        "coef_over_se": 0.5368315594664615,
+        "best_C": 0.1
+      },
+      {
+        "feature": "distract_kl",
+        "coef": 0.15636473660983224,
+        "bootstrap_se": 0.2826237406131454,
+        "coef_over_se": 0.5532611530461055,
+        "best_C": 0.1
+      },
+      {
+        "feature": "rephrase_kl",
+        "coef": 0.020737051853230094,
+        "bootstrap_se": 0.25852312316705195,
+        "coef_over_se": 0.08021352828787492,
+        "best_C": 0.1
+      },
+      {
+        "feature": "number_jitter_kl",
+        "coef": -0.10490793508626084,
+        "bootstrap_se": 0.28624134432544124,
+        "coef_over_se": -0.36650168525964605,
+        "best_C": 0.1
+      },
+      {
+        "feature": "multidistract_kl_mean",
+        "coef": 0.08158801894706748,
+        "bootstrap_se": 0.31046924734827597,
+        "coef_over_se": 0.2627893733241291,
+        "best_C": 0.1
+      },
+      {
+        "feature": "multidistract_kl_max",
+        "coef": 0.006627058802298574,
+        "bootstrap_se": 0.3292756410869095,
+        "coef_over_se": 0.02012617386583242,
+        "best_C": 0.1
+      }
+    ],
+    "L+X2": [
+      {
+        "feature": "base_entropy",
+        "coef": 0.006086574882279926,
+        "bootstrap_se": 0.571291142598375,
+        "coef_over_se": 0.010654068352253215,
+        "best_C": 0.01
+      },
+      {
+        "feature": "base_top1",
+        "coef": -0.0282702360640799,
+        "bootstrap_se": 0.28602759906704184,
+        "coef_over_se": -0.09883744140876997,
+        "best_C": 0.01
+      },
+      {
+        "feature": "base_margin",
+        "coef": -0.060402679164719066,
+        "bootstrap_se": 0.6330248737846615,
+        "coef_over_se": -0.09541912437593483,
+        "best_C": 0.01
+      }
+    ],
+    "L+X3": [
+      {
+        "feature": "g_md_cos_mean_d0.25_minus_g_rephrase_cos_d0.25",
+        "coef": -0.07574425163390808,
+        "bootstrap_se": 0.27693007784467355,
+        "coef_over_se": -0.27351399394179216,
+        "best_C": 0.01
+      },
+      {
+        "feature": "g_md_poolcos_mean_d0.25_minus_g_rephrase_poolcos_d0.25",
+        "coef": -0.007202433983482653,
+        "bootstrap_se": 0.1644623892916373,
+        "coef_over_se": -0.04379380607629837,
+        "best_C": 0.01
+      },
+      {
+        "feature": "g_typos_cos_d0.25_minus_g_rephrase_cos_d0.25",
+        "coef": 0.0700344500447763,
+        "bootstrap_se": 0.19518183131555317,
+        "coef_over_se": 0.35881644091939396,
+        "best_C": 0.01
+      }
+    ]
+  },
+  "criterion": {
+    "mean_balanced_diff_min": 0.02,
+    "pct_non_tied_wins_min": 60.0,
+    "note": "L+X beats L by >=0.02 mean balanced AND wins >=60% of non-tied folds"
+  },
+  "pipeline": "StandardScaler -> LogisticRegression(class_weight=balanced); inner CV C in {0.01,0.1,1}; no SelectKBest",
+  "outer": "StratifiedKFold(5, shuffle=True, random_state=s) s=0..4"
+}
