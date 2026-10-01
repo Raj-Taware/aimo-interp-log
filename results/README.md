@@ -39,7 +39,8 @@ the selected features, and the nested-CV estimate (balanced 0.643, AUC 0.682).
 | File | Tag | sha256 (prefix) | Official |
 | --- | --- | --- | --- |
 | `solution-self-perturb-small-v2.zip` | `v2-calibrated-submission` | `2b8ebf4c15830380` | 951038: 0.7143 (10/14) |
-| `solution-self-perturb-small-v3.zip` | `v3-multidistract-submission` | `cde7b78257fd5e86` | pending |
+| `solution-self-perturb-small-v3.zip` | `v3-multidistract-submission` | `cde7b78257fd5e86` | 0.50 (all predicted robust) |
+| `solution-self-perturb-small-v3b.zip` | `v3b-batch-median` | see `git log` | pending |
 
 Reproduce the v3 evaluation from this folder:
 
