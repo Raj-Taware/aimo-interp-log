@@ -1,0 +1,15 @@
+{
+  "dump": "self-perturb/results/feature-dumps/2026-09-29_v3-features_tf5.13_unbatched-fp16/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.npz",
+  "csv": "self-perturb/results/grok/T-003/math-robust-final.csv",
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "n_dump_problems": 137,
+  "v3_n_features": 26,
+  "n_shuffles": 1000,
+  "single_features": [
+    "multidistract_cos_mean_d0.1",
+    "multidistract_cos_min_d0.1",
+    "rename_poolcos_d0.25",
+    "typos_poolcos_d0.25"
+  ],
+  "csv_source": "https://github.com/aimo-interp/baselines data/math-robust-final.csv"
+}
