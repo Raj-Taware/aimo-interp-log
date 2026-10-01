@@ -8,4 +8,5 @@ Protocol: `collab/PROTOCOL.md`. Status: open → doing → review → done | red
 | T-002 | done | grok | Recover ~26 more labelled DeepSeek problems; dump their features | yes, ~30 min |
 | T-003 | done | grok | Failure-type specificity: do distractor features predict distractor failures? | no |
 | T-004 | done | grok | Does drift carry signal beyond problem length? (pre-registered) | no |
-| T-005 | review | grok | Three candidate signals beyond length (pre-registered) | no |
+| T-005 | done | grok | Three candidate signals beyond length (pre-registered) | no |
+| T-006 | open | grok | Ground-truth answers for the 154 labelled problems | no |
