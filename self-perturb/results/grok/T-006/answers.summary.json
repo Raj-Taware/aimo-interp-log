@@ -1,0 +1,40 @@
+{
+  "n_problems": 154,
+  "match_counts": {
+    "exact": 153,
+    "normalized": 1,
+    "none": 0
+  },
+  "multi_boxed_count": 2,
+  "unmatched_count": 0,
+  "unmatched_first80": [],
+  "samples": [
+    {
+      "problem_60": "Find the number of vertical asymptotes in the graph of\n\\[y =",
+      "answer": "3",
+      "match": "exact"
+    },
+    {
+      "problem_60": "Ten treeks weigh as much as three squigs and one goolee. Two",
+      "answer": "3",
+      "match": "exact"
+    },
+    {
+      "problem_60": "When the two-digit integer $``\\text{AB}\"$ is cubed, the valu",
+      "answer": "16",
+      "match": "exact"
+    },
+    {
+      "problem_60": "Two congruent right circular cones each with base radius $3$",
+      "answer": "298",
+      "match": "normalized"
+    },
+    {
+      "problem_60": "The expression $$1 + 2 + 3 - 4 + 5 + 6$$is equivalent to 13.",
+      "answer": "-9",
+      "match": "exact"
+    }
+  ],
+  "math_rows_indexed": 12500,
+  "answers_missing_boxed": 0
+}
