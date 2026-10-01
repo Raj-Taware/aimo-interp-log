@@ -1,0 +1,55 @@
+{
+  "timings": {
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "seconds": 160.3,
+      "returncode": 0
+    },
+    "Qwen/Qwen3.5-4B": {
+      "seconds": 170.3,
+      "returncode": 0
+    },
+    "Skywork/Skywork-OR1-Math-7B": {
+      "seconds": 137.6,
+      "returncode": 0
+    },
+    "allenai/Olmo-3-7B-Think": {
+      "seconds": 151.1,
+      "returncode": 0
+    }
+  },
+  "dumps": {
+    "Qwen/Qwen3.5-4B": {
+      "cases": 17,
+      "nan_or_inf": 0,
+      "labels_from": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "path": "Qwen_Qwen3.5-4B.npz"
+    },
+    "Skywork/Skywork-OR1-Math-7B": {
+      "cases": 17,
+      "nan_or_inf": 0,
+      "labels_from": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "path": "Skywork_Skywork-OR1-Math-7B.npz"
+    },
+    "allenai/Olmo-3-7B-Think": {
+      "cases": 17,
+      "nan_or_inf": 0,
+      "labels_from": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "path": "allenai_Olmo-3-7B-Think.npz"
+    },
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "cases": 17,
+      "nan_or_inf": 0,
+      "labels_from": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "path": "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.npz"
+    }
+  },
+  "env": {
+    "torch": "2.10.0+cu128",
+    "transformers": "5.13.0",
+    "cuda": "12.8",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ]
+  }
+}
