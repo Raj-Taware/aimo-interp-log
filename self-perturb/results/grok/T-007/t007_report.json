@@ -1,0 +1,39 @@
+{
+  "timings": {
+    "Qwen/Qwen3.5-4B": {
+      "seconds": 1529.7,
+      "returncode": 0
+    },
+    "Skywork/Skywork-OR1-Math-7B": {
+      "seconds": 2566.8,
+      "returncode": 0
+    },
+    "allenai/Olmo-3-7B-Think": {
+      "seconds": 585.3,
+      "returncode": 0
+    },
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "seconds": 3061.7,
+      "returncode": 0
+    }
+  },
+  "summaries": [
+    {
+      "n": 2,
+      "median_tokens": 5040.5,
+      "mean_tokens": 5040.5,
+      "p90_tokens": 7561.7,
+      "max_tokens": 8192,
+      "pct_hit_8192_cap": 50.0,
+      "pct_with_boxed": 50.0,
+      "accuracy_of_10": 1,
+      "n_correct": 1,
+      "wall_seconds": 1508.0,
+      "generated_tok_per_s": 6.68,
+      "total_generated_tokens": 10081,
+      "model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "early_stop": "stopped sequential at 2/10 \u2014 40.0 min budget"
+    }
+  ],
+  "n_jsonl_lines": 22
+}
