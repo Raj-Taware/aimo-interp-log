@@ -1,0 +1,104 @@
+{
+  "step0": {
+    "AUC_n_words": 0.743949394939494,
+    "Spearman_n_words_cos_mean_d0.1": 0.857412436728153,
+    "n_words_min": 2.0,
+    "n_words_max": 87.0,
+    "n_words_mean_robust": 27.916666666666668,
+    "n_words_mean_nonrobust": 16.77227722772277
+  },
+  "nested_cv": {
+    "L": {
+      "accuracy_mean": 0.6742857142857143,
+      "accuracy_std": 0.08519116611163806,
+      "balanced_mean": 0.6618809523809523,
+      "auc_mean": 0.7461445578231292,
+      "n_features": 2
+    },
+    "D": {
+      "accuracy_mean": 0.6668783068783068,
+      "accuracy_std": 0.07810075832571158,
+      "balanced_mean": 0.6667142857142856,
+      "auc_mean": 0.7428503401360544,
+      "n_features": 26
+    },
+    "R": {
+      "accuracy_mean": 0.5575132275132275,
+      "accuracy_std": 0.08462062749523686,
+      "balanced_mean": 0.5283333333333333,
+      "auc_mean": 0.538954081632653,
+      "n_features": 26
+    },
+    "L+D": {
+      "accuracy_mean": 0.6653439153439155,
+      "accuracy_std": 0.07793149694555698,
+      "balanced_mean": 0.6701666666666667,
+      "auc_mean": 0.737923469387755,
+      "n_features": 28
+    },
+    "L+R": {
+      "accuracy_mean": 0.6423809523809524,
+      "accuracy_std": 0.07755058059486394,
+      "balanced_mean": 0.6315000000000001,
+      "auc_mean": 0.7177619047619048,
+      "n_features": 28
+    }
+  },
+  "paired_LpR_vs_L": {
+    "mean_balanced_diff_LpR_minus_L": -0.030380952380952387,
+    "pct_folds_LpR_wins": 8.0,
+    "n_folds": 25,
+    "n_wins": 2,
+    "n_ties": 11,
+    "n_losses": 12,
+    "criterion_a_met": false,
+    "criterion_b_met": false,
+    "both_met": false
+  },
+  "cross_model": [
+    {
+      "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "n": 137,
+      "AUC_R": 0.6647414741474147,
+      "AUC_L": 0.7422992299229922,
+      "n_tokens_mean": 37.97810218978102,
+      "n_words_mean": 19.7007299270073
+    },
+    {
+      "model_id": "Qwen/Qwen3.5-4B",
+      "n": 137,
+      "AUC_R": 0.3737623762376238,
+      "AUC_L": 0.7447744774477447,
+      "n_tokens_mean": 38.81751824817518,
+      "n_words_mean": 19.7007299270073
+    },
+    {
+      "model_id": "Skywork/Skywork-OR1-Math-7B",
+      "n": 137,
+      "AUC_R": 0.5192519251925192,
+      "AUC_L": 0.7447744774477447,
+      "n_tokens_mean": 38.81751824817518,
+      "n_words_mean": 19.7007299270073
+    },
+    {
+      "model_id": "allenai/Olmo-3-7B-Think",
+      "n": 137,
+      "AUC_R": 0.45324532453245325,
+      "AUC_L": 0.7468371837183718,
+      "n_tokens_mean": 37.08759124087591,
+      "n_words_mean": 19.7007299270073
+    }
+  ],
+  "dump": "results/grok/T-008/mixed_dumps/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.npz",
+  "csv": "results/grok/T-003/math-robust-final.csv",
+  "n_problems": 137,
+  "n_robust": 36,
+  "v3_n_raw": 26,
+  "v3_n_varying_D": 26,
+  "v3_n_varying_R": 26,
+  "criterion_a_threshold": {
+    "mean_diff": 0.03,
+    "pct_wins": 60.0
+  },
+  "criterion_b_threshold_auc_R": 0.55
+}

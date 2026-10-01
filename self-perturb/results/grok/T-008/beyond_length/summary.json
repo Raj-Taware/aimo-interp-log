@@ -1,0 +1,233 @@
+{
+  "n_problems": 137,
+  "n_robust": 36,
+  "dump": "results/grok/T-008/dumps/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.npz",
+  "model_id": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "feature_names_verified_exact": true,
+  "nested_cv": {
+    "L": {
+      "balanced_mean": 0.6618809523809523,
+      "auc_mean": 0.7461445578231292,
+      "n_features": 2,
+      "feature_names": [
+        "log_n_tokens",
+        "log_n_words"
+      ]
+    },
+    "X1": {
+      "balanced_mean": 0.5214523809523809,
+      "auc_mean": 0.5517823129251701,
+      "n_features": 8,
+      "feature_names": [
+        "rename_kl",
+        "numerals_kl",
+        "typos_kl",
+        "distract_kl",
+        "rephrase_kl",
+        "number_jitter_kl",
+        "multidistract_kl_mean",
+        "multidistract_kl_max"
+      ]
+    },
+    "X2": {
+      "balanced_mean": 0.463095238095238,
+      "auc_mean": 0.4856462585034014,
+      "n_features": 3,
+      "feature_names": [
+        "base_entropy",
+        "base_top1",
+        "base_margin"
+      ]
+    },
+    "X3": {
+      "balanced_mean": 0.5925476190476191,
+      "auc_mean": 0.6767244897959181,
+      "n_features": 3,
+      "feature_names": [
+        "g_md_cos_mean_d0.25_minus_g_rephrase_cos_d0.25",
+        "g_md_poolcos_mean_d0.25_minus_g_rephrase_poolcos_d0.25",
+        "g_typos_cos_d0.25_minus_g_rephrase_cos_d0.25"
+      ]
+    },
+    "L+X1": {
+      "balanced_mean": 0.6295238095238096,
+      "auc_mean": 0.7044098639455781,
+      "n_features": 10,
+      "feature_names": [
+        "log_n_tokens",
+        "log_n_words",
+        "rename_kl",
+        "numerals_kl",
+        "typos_kl",
+        "distract_kl",
+        "rephrase_kl",
+        "number_jitter_kl",
+        "multidistract_kl_mean",
+        "multidistract_kl_max"
+      ]
+    },
+    "L+X2": {
+      "balanced_mean": 0.6684047619047618,
+      "auc_mean": 0.7396598639455783,
+      "n_features": 5,
+      "feature_names": [
+        "log_n_tokens",
+        "log_n_words",
+        "base_entropy",
+        "base_top1",
+        "base_margin"
+      ]
+    },
+    "L+X3": {
+      "balanced_mean": 0.6528333333333333,
+      "auc_mean": 0.7398146258503401,
+      "n_features": 5,
+      "feature_names": [
+        "log_n_tokens",
+        "log_n_words",
+        "g_md_cos_mean_d0.25_minus_g_rephrase_cos_d0.25",
+        "g_md_poolcos_mean_d0.25_minus_g_rephrase_poolcos_d0.25",
+        "g_typos_cos_d0.25_minus_g_rephrase_cos_d0.25"
+      ]
+    }
+  },
+  "paired_vs_L": {
+    "L+X1": {
+      "mean_diff": -0.032357142857142855,
+      "n_wins": 6,
+      "n_ties": 6,
+      "n_losses": 13,
+      "pct_non_tied_wins": 31.57894736842105,
+      "criterion_met": false
+    },
+    "L+X2": {
+      "mean_diff": 0.006523809523809536,
+      "n_wins": 9,
+      "n_ties": 10,
+      "n_losses": 6,
+      "pct_non_tied_wins": 60.0,
+      "criterion_met": false
+    },
+    "L+X3": {
+      "mean_diff": -0.009047619047619037,
+      "n_wins": 9,
+      "n_ties": 6,
+      "n_losses": 10,
+      "pct_non_tied_wins": 47.368421052631575,
+      "criterion_met": false
+    }
+  },
+  "coef_bootstrap": {
+    "L+X1": [
+      {
+        "feature": "rename_kl",
+        "coef": 0.1457400204014925,
+        "bootstrap_se": 0.23668986453554947,
+        "coef_over_se": 0.6157425485348705,
+        "best_C": 0.1
+      },
+      {
+        "feature": "numerals_kl",
+        "coef": 0.3091377655088031,
+        "bootstrap_se": 0.4766257096449593,
+        "coef_over_se": 0.6485964966914631,
+        "best_C": 0.1
+      },
+      {
+        "feature": "typos_kl",
+        "coef": -0.048053992147488296,
+        "bootstrap_se": 0.27648367099049753,
+        "coef_over_se": -0.1738040875084441,
+        "best_C": 0.1
+      },
+      {
+        "feature": "distract_kl",
+        "coef": 0.24862485039944104,
+        "bootstrap_se": 0.365786916914558,
+        "coef_over_se": 0.6796985865339624,
+        "best_C": 0.1
+      },
+      {
+        "feature": "rephrase_kl",
+        "coef": -0.3473950653682477,
+        "bootstrap_se": 0.42866521766097604,
+        "coef_over_se": -0.8104111345068274,
+        "best_C": 0.1
+      },
+      {
+        "feature": "number_jitter_kl",
+        "coef": 0.05805554491087845,
+        "bootstrap_se": 0.19613339862397802,
+        "coef_over_se": 0.2960003003985113,
+        "best_C": 0.1
+      },
+      {
+        "feature": "multidistract_kl_mean",
+        "coef": -0.010313389600946618,
+        "bootstrap_se": 0.32840140244494154,
+        "coef_over_se": -0.031404828128514826,
+        "best_C": 0.1
+      },
+      {
+        "feature": "multidistract_kl_max",
+        "coef": -0.05429228844685697,
+        "bootstrap_se": 0.3424374823650776,
+        "coef_over_se": -0.15854657052108323,
+        "best_C": 0.1
+      }
+    ],
+    "L+X2": [
+      {
+        "feature": "base_entropy",
+        "coef": -0.14708253960819362,
+        "bootstrap_se": 0.2870831865430381,
+        "coef_over_se": -0.512334217058524,
+        "best_C": 1.0
+      },
+      {
+        "feature": "base_top1",
+        "coef": 0.19115023115517246,
+        "bootstrap_se": 0.2168996574792452,
+        "coef_over_se": 0.8812841540492674,
+        "best_C": 1.0
+      },
+      {
+        "feature": "base_margin",
+        "coef": -0.1009825225452167,
+        "bootstrap_se": 0.264412267527613,
+        "coef_over_se": -0.3819131520993856,
+        "best_C": 1.0
+      }
+    ],
+    "L+X3": [
+      {
+        "feature": "g_md_cos_mean_d0.25_minus_g_rephrase_cos_d0.25",
+        "coef": 0.10170043075698314,
+        "bootstrap_se": 0.27414445675746224,
+        "coef_over_se": 0.3709738725337726,
+        "best_C": 1.0
+      },
+      {
+        "feature": "g_md_poolcos_mean_d0.25_minus_g_rephrase_poolcos_d0.25",
+        "coef": 0.35158990963590553,
+        "bootstrap_se": 0.20495157452339657,
+        "coef_over_se": 1.7154779632872215,
+        "best_C": 1.0
+      },
+      {
+        "feature": "g_typos_cos_d0.25_minus_g_rephrase_cos_d0.25",
+        "coef": 0.23494414469613623,
+        "bootstrap_se": 0.13997382123410332,
+        "coef_over_se": 1.678486324261999,
+        "best_C": 1.0
+      }
+    ]
+  },
+  "criterion": {
+    "mean_balanced_diff_min": 0.02,
+    "pct_non_tied_wins_min": 60.0,
+    "note": "L+X beats L by >=0.02 mean balanced AND wins >=60% of non-tied folds"
+  },
+  "pipeline": "StandardScaler -> LogisticRegression(class_weight=balanced); inner CV C in {0.01,0.1,1}; no SelectKBest",
+  "outer": "StratifiedKFold(5, shuffle=True, random_state=s) s=0..4"
+}

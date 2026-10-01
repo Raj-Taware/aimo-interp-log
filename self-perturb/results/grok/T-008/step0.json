@@ -1,0 +1,6 @@
+{
+  "tokenizer_class": "TokenizersBackend",
+  "roundtrip_probe": "Find the point (8,17).\nThen x + y = 25.",
+  "roundtrip_ok": true,
+  "decoded_sample": "Find the point (8,17).\nThen x + y = 25."
+}

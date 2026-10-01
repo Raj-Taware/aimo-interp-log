@@ -1,0 +1,15 @@
+{
+  "subset": "v3new",
+  "n_train": 137,
+  "n_heldout": 17,
+  "heldout_robust": 2,
+  "heldout_spurious": 15,
+  "best_params": {
+    "logisticregression__C": 1.0,
+    "selectkbest__k": 20
+  },
+  "auc_v3": 0.7333,
+  "auc_word_count": 0.8,
+  "auc_word_count_inverted": 0.2,
+  "auc_word_count_reported": 0.8
+}

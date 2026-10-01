@@ -1,0 +1,43 @@
+{
+  "timings": {
+    "137": {
+      "seconds": 341.5,
+      "returncode": 0
+    },
+    "17": {
+      "seconds": 53.3,
+      "returncode": 0
+    }
+  },
+  "step0": {
+    "tokenizer_class": "TokenizersBackend",
+    "roundtrip_probe": "Find the point (8,17).\nThen x + y = 25.",
+    "roundtrip_ok": true,
+    "decoded_sample": "Find the point (8,17).\nThen x + y = 25."
+  },
+  "dumps": {
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.npz": {
+      "cases": 137,
+      "nan_or_inf": 0,
+      "n_features": 113,
+      "labels_from": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "path": "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.npz"
+    },
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B_extras17.npz": {
+      "cases": 17,
+      "nan_or_inf": 0,
+      "n_features": 113,
+      "labels_from": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "path": "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B_extras17.npz"
+    }
+  },
+  "env": {
+    "torch": "2.10.0+cu128",
+    "transformers": "5.13.0",
+    "cuda": "12.8",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ]
+  }
+}
