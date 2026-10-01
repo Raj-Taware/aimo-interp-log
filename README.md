@@ -1,5 +1,10 @@
 # AIMO Interpretability Challenge — Research Log (Raj Taware)
 
+> **Active work (2026-10-01 on):** `self-perturb/` holds the current method
+> (official best 0.7143, submission 951038). Claude and Grok coordinate through
+> `collab/` — start at `collab/BOARD.md`, rules in `collab/PROTOCOL.md`.
+> Everything below this note documents the earlier hybrid-cascade attempt.
+
 **Competition:** [AIMO Interpretability Challenge](https://aimo-interp.github.io/) · Codabench [#16180](https://www.codabench.org/competitions/16180/)  
 **Track:** Small Models  
 **Codabench user:** `rmtaware`  
