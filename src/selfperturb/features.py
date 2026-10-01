@@ -22,7 +22,7 @@ import os
 import numpy as np
 import torch
 import transformers
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, PreTrainedTokenizerFast
 
 from .perturbations import PERTURBATIONS, distract_variants, perturb_all
 
@@ -39,6 +39,32 @@ MAX_PROMPT_TOKENS = 2048
 # otherwise always emit the same opening token (``<think>``) here, which made
 # the next-token distribution constant -- entropy 0, top-1 1.0 -- on every case.
 ANSWER_PREFIX = "The final answer is $\\boxed{"
+
+
+_ROUNDTRIP_PROBE = "Find the point (8,17).\nThen x + y = 25."
+
+
+def _roundtrips(tokenizer) -> bool:
+    ids = tokenizer(_ROUNDTRIP_PROBE, add_special_tokens=False)["input_ids"]
+    return tokenizer.decode(ids) == _ROUNDTRIP_PROBE
+
+
+def load_tokenizer(model_id: str, local_only: bool):
+    """Load a tokenizer and verify it preserves whitespace; repair if not.
+
+    Under transformers 5.13.0 (the grader's version) DeepSeek-R1-0528-Qwen3-8B
+    resolves to ``LlamaTokenizer`` and silently drops every space and newline
+    on encode: "Find the point" becomes "Findthepoint". Loading the same
+    files through ``PreTrainedTokenizerFast`` restores correct byte-level
+    tokenization and keeps the chat template. The check is generic, so the
+    fallback only engages for a tokenizer that actually fails it.
+    """
+    tokenizer = AutoTokenizer.from_pretrained(model_id, local_files_only=local_only)
+    if not _roundtrips(tokenizer):
+        repaired = PreTrainedTokenizerFast.from_pretrained(model_id, local_files_only=local_only)
+        if _roundtrips(repaired):
+            tokenizer = repaired
+    return tokenizer
 
 
 def load_model(model_id: str, dtype: torch.dtype | None = None):
@@ -59,7 +85,7 @@ def load_model(model_id: str, dtype: torch.dtype | None = None):
     else:
         resolved, device_map = torch.float32, None
 
-    tokenizer = AutoTokenizer.from_pretrained(model_id, local_files_only=local_only)
+    tokenizer = load_tokenizer(model_id, local_only)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "left"  # keeps the last token at index -1
