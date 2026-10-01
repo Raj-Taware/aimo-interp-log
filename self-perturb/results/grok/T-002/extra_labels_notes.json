@@ -1,0 +1,11 @@
+{
+  "n_labelled_already": 137,
+  "n_new": 17,
+  "from_A_only": 17,
+  "from_B_only": 0,
+  "in_both": 0,
+  "robust": 2,
+  "spurious": 15,
+  "conflicts_dropped": 0,
+  "conflicts": []
+}
