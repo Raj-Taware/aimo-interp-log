@@ -28,7 +28,13 @@ GRID = {
 }
 
 
-def nested_cv(features, labels, class_weight):
+def nested_cv(features, labels, class_weight, return_folds: bool = False):
+    """Run nested CV over seeds 0..4 × 5 outer folds.
+
+    When ``return_folds`` is True, also return parallel lists of per-fold
+    balanced accuracies and AUCs (length 25) for paired fold comparisons on
+    identical splits.
+    """
     accuracy, balanced, auc = [], [], []
     for seed in SEEDS:
         outer = StratifiedKFold(5, shuffle=True, random_state=seed)
@@ -50,7 +56,14 @@ def nested_cv(features, labels, class_weight):
             balanced.append(balanced_accuracy_score(labels[test], prediction))
             if len(set(labels[test])) > 1:
                 auc.append(roc_auc_score(labels[test], search.decision_function(features[test])))
-    return np.mean(accuracy), np.std(accuracy), np.mean(balanced), np.mean(auc)
+            else:
+                auc.append(float("nan"))
+    mean_acc, std_acc = float(np.mean(accuracy)), float(np.std(accuracy))
+    mean_bal = float(np.mean(balanced))
+    mean_auc = float(np.nanmean(auc))
+    if return_folds:
+        return mean_acc, std_acc, mean_bal, mean_auc, list(balanced), list(auc)
+    return mean_acc, std_acc, mean_bal, mean_auc
 
 
 def single_feature_scan(features, labels, columns, permutations=200):
