@@ -1,0 +1,44 @@
+[
+  {
+    "original_problem": "If the graph of the line $y = ax + b$ passes through the points $(4,5)$ and $(8,17)$, what is $a - b$?",
+    "answer": "10",
+    "problem_id": "a54059",
+    "model_is_robust": true,
+    "label": "robust"
+  },
+  {
+    "original_problem": "Triangle $ABC^{}_{}$ has $AB=9^{}_{}$ and $BC: AC=40: 41^{}_{}$. What's the largest area that this triangle can have?",
+    "answer": "820",
+    "problem_id": "b471aa",
+    "model_is_robust": true,
+    "label": "robust"
+  },
+  {
+    "original_problem": "When the two-digit integer $``\\text{AB}\"$ is cubed, the value is $912,\\!673$. What is $A + B$?",
+    "answer": "16",
+    "problem_id": "22bdf3",
+    "model_is_robust": true,
+    "label": "robust"
+  },
+  {
+    "original_problem": "What is the value of $n$ such that $10^n = 10^{-5}\\times \\sqrt{\\frac{10^{73}}{0.001}}$?",
+    "answer": "33",
+    "problem_id": "864a11",
+    "model_is_robust": true,
+    "label": "robust"
+  },
+  {
+    "original_problem": "What is the value of \\[\\frac{x^1\\cdot x^2\\cdot x^3\\cdots x^{15}}{x^2\\cdot x^4 \\cdot x^6 \\cdots x^{20}}\\]if $x=2$?",
+    "answer": "1024",
+    "problem_id": "cd36c4",
+    "model_is_robust": true,
+    "label": "robust"
+  },
+  {
+    "original_problem": "What is the sum of all of the solutions of the equation $\\frac{4x}{20}=\\frac{5}{x}$?",
+    "answer": "0",
+    "problem_id": "9c18c8",
+    "model_is_robust": false,
+    "label": "spurious"
+  }
+]
