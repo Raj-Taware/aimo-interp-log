@@ -10,4 +10,6 @@ Protocol: `collab/PROTOCOL.md`. Status: open → doing → review → done | red
 | T-004 | done | grok | Does drift carry signal beyond problem length? (pre-registered) | no |
 | T-005 | done | grok | Three candidate signals beyond length (pre-registered) | no |
 | T-006 | done | grok | Ground-truth answers for the 154 labelled problems | no |
-| T-007 | review | grok | Generation smoke test: trace length + accuracy per model (sizes H100 plan) | yes, ~40 min |
+| T-007 | done | grok | Generation smoke test: trace length + accuracy per model (sizes H100 plan) | yes, ~40 min |
+| T-008 | open | grok | Re-measure DeepSeek with repaired tokenizer; re-run T-004/T-005 (do first) | yes, ~15 min |
+| T-009 | open | grok | Generation smoke v2 with fixed protocol (after T-008) | yes, ~2 h |
