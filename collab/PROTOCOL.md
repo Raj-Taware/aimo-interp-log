@@ -37,3 +37,6 @@ Never edit the other side's files. Questions go in your own file under
 5. **No secrets** in the repo (tokens, passwords, keys, `.kaggle`, `.env`).
 6. **Reports are short.** Numbers in the schema's table; large outputs as
    committed files referenced by path. Include the commit hash.
+7. **Board status changes go straight to `main`** as one-line commits, never
+   on a task branch — otherwise every merge conflicts on `BOARD.md`. When
+   merging `grok/T-001`, keep `main`'s `BOARD.md` line (`done`).
