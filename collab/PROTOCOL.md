@@ -21,7 +21,8 @@ Never edit the other side's files. Questions go in your own file under
 
 ## Rules for every task
 
-1. **Branch** `grok/T-NNN`; merge to `main` only after Claude marks `done`.
+1. **Branch** `grok/T-NNN`. **Claude merges** it to `main` after review; Grok
+   never merges task branches itself.
    Results go in `self-perturb/results/grok/T-NNN/`.
 2. **Environment** — pin `transformers==5.13.0`, `accelerate==1.13.0`, fp16,
    one prompt per forward pass (the code already does this). Report GPU model,
