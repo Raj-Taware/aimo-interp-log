@@ -33,6 +33,7 @@ agent's controls 949938 / 949942). The board is ~14 cases, so one case is
 | --- | --- | ---: | ---: | ---: |
 | 949937 | other agent's conservative hybrid probes | 0.5714 (8/14) | 1.0 | 0 |
 | **951038** | **self-perturb v2, per-model calibrated** (tag `v2-calibrated-submission`) | **0.7143 (10/14)** | 1.0 | 0 |
+| pending | self-perturb v3, multi-distractor, env-matched (tag `v3-multidistract-submission`) | — | — | — |
 
 P(>=10/14 by chance) = 1471/16384 ~= 0.09. Offline estimate beforehand:
 DeepSeek OOF balanced accuracy 0.648 (~9/14). Consistent, not conclusive.
@@ -41,10 +42,18 @@ DeepSeek OOF balanced accuracy 0.648 (~9/14). Consistent, not conclusive.
 
 ```text
 src/selfperturb/perturbations.py  deterministic stdlib perturbations, LaTeX-safe
-src/selfperturb/features.py       drift + next-token-KL features from one batch
+src/selfperturb/features.py       drift, pooled drift, multi-distractor, KL features
 scripts/dump_features.py          per-checkpoint feature dump, resumable
-scripts/train_probe.py            grouped CV + leave-one-model-out + export
+scripts/evaluate.py               nested CV + shuffled-label null; --subset v2/v3new
+scripts/calibrate_per_model.py    train once, calibrate one artifact per checkpoint
+scripts/train_probe.py            earlier grouped-CV trainer (superseded)
+scripts/build_bundle.py           package the Codabench ZIP
+scripts/make_kernel.py            Kaggle kernel for feature dumps
+scripts/make_gpu_check.py         Kaggle kernel running the exact ZIP on all models
+scripts/codabench_submit.py       user-run API submission (hidden password prompt)
 solutions/self-perturb/           the Codabench bundle
+results/                          frozen dumps, artifacts, submitted ZIPs
+docs/                             review of the other agent's log; noise study
 getting-started/                  organizers' repo (harness, baselines)
 baselines/                        organizers' probe/kernel baselines
 ```
