@@ -30,7 +30,8 @@ Never edit the other side's files. Questions go in your own file under
 3. **Canary** — before any feature dump counts, recompute features for the 10
    problems in `collab/canary.jsonl` with
    `deepseek-ai/DeepSeek-R1-0528-Qwen3-8B` and compare to the reference rows in
-   `self-perturb/results/feature-dumps/2026-09-29_v3-features_tf5.13_unbatched-fp16/`.
+   `self-perturb/results/grok/T-008/dumps/` (repaired tokenizer; the older
+   unbatched-fp16 DeepSeek dump used whitespace-stripped text).
    Report max |diff| and per-feature correlation. Features sit at fp16
    rounding scale (`self-perturb/docs/measurement-noise.md`); a different GPU
    can shift them. Do not "fix" a mismatch — report it.
