@@ -1,0 +1,20 @@
+137 cases, 36 robust, 26 varying features
+majority baseline accuracy: 0.737
+
+class_weight=None      accuracy 0.715 +/- 0.036 | balanced 0.505 | AUC 0.697
+class_weight=balanced  accuracy 0.667 +/- 0.078 | balanced 0.667 | AUC 0.743
+
+single features beating the shuffled-label 95th pct (|AUC-0.5| > 0.161):
+  AUC 0.250  multidistract_lognorm_absmax_d0.1
+  AUC 0.735  multidistract_cos_mean_d0.1
+  AUC 0.735  multidistract_norm_mean_d0.1
+  AUC 0.729  multidistract_cos_min_d0.1
+  AUC 0.709  multidistract_norm_mean_d0.4
+  AUC 0.708  multidistract_poolcos_mean_d0.1
+  AUC 0.708  multidistract_poolcos_min_d0.1
+  AUC 0.687  multidistract_cos_mean_d0.25
+  AUC 0.682  multidistract_cos_min_d0.25
+  AUC 0.318  multidistract_lognorm_absmax_d0.25
+  AUC 0.318  multidistract_lognorm_absmax_d0.4
+  AUC 0.676  multidistract_norm_mean_d0.25
+  AUC 0.674  multidistract_cos_mean_d0.4
