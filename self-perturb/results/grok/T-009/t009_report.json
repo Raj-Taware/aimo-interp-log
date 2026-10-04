@@ -1,0 +1,111 @@
+{
+  "returncode": 0,
+  "wall_seconds": 8018.3,
+  "env": {
+    "torch": "2.10.0+cu128",
+    "transformers": "5.13.0",
+    "cuda": "12.8",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ]
+  },
+  "summaries": [
+    {
+      "model": "Qwen/Qwen3.5-4B",
+      "sampling_used": {
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": null
+      },
+      "n": 6,
+      "median_tokens": 5943.0,
+      "pct_hit_cap": 33.3,
+      "pct_stopped": 66.7,
+      "correct_of_6": 5,
+      "extraction_rule_counts": {
+        "boxed": 5,
+        "bold": 1,
+        "answer_is": 0,
+        "none": 0
+      },
+      "looping_count": 1,
+      "tok_per_s": 19.09,
+      "wall_seconds": 1851.4,
+      "early_stop": null,
+      "batch_size": 2
+    },
+    {
+      "model": "Skywork/Skywork-OR1-Math-7B",
+      "sampling_used": {
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": null
+      },
+      "n": 6,
+      "median_tokens": 2229.5,
+      "pct_hit_cap": 16.7,
+      "pct_stopped": 83.3,
+      "correct_of_6": 5,
+      "extraction_rule_counts": {
+        "boxed": 5,
+        "bold": 0,
+        "answer_is": 0,
+        "none": 1
+      },
+      "looping_count": 0,
+      "tok_per_s": 13.16,
+      "wall_seconds": 1461.6,
+      "early_stop": null,
+      "batch_size": 2
+    },
+    {
+      "model": "allenai/Olmo-3-7B-Think",
+      "sampling_used": {
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": null
+      },
+      "n": 6,
+      "median_tokens": 3782.5,
+      "pct_hit_cap": 16.7,
+      "pct_stopped": 83.3,
+      "correct_of_6": 5,
+      "extraction_rule_counts": {
+        "boxed": 5,
+        "bold": 0,
+        "answer_is": 0,
+        "none": 1
+      },
+      "looping_count": 0,
+      "tok_per_s": 12.49,
+      "wall_seconds": 1881.0,
+      "early_stop": null,
+      "batch_size": 1
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "sampling_used": {
+        "temperature": 0.6,
+        "top_p": 0.95,
+        "top_k": null
+      },
+      "n": 6,
+      "median_tokens": 3326.5,
+      "pct_hit_cap": 16.7,
+      "pct_stopped": 83.3,
+      "correct_of_6": 5,
+      "extraction_rule_counts": {
+        "boxed": 5,
+        "bold": 0,
+        "answer_is": 0,
+        "none": 1
+      },
+      "looping_count": 2,
+      "tok_per_s": 10.66,
+      "wall_seconds": 2406.6,
+      "early_stop": null,
+      "batch_size": 2
+    }
+  ]
+}
