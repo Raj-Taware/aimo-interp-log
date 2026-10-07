@@ -1,0 +1,10 @@
+{
+  "model": "Skywork/Skywork-OR1-Math-7B",
+  "rows": 3,
+  "n_features": 113,
+  "nan_or_inf": 0,
+  "load_seconds": 12.4,
+  "feature_seconds": 4.7,
+  "tokenizer_class": "Qwen2Tokenizer",
+  "path": "Skywork_Skywork-OR1-Math-7B.npz"
+}

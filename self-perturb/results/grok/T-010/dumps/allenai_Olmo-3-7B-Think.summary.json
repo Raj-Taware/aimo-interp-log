@@ -1,0 +1,10 @@
+{
+  "model": "allenai/Olmo-3-7B-Think",
+  "rows": 10,
+  "n_features": 113,
+  "nan_or_inf": 0,
+  "load_seconds": 12.8,
+  "feature_seconds": 34.3,
+  "tokenizer_class": "TokenizersBackend",
+  "path": "allenai_Olmo-3-7B-Think.npz"
+}

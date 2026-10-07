@@ -1,0 +1,10 @@
+{
+  "model": "Qwen/Qwen3.5-4B",
+  "rows": 14,
+  "n_features": 113,
+  "nan_or_inf": 0,
+  "load_seconds": 9.2,
+  "feature_seconds": 113.7,
+  "tokenizer_class": "Qwen2Tokenizer",
+  "path": "Qwen_Qwen3.5-4B.npz"
+}

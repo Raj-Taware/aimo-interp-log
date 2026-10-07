@@ -1,0 +1,137 @@
+[
+  {
+    "candidate": "always-True",
+    "n": 34,
+    "correct": 24,
+    "accuracy": 0.7058823529411765,
+    "balanced_accuracy": 0.5,
+    "robust_predicted": 34,
+    "valid_batches": {
+      "Qwen": true,
+      "Sky": true,
+      "Olmo": true,
+      "DS": true
+    },
+    "per_model": {
+      "Qwen": {
+        "n": 12,
+        "correct": 8,
+        "accuracy": 0.6666666666666666,
+        "balanced_accuracy": 0.5,
+        "robust_predicted": 12
+      },
+      "Sky": {
+        "n": 3,
+        "correct": 2,
+        "accuracy": 0.6666666666666666,
+        "balanced_accuracy": 0.5,
+        "robust_predicted": 3
+      },
+      "Olmo": {
+        "n": 9,
+        "correct": 7,
+        "accuracy": 0.7777777777777778,
+        "balanced_accuracy": 0.5,
+        "robust_predicted": 9
+      },
+      "DS": {
+        "n": 10,
+        "correct": 7,
+        "accuracy": 0.7,
+        "balanced_accuracy": 0.5,
+        "robust_predicted": 10
+      }
+    },
+    "robust_predicted_all37": 37
+  },
+  {
+    "candidate": "v2",
+    "n": 34,
+    "correct": 20,
+    "accuracy": 0.5882352941176471,
+    "balanced_accuracy": 0.475,
+    "robust_predicted": 26,
+    "valid_batches": {
+      "Qwen": true,
+      "Sky": true,
+      "Olmo": true,
+      "DS": true
+    },
+    "per_model": {
+      "Qwen": {
+        "n": 12,
+        "correct": 9,
+        "accuracy": 0.75,
+        "balanced_accuracy": 0.6875,
+        "robust_predicted": 9
+      },
+      "Sky": {
+        "n": 3,
+        "correct": 2,
+        "accuracy": 0.6666666666666666,
+        "balanced_accuracy": 0.5,
+        "robust_predicted": 3
+      },
+      "Olmo": {
+        "n": 9,
+        "correct": 4,
+        "accuracy": 0.4444444444444444,
+        "balanced_accuracy": 0.2857142857142857,
+        "robust_predicted": 6
+      },
+      "DS": {
+        "n": 10,
+        "correct": 5,
+        "accuracy": 0.5,
+        "balanced_accuracy": 0.35714285714285715,
+        "robust_predicted": 8
+      }
+    },
+    "robust_predicted_all37": 28
+  },
+  {
+    "candidate": "v3b",
+    "n": 34,
+    "correct": 22,
+    "accuracy": 0.6470588235294118,
+    "balanced_accuracy": 0.6916666666666667,
+    "robust_predicted": 16,
+    "valid_batches": {
+      "Qwen": true,
+      "Sky": true,
+      "Olmo": true,
+      "DS": true
+    },
+    "per_model": {
+      "Qwen": {
+        "n": 12,
+        "correct": 9,
+        "accuracy": 0.75,
+        "balanced_accuracy": 0.8125,
+        "robust_predicted": 5
+      },
+      "Sky": {
+        "n": 3,
+        "correct": 2,
+        "accuracy": 0.6666666666666666,
+        "balanced_accuracy": 0.75,
+        "robust_predicted": 1
+      },
+      "Olmo": {
+        "n": 9,
+        "correct": 5,
+        "accuracy": 0.5555555555555556,
+        "balanced_accuracy": 0.5357142857142857,
+        "robust_predicted": 5
+      },
+      "DS": {
+        "n": 10,
+        "correct": 6,
+        "accuracy": 0.6,
+        "balanced_accuracy": 0.6190476190476191,
+        "robust_predicted": 5
+      }
+    },
+    "robust_predicted_all37": 18
+  }
+]
