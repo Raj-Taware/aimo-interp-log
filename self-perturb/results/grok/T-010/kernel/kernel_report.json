@@ -1,0 +1,66 @@
+{
+  "env": {
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "transformers": "5.13.0",
+    "accelerate": "1.13.0",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ]
+  },
+  "timings": {
+    "canary": {
+      "seconds": 176.8,
+      "returncode": 0
+    },
+    "v2::deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "seconds": 87.0,
+      "returncode": 0
+    },
+    "v3b::deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "seconds": 49.9,
+      "returncode": 0
+    },
+    "dump::deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "seconds": 54.5,
+      "returncode": 0
+    },
+    "v2::Qwen/Qwen3.5-4B": {
+      "seconds": 122.6,
+      "returncode": 0
+    },
+    "v3b::Qwen/Qwen3.5-4B": {
+      "seconds": 130.3,
+      "returncode": 0
+    },
+    "dump::Qwen/Qwen3.5-4B": {
+      "seconds": 133.5,
+      "returncode": 0
+    },
+    "v2::Skywork/Skywork-OR1-Math-7B": {
+      "seconds": 117.4,
+      "returncode": 0
+    },
+    "v3b::Skywork/Skywork-OR1-Math-7B": {
+      "seconds": 28.5,
+      "returncode": 0
+    },
+    "dump::Skywork/Skywork-OR1-Math-7B": {
+      "seconds": 27.4,
+      "returncode": 0
+    },
+    "v2::allenai/Olmo-3-7B-Think": {
+      "seconds": 228.2,
+      "returncode": 0
+    },
+    "v3b::allenai/Olmo-3-7B-Think": {
+      "seconds": 57.5,
+      "returncode": 0
+    },
+    "dump::allenai/Olmo-3-7B-Think": {
+      "seconds": 57.4,
+      "returncode": 0
+    }
+  }
+}

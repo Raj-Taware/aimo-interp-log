@@ -1,0 +1,17 @@
+{
+  "zip_dir": "/kaggle/working/repo/zips/v3b",
+  "model": "Skywork/Skywork-OR1-Math-7B",
+  "seconds": 17.6,
+  "valid": true,
+  "error": null,
+  "row_idx": [
+    14,
+    15,
+    16
+  ],
+  "predictions": [
+    true,
+    false,
+    false
+  ]
+}
