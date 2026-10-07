@@ -1,6 +1,9 @@
 # Plan: label all four small models ourselves (H100, 1-2 slots)
 
-Status: **proposal, awaiting Raj** (approve? who runs the H100?).
+Status: **ON HOLD (2026-10-07).** `aimo-interp/train-main-v2` shows the four
+small models never disagree on the 9 problems labelled for >= 2 of them, so
+the within-problem design below may have almost no discordant pairs to test.
+Revisit after T-010.
 
 ## Why
 
