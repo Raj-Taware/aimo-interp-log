@@ -13,4 +13,4 @@ Protocol: `collab/PROTOCOL.md`. Status: open → doing → review → done | red
 | T-007 | done | grok | Generation smoke test: trace length + accuracy per model (sizes H100 plan) | yes, ~40 min |
 | T-008 | done | grok | Re-measure DeepSeek with repaired tokenizer; re-run T-004/T-005 (do first) | yes, ~15 min |
 | T-009 | done | grok | Generation smoke v2 with fixed protocol (after T-008) | yes, ~2 h |
-| T-010 | doing | grok | Local leaderboard (v2, v3b, always-True) + feature dump on train-main-v2 | yes, ~30 min |
+| T-010 | review | grok | Local leaderboard (v2, v3b, always-True) + feature dump on train-main-v2 | yes, ~30 min |
