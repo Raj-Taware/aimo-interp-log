@@ -131,20 +131,30 @@ def _cka(x: torch.Tensor, y: torch.Tensor) -> float:
 def _layer_profiles(orig_states, var_states, pairs, norm, head, lens_layers):
     """Per-layer metrics for one (original, variant) pair."""
     n_states = orig_states.shape[0]
-    i_idx = torch.tensor([i for i, _ in pairs], device=orig_states.device, dtype=torch.long)
-    j_idx = torch.tensor([j for _, j in pairs], device=orig_states.device, dtype=torch.long)
+    device = orig_states.device
     out = {metric: np.full(n_states, np.nan) for metric in METRICS}
     for layer in range(n_states):
-        reference = orig_states[layer, 1:]                  # drop the sink token
+        # fp16 can overflow at a few positions in a model's last block (seen in
+        # Skywork's final layer); drop non-finite token states rather than let
+        # one of them turn the whole layer's statistics into NaN.
+        ok_o = torch.isfinite(orig_states[layer]).all(-1)
+        ok_v = torch.isfinite(var_states[layer]).all(-1)
+        reference = orig_states[layer, 1:][ok_o[1:]]       # drop the sink token
+        if reference.shape[0] < 2:
+            continue
         mu = reference.mean(0)
         sd = reference.std(0).clamp_min(1e-4)
         o = (orig_states[layer] - mu) / sd
         v = (var_states[layer] - mu) / sd
-        if len(pairs):
+        kept = [(i, j) for i, j in pairs if ok_o[i] and ok_v[j]]
+        if kept:
+            i_idx = torch.tensor([i for i, _ in kept], device=device, dtype=torch.long)
+            j_idx = torch.tensor([j for _, j in kept], device=device, dtype=torch.long)
             x, y = o[i_idx], v[j_idx]
             out["wcos"][layer] = float(torch.nn.functional.cosine_similarity(x, y, dim=-1).mean())
             out["cka"][layer] = _cka(x, y)
-        out["ans"][layer] = float(torch.nn.functional.cosine_similarity(o[-1], v[-1], dim=0))
+        if ok_o[-1] and ok_v[-1]:
+            out["ans"][layer] = float(torch.nn.functional.cosine_similarity(o[-1], v[-1], dim=0))
         if layer in lens_layers and head is not None:
             pair = torch.stack([orig_states[layer, -1], var_states[layer, -1]])
             # The last hidden state already has the final norm applied.
@@ -156,25 +166,54 @@ def _layer_profiles(orig_states, var_states, pairs, norm, head, lens_layers):
 
 
 @torch.no_grad()
-def _attention_excess(attentions, inserted, pairs, n_states):
-    """Excess attention on the inserted span, per layer (NaN where unavailable)."""
+def _attention_layer_ids(model, n_attentions: int, n_states: int):
+    """Hidden-state index (1..n_layers) of each returned attention tensor.
+
+    Hybrid models (Qwen3.5) return attention only for their full-attention
+    layers; ``config.layer_types`` says which those are. Returns None when the
+    mapping cannot be established.
+    """
+    n_layers = n_states - 1
+    if n_attentions == n_layers:
+        return list(range(1, n_layers + 1))
+    config = getattr(model.config, "text_config", None) or model.config
+    types = getattr(config, "layer_types", None)
+    if types and len(types) == n_layers:
+        full = [i + 1 for i, kind in enumerate(types) if "full" in str(kind)]
+        if len(full) == n_attentions:
+            return full
+    return None
+
+
+@torch.no_grad()
+def _attention_excess(attentions, inserted, pairs, n_states, layer_ids=None):
+    """Excess attention on the inserted span, per layer (NaN where unavailable).
+
+    ``layer_ids`` maps each attention tensor to its hidden-state index; without
+    it the profile stays NaN but the mean over layers is still returned.
+    """
     out = np.full(n_states, np.nan)                         # index = hidden-state layer
+    values: list[float] = []
     if not attentions or not inserted:
-        return out
+        return out, values
     span_end = max(inserted)
     queries = sorted({j for _, j in pairs if j > span_end})
     if not queries:
-        return out
+        return out, values
     span = torch.tensor(inserted, dtype=torch.long)
     q = torch.tensor(queries, dtype=torch.long)
     expected = torch.tensor([len(inserted) / (t + 1) for t in queries], dtype=torch.float32)
-    for layer, a in enumerate(attentions):
-        if a is None:                                       # e.g. linear-attention layers
-            continue
+    present = [a for a in attentions if a is not None]      # linear-attention layers give None
+    if layer_ids is None and len(present) == len(attentions) == n_states - 1:
+        layer_ids = list(range(1, n_states))
+    for k, a in enumerate(present):
         a = a[0].float()                                    # (heads, T, T)
         mass = a[:, q.to(a.device)][:, :, span.to(a.device)].sum(-1)   # (heads, |q|)
-        out[layer + 1] = float((mass.cpu() / expected).mean())
-    return out
+        value = float((mass.cpu() / expected).mean())
+        values.append(value)
+        if layer_ids is not None:
+            out[layer_ids[k]] = value
+    return out, values
 
 
 # --------------------------------------------------------------------------
@@ -185,6 +224,19 @@ def _attention_excess(attentions, inserted, pairs, n_states):
 def _sample(profile: np.ndarray) -> list[float]:
     last = len(profile) - 1
     return [float(profile[max(1, min(last, round(f * last)))]) for f in LAYER_FRACTIONS]
+
+
+def _sample_nearest(profile: np.ndarray) -> list[float]:
+    """Like ``_sample`` but takes the nearest layer that has a value.
+
+    Hybrid models have attention only at some depths (every 4th layer in
+    Qwen3.5), so a fixed fraction can land on a layer without attention.
+    """
+    available = np.flatnonzero(np.isfinite(profile))
+    if available.size == 0:
+        return [float("nan")] * len(LAYER_FRACTIONS)
+    last = len(profile) - 1
+    return [float(profile[available[np.argmin(np.abs(available - f * last))]]) for f in LAYER_FRACTIONS]
 
 
 def case_geometry(tokenizer, model, problem: str, system_prompt: str = ""):
@@ -200,6 +252,7 @@ def case_geometry(tokenizer, model, problem: str, system_prompt: str = ""):
     profiles: dict[str, dict[str, np.ndarray]] = {}
     applied: dict[str, float] = {}
     attn_runs: list[np.ndarray] = []
+    attn_means: list[float] = []
     for family in FAMILIES:
         runs = []
         for text in texts[family]:
@@ -212,7 +265,12 @@ def case_geometry(tokenizer, model, problem: str, system_prompt: str = ""):
             pairs, inserted = align(orig_ids, var_ids)
             runs.append(_layer_profiles(orig_states, var_states, pairs, norm, head, lens_layers))
             if want_attn:
-                attn_runs.append(_attention_excess(attentions, inserted, pairs, n_states))
+                present = [a for a in (attentions or []) if a is not None]
+                layer_ids = _attention_layer_ids(model, len(present), n_states) if present else None
+                profile, values = _attention_excess(attentions, inserted, pairs, n_states, layer_ids)
+                attn_runs.append(profile)
+                if values:
+                    attn_means.append(float(np.mean(values)))
             del var_states, attentions
         applied[family] = float(bool(runs))
         profiles[family] = {
@@ -226,7 +284,7 @@ def case_geometry(tokenizer, model, problem: str, system_prompt: str = ""):
     for family in FAMILIES:
         for metric in METRICS:
             values += _sample(profiles[family][metric])
-    values += _sample(attn_profile) + [float(np.nanmean(attn_profile)) if np.isfinite(attn_profile).any() else float("nan")]
+    values += _sample_nearest(attn_profile) + [float(np.mean(attn_means)) if attn_means else float("nan")]
     values += [applied[family] for family in FAMILIES]
     return np.asarray(values, dtype=np.float32), profiles
 
