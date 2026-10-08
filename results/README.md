@@ -40,7 +40,8 @@ the selected features, and the nested-CV estimate (balanced 0.643, AUC 0.682).
 | --- | --- | --- | --- |
 | `solution-self-perturb-small-v2.zip` | `v2-calibrated-submission` | `2b8ebf4c15830380` | 951038: 0.7143 (10/14) |
 | `solution-self-perturb-small-v3.zip` | `v3-multidistract-submission` | `cde7b78257fd5e86` | 0.50 (all predicted robust) |
-| `solution-self-perturb-small-v3b.zip` | `v3b-batch-median` | see `git log` | pending |
+| `solution-self-perturb-small-v3b.zip` | `v3b-batch-median` | see `git log` | 955589: 0.4286 |
+| `solution-self-perturb-small-v4.zip` | `v4-repaired-tokenizer` | `8ccca29cfe53dca1` | 968513: 0.4286 |
 
 Reproduce the v3 evaluation from this folder:
 

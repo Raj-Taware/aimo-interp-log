@@ -34,7 +34,13 @@ agent's controls 949938 / 949942). The board is ~14 cases, so one case is
 | 949937 | other agent's conservative hybrid probes | 0.5714 (8/14) | 1.0 | 0 |
 | **951038** | **self-perturb v2, per-model calibrated** (tag `v2-calibrated-submission`) | **0.7143 (10/14)** | 1.0 | 0 |
 | (2026-10-02) | self-perturb v3, multi-distractor, env-matched (tag `v3-multidistract-submission`) | 0.5000 (7/14) — **all 14 predicted robust** | 1.0 | 0 |
-| pending | **v3b**: v3 + per-batch median threshold (tag `v3b-batch-median`) | — | — | — |
+| 955589 | v3b: v3 + per-batch median threshold (tag `v3b-batch-median`) | 0.4286 (6/14) | 1.0 | 0 |
+| 968513 | v4: v3b recipe, repaired DeepSeek tokenizer (tag `v4-repaired-tokenizer`) | 0.4286 (6/14) | 1.0 | 0 |
+
+Two small sets disagree. On 34 labelled train-main-v2 rows (balanced accuracy):
+v2 0.475, v3b 0.692, v4 0.692 — the reverse of the leaderboard. Labels look
+problem-level, so 14 cases are only a handful of distinct problems and 34
+rows only 20; neither set can rank these versions.
 
 P(>=10/14 by chance) = 1471/16384 ~= 0.09. Offline estimate beforehand:
 DeepSeek OOF balanced accuracy 0.648 (~9/14). Consistent, not conclusive.
