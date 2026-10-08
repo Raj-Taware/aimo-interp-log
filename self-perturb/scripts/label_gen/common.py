@@ -243,8 +243,10 @@ def load_tokenizer(model_id: str):
 
 def chat_ids(tokenizer, user: str, **template_kwargs) -> list[int]:
     """Chat-templated prompt ids. The template already carries any BOS, so no
-    special tokens are added on top (T-009 used the tokenizer's default; the four
-    small models' tokenizers add none there, see report)."""
+    special tokens are added on top. T-009 tokenized with the default
+    (add_special_tokens=True): identical for Qwen3.5-4B, Olmo-3 and DeepSeek, but
+    Skywork-OR1-Math-7B then gets a doubled <|begin_of_sentence|> (27 vs 26 ids).
+    This matches what vLLM's own chat path does (collab/reports/T-014.md)."""
     messages = [{"role": "user", "content": user}]
     text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True,
                                          **template_kwargs)

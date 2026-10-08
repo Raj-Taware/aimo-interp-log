@@ -1,0 +1,5 @@
+$ /usr/bin/python3 stage2_variants.py --problems /kaggle/working/repo/results/grok/T-014/problems.jsonl --stage1 /kaggle/working/T-014/run/stage1_summary.jsonl --writer Skywork/Skywork-OR1-Math-7B --attempts 2 --max-new-tokens 4096 --batch-size 10 --backend hf --out /kaggle/working/T-014/run
+10:18:17 stage2: 4 kept problems x 5 types; 37 attempts on disk (bad lines 0, duplicates 0)
+10:18:17 stage2 attempt 0: 0 pending
+10:18:17 stage2 attempt 1: 0 pending
+10:18:17 stage2 done: {'ok': 6, 'failed': 14, 'pending': 0}

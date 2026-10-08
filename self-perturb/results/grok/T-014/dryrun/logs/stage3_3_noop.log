@@ -1,0 +1,4 @@
+$ /usr/bin/python3 stage3_solve_variants.py --problems /kaggle/working/repo/results/grok/T-014/problems.jsonl --stage1 /kaggle/working/T-014/run/stage1_summary.jsonl --variants /kaggle/working/T-014/run/stage2_variants.jsonl --model Skywork/Skywork-OR1-Math-7B --samples 2 --max-new-tokens 4096 --batch-size 6 --backend hf --out /kaggle/working/T-014/run
+10:37:09 stage3: 6 variants; 12 samples on disk (bad lines 0, duplicates 0)
+10:37:09 stage3 Skywork/Skywork-OR1-Math-7B: 4 kept problems, 12 done, 0 pending
+10:37:10 stage3 done: 4 labelled pairs {'robust': 2, 'spurious': 1, 'null': 1}
