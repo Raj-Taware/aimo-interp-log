@@ -1,0 +1,55 @@
+{
+  "model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "cases": 5,
+  "features_max_abs_diff": 0.0,
+  "profiles_max_abs_diff": 0.0,
+  "nan_pattern_equal": true,
+  "bitwise_identical": true,
+  "per_case": [
+    {
+      "case": 0,
+      "features_max_abs_diff": 0.0,
+      "features_nan_pattern_equal": true,
+      "profiles_max_abs_diff": 0.0,
+      "profiles_nan_pattern_equal": true,
+      "seconds_run1": 2.81,
+      "seconds_run2": 1.98
+    },
+    {
+      "case": 1,
+      "features_max_abs_diff": 0.0,
+      "features_nan_pattern_equal": true,
+      "profiles_max_abs_diff": 0.0,
+      "profiles_nan_pattern_equal": true,
+      "seconds_run1": 1.89,
+      "seconds_run2": 1.87
+    },
+    {
+      "case": 2,
+      "features_max_abs_diff": 0.0,
+      "features_nan_pattern_equal": true,
+      "profiles_max_abs_diff": 0.0,
+      "profiles_nan_pattern_equal": true,
+      "seconds_run1": 1.48,
+      "seconds_run2": 1.52
+    },
+    {
+      "case": 3,
+      "features_max_abs_diff": 0.0,
+      "features_nan_pattern_equal": true,
+      "profiles_max_abs_diff": 0.0,
+      "profiles_nan_pattern_equal": true,
+      "seconds_run1": 2.04,
+      "seconds_run2": 2.05
+    },
+    {
+      "case": 4,
+      "features_max_abs_diff": 0.0,
+      "features_nan_pattern_equal": true,
+      "profiles_max_abs_diff": 0.0,
+      "profiles_nan_pattern_equal": true,
+      "seconds_run1": 1.53,
+      "seconds_run2": 1.52
+    }
+  ]
+}
