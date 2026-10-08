@@ -1,0 +1,34 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files:  50%|█████     | 1/2 [00:28<00:28, 28.08s/it]
+Fetching 2 files: 100%|██████████| 2/2 [00:45<00:00, 22.01s/it]
+Fetching 2 files: 100%|██████████| 2/2 [00:45<00:00, 22.92s/it]
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/426 [00:01<13:00,  1.84s/it]
+Loading weights:  28%|██▊       | 118/426 [00:01<00:03, 83.72it/s]
+Loading weights:  41%|████▏     | 176/426 [00:02<00:02, 93.29it/s]
+Loading weights:  50%|█████     | 213/426 [00:02<00:02, 96.10it/s]
+Loading weights:  56%|█████▋    | 240/426 [00:03<00:01, 97.26it/s]
+Loading weights:  61%|██████▏   | 261/426 [00:03<00:01, 98.38it/s]
+Loading weights:  65%|██████▌   | 278/426 [00:03<00:01, 99.80it/s]
+Loading weights:  69%|██████▉   | 293/426 [00:03<00:01, 100.80it/s]
+Loading weights:  72%|███████▏  | 307/426 [00:03<00:01, 99.61it/s] 
+Loading weights:  75%|███████▌  | 320/426 [00:03<00:01, 98.04it/s]
+Loading weights:  78%|███████▊  | 332/426 [00:03<00:00, 101.58it/s]
+Loading weights:  81%|████████  | 346/426 [00:04<00:00, 108.91it/s]
+Loading weights:  84%|████████▍ | 359/426 [00:04<00:00, 104.29it/s]
+Loading weights:  89%|████████▉ | 379/426 [00:04<00:00, 111.39it/s]
+Loading weights:  93%|█████████▎| 396/426 [00:04<00:00, 123.44it/s]
+Loading weights:  96%|█████████▌| 410/426 [00:04<00:00, 117.27it/s]
+Loading weights:  99%|█████████▉| 423/426 [00:04<00:00, 103.24it/s]
+Loading weights: 100%|██████████| 426/426 [00:04<00:00, 88.08it/s] 
+14 cases | model loaded in 58.2s
+/kaggle/working/repo/src/selfperturb/geometry.py:219: RuntimeWarning: Mean of empty slice
+  metric: (np.nanmean([r[metric] for r in runs], axis=0) if runs else np.full(n_states, np.nan))
+/kaggle/working/repo/src/selfperturb/geometry.py:222: RuntimeWarning: Mean of empty slice
+  attn_profile = np.nanmean(attn_runs, axis=0) if attn_runs else np.full(n_states, np.nan)
+10/14  7.76s/case
+wrote /kaggle/working/T-012/dumps/trainv2__Qwen_Qwen3.5-4B.npz (14 cases, 182 features)
