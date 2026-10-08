@@ -67,11 +67,17 @@ def load_tokenizer(model_id: str, local_only: bool):
     return tokenizer
 
 
-def load_model(model_id: str, dtype: torch.dtype | None = None):
+def load_model(
+    model_id: str,
+    dtype: torch.dtype | None = None,
+    attn_implementation: str | None = None,
+):
     """Load tokenizer + model in eval mode.
 
     Offline-only when ``HF_HUB_OFFLINE=1`` (set inside the evaluation container);
     elsewhere -- Kaggle, Lightning -- the checkpoint is downloaded on first use.
+    ``attn_implementation="eager"`` is needed to read attention weights
+    (``selfperturb.geometry``); left unset, the library default is used.
     """
     local_only = os.environ.get("HF_HUB_OFFLINE") == "1"
     if torch.cuda.is_available():
@@ -92,11 +98,13 @@ def load_model(model_id: str, dtype: torch.dtype | None = None):
     # transformers 5 renamed ``torch_dtype`` to ``dtype``; 4.x silently ignores
     # the new name and loads fp32, which would not fit an 8B model on a T4 pair.
     dtype_key = "dtype" if int(transformers.__version__.split(".")[0]) >= 5 else "torch_dtype"
+    extra = {"attn_implementation": attn_implementation} if attn_implementation else {}
     model = AutoModelForCausalLM.from_pretrained(
         model_id,
         local_files_only=local_only,
         device_map=device_map,
         **{dtype_key: resolved},
+        **extra,
     )
     if device_map is None:
         model.to("cpu")
