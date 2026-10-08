@@ -15,4 +15,5 @@ Protocol: `collab/PROTOCOL.md`. Status: open → doing → review → done | red
 | T-009 | done | grok | Generation smoke v2 with fixed protocol (after T-008) | yes, ~2 h |
 | T-010 | done | grok | Local leaderboard (v2, v3b, always-True) + feature dump on train-main-v2 | yes, ~30 min |
 | T-011 | done | grok | GPU check of v4 ZIP on train-main-v2 vs expected predictions | yes, ~10 min |
-| T-012 | review | grok | Phase 1 geometry dumps (MATH DeepSeek + train-main-v2 x 4 models) | yes, ~45 min |
+| T-012 | done | grok | Phase 1 geometry dumps (MATH DeepSeek + train-main-v2 x 4 models) | yes, ~45 min |
+| T-013 | open | grok | Re-run T-012 dumps with fixed geometry.py (hybrid attention, fp16 overflow) | yes, ~20 min |

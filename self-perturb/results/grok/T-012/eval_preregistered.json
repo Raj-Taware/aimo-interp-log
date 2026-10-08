@@ -1,0 +1,45 @@
+{
+  "H1_attnx": {
+    "tv2_auc_spurious": 0.7896,
+    "tv2_p": 0.0188,
+    "n": 34,
+    "math_beyond_length": {
+      "L": 0.683,
+      "L+X": 0.6982,
+      "mean_diff": 0.0152,
+      "wins": 15,
+      "ties": 2,
+      "losses": 8,
+      "pass": false
+    },
+    "pass": false,
+    "tv2_only": true
+  },
+  "H2_mid_cka": {
+    "tv2_auc_spurious": 0.6292,
+    "tv2_p": 0.1598,
+    "n": 34,
+    "math_beyond_length": {
+      "L": 0.683,
+      "L+X": 0.6854,
+      "mean_diff": 0.0024,
+      "wins": 6,
+      "ties": 13,
+      "losses": 6,
+      "pass": false
+    },
+    "pass": false,
+    "tv2_only": false
+  },
+  "H3_classifier": {
+    "chosen": {
+      "logisticregression__C": "0.01",
+      "selectkbest__k": "5"
+    },
+    "tv2_auc": 0.4625,
+    "tv2_p": 0.5828,
+    "n": 34,
+    "tv2_balanced_at_batch_median": 0.4792,
+    "pass": false
+  }
+}
