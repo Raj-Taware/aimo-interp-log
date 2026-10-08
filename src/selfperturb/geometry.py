@@ -210,9 +210,12 @@ def _attention_excess(attentions, inserted, pairs, n_states, layer_ids=None):
         a = a[0].float()                                    # (heads, T, T)
         mass = a[:, q.to(a.device)][:, :, span.to(a.device)].sum(-1)   # (heads, |q|)
         value = float((mass.cpu() / expected).mean())
-        values.append(value)
         if layer_ids is not None:
             out[layer_ids[k]] = value
+        # fp16 attention can overflow in a model's last block (Skywork); keep
+        # it out of the mean, which then matches the earlier nanmean definition.
+        if np.isfinite(value):
+            values.append(value)
     return out, values
 
 
