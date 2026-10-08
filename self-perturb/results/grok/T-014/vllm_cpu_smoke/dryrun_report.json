@@ -1,0 +1,266 @@
+{
+  "args": {
+    "problems": "/workspace/aimo-interp-collab-t014/self-perturb/results/grok/T-014/problems.jsonl",
+    "problem_id": [
+      "aime-0",
+      "amc-0",
+      "amc-1"
+    ],
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "writer": "Qwen/Qwen2.5-0.5B-Instruct",
+    "out": "/tmp/t014-vllm",
+    "samples": 2,
+    "variant_samples": 2,
+    "max_new_tokens": 48,
+    "writer_max_new_tokens": 160,
+    "min_base_acc": 0.0,
+    "batch1": 2,
+    "batch_cap": 4,
+    "attempts": 2,
+    "backend": "vllm",
+    "dtype": "bfloat16",
+    "extra": [
+      "--enforce-eager"
+    ]
+  },
+  "stages": [
+    {
+      "stage": "stage1",
+      "kill_run": {
+        "seconds": 54.1,
+        "returncode": -9,
+        "killed": true,
+        "loaded_model": true
+      },
+      "records_at_kill": 2,
+      "injected_torn_line": true,
+      "resume_run": {
+        "seconds": 48.0,
+        "returncode": 0,
+        "killed": false,
+        "loaded_model": true
+      },
+      "noop_run": {
+        "seconds": 2.0,
+        "returncode": 0,
+        "killed": false,
+        "loaded_model": false
+      },
+      "records_final": 6,
+      "expected": 6,
+      "duplicate_keys": 0,
+      "torn_lines_in_file": 1,
+      "killed_records_unchanged": true,
+      "resumed_skipped_done": [
+        "stage1 Qwen/Qwen2.5-0.5B-Instruct: 2 done, 4 pending"
+      ],
+      "noop_loaded_model": false,
+      "pass": true
+    },
+    {
+      "stage": "stage2",
+      "kill_run": {
+        "seconds": 44.1,
+        "returncode": -9,
+        "killed": true,
+        "loaded_model": true
+      },
+      "records_at_kill": 4,
+      "resume_run": {
+        "seconds": 80.1,
+        "returncode": 0,
+        "killed": false,
+        "loaded_model": true
+      },
+      "noop_run": {
+        "seconds": 2.0,
+        "returncode": 0,
+        "killed": false,
+        "loaded_model": false
+      },
+      "records_final": 26,
+      "expected": 26,
+      "duplicate_keys": 0,
+      "torn_lines_in_file": 0,
+      "killed_records_unchanged": true,
+      "resumed_skipped_done": [
+        "stage2 attempt 0: 11 pending",
+        "stage2 attempt 1: 11 pending",
+        "stage2 done: {'ok': 7, 'failed': 8, 'pending': 0}"
+      ],
+      "noop_loaded_model": false,
+      "pass": true
+    },
+    {
+      "stage": "stage3",
+      "kill_run": {
+        "seconds": 38.1,
+        "returncode": -9,
+        "killed": true,
+        "loaded_model": true
+      },
+      "records_at_kill": 4,
+      "resume_run": {
+        "seconds": 48.0,
+        "returncode": 0,
+        "killed": false,
+        "loaded_model": true
+      },
+      "noop_run": {
+        "seconds": 2.0,
+        "returncode": 0,
+        "killed": false,
+        "loaded_model": false
+      },
+      "records_final": 14,
+      "expected": 14,
+      "duplicate_keys": 0,
+      "torn_lines_in_file": 0,
+      "killed_records_unchanged": true,
+      "resumed_skipped_done": [
+        "stage3 Qwen/Qwen2.5-0.5B-Instruct: 3 kept problems, 4 done, 10 pending"
+      ],
+      "noop_loaded_model": false,
+      "pass": true
+    }
+  ],
+  "stage1_summary": [
+    {
+      "problem_id": "aime-0",
+      "base_acc": 0.0,
+      "kept": true,
+      "tokens": [
+        48,
+        48
+      ],
+      "extracted": [
+        null,
+        null
+      ]
+    },
+    {
+      "problem_id": "amc-0",
+      "base_acc": 0.0,
+      "kept": true,
+      "tokens": [
+        48,
+        48
+      ],
+      "extracted": [
+        null,
+        null
+      ]
+    },
+    {
+      "problem_id": "amc-1",
+      "base_acc": 0.0,
+      "kept": true,
+      "tokens": [
+        48,
+        48
+      ],
+      "extracted": [
+        null,
+        null
+      ]
+    }
+  ],
+  "stage1_tokens": {
+    "n": 6,
+    "sum": 288,
+    "mean": 48.0,
+    "median": 48,
+    "max": 48,
+    "n_hit_cap": 6,
+    "gen_seconds_approx": 24.8
+  },
+  "stage2_variant_count": 7,
+  "stage2_tokens": {
+    "n": 26,
+    "sum": 1989,
+    "mean": 76.5,
+    "median": 66,
+    "max": 160,
+    "n_hit_cap": 3,
+    "gen_seconds_approx": 42.4
+  },
+  "stage2_reasons": {
+    "ok": 7,
+    "no_tags": 14,
+    "hit_cap": 3,
+    "leaks_answer": 1,
+    "unchanged": 1
+  },
+  "stage3_tokens": {
+    "n": 14,
+    "sum": 672,
+    "mean": 48.0,
+    "median": 48,
+    "max": 48,
+    "n_hit_cap": 14,
+    "gen_seconds_approx": 10.3
+  },
+  "labels": [
+    {
+      "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "problem_id": "aime-0",
+      "source": "self-labelled (T-014 pipeline)",
+      "base_acc": 0.0,
+      "n_base": 2,
+      "n_types": 4,
+      "complete": false,
+      "perm_acc_domain": 0.0,
+      "perm_acc_distract": 0.0,
+      "perm_acc_rephrase": null,
+      "perm_acc_rename": 0.0,
+      "perm_acc_typos": 0.0,
+      "max_drop": 0.0,
+      "worst_type": "domain",
+      "is_robust": true
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "problem_id": "amc-0",
+      "source": "self-labelled (T-014 pipeline)",
+      "base_acc": 0.0,
+      "n_base": 2,
+      "n_types": 1,
+      "complete": false,
+      "perm_acc_domain": null,
+      "perm_acc_distract": null,
+      "perm_acc_rephrase": 0.0,
+      "perm_acc_rename": null,
+      "perm_acc_typos": null,
+      "max_drop": 0.0,
+      "worst_type": "rephrase",
+      "is_robust": true
+    },
+    {
+      "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "problem_id": "amc-1",
+      "source": "self-labelled (T-014 pipeline)",
+      "base_acc": 0.0,
+      "n_base": 2,
+      "n_types": 2,
+      "complete": false,
+      "perm_acc_domain": 0.0,
+      "perm_acc_distract": null,
+      "perm_acc_rephrase": null,
+      "perm_acc_rename": null,
+      "perm_acc_typos": 0.0,
+      "max_drop": 0.0,
+      "worst_type": "domain",
+      "is_robust": true
+    }
+  ],
+  "all_pass": true,
+  "env": {
+    "python": "3.12.15",
+    "torch": "2.13.0+cpu",
+    "cuda": null,
+    "transformers": "5.13.0",
+    "gpus": [],
+    "vllm": "0.31.0"
+  },
+  "note": "Box CPU check of the vLLM backend code path only (vLLM 0.31.0+cpu wheel, transformers 5.13.0, torch 2.13.0+cpu, Qwen/Qwen2.5-0.5B-Instruct, bf16, --enforce-eager, 48/160 new tokens, min_base_acc 0 so stages 2-3 have work). Not a quality run."
+}
