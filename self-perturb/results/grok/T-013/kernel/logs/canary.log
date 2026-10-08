@@ -1,0 +1,113 @@
+{"gpu": ["Tesla T4", "Tesla T4"], "torch": "2.11.0+cu128", "cuda": "12.8", "transformers": "5.13.0", "accelerate": "1.13.0"}
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files:  50%|█████     | 1/2 [01:13<01:13, 73.46s/it]
+Fetching 2 files: 100%|██████████| 2/2 [01:13<00:00, 36.73s/it]
+
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/399 [00:01<08:43,  1.32s/it]
+Loading weights:   1%|          | 2/399 [00:14<56:31,  8.54s/it]
+Loading weights:  25%|██▍       | 98/399 [00:15<00:31,  9.42it/s]
+Loading weights:  34%|███▎      | 134/399 [00:16<00:20, 12.64it/s]
+Loading weights:  39%|███▉      | 156/399 [00:16<00:16, 15.16it/s]
+Loading weights:  43%|████▎     | 171/399 [00:17<00:13, 16.63it/s]
+Loading weights:  46%|████▌     | 182/399 [00:17<00:11, 18.58it/s]
+Loading weights:  48%|████▊     | 191/399 [00:17<00:10, 20.17it/s]
+Loading weights:  51%|█████     | 202/399 [00:17<00:08, 22.90it/s]
+Loading weights:  53%|█████▎    | 213/399 [00:19<00:12, 14.98it/s]
+Loading weights:  56%|█████▌    | 224/399 [00:20<00:12, 14.26it/s]
+Loading weights:  57%|█████▋    | 228/399 [00:20<00:13, 12.25it/s]
+Loading weights:  59%|█████▉    | 235/399 [00:21<00:15, 10.26it/s]
+Loading weights:  59%|█████▉    | 237/399 [00:22<00:17,  9.48it/s]
+Loading weights:  62%|██████▏   | 246/399 [00:23<00:18,  8.28it/s]
+Loading weights:  64%|██████▍   | 257/399 [00:25<00:18,  7.70it/s]
+Loading weights:  67%|██████▋   | 268/399 [00:26<00:16,  7.96it/s]
+Loading weights:  68%|██████▊   | 270/399 [00:26<00:15,  8.08it/s]
+Loading weights:  70%|██████▉   | 279/399 [00:28<00:16,  7.45it/s]
+Loading weights:  70%|███████   | 280/399 [00:28<00:15,  7.52it/s]
+Loading weights:  73%|███████▎  | 290/399 [00:29<00:15,  7.21it/s]
+Loading weights:  75%|███████▌  | 301/399 [00:31<00:13,  7.07it/s]
+Loading weights:  78%|███████▊  | 312/399 [00:32<00:11,  7.32it/s]
+Loading weights:  78%|███████▊  | 313/399 [00:32<00:11,  7.18it/s]
+Loading weights:  81%|████████  | 323/399 [00:34<00:10,  7.32it/s]
+Loading weights:  81%|████████▏ | 325/399 [00:34<00:09,  7.41it/s]
+Loading weights:  84%|████████▎ | 334/399 [00:35<00:09,  7.09it/s]
+Loading weights:  86%|████████▋ | 345/399 [00:37<00:07,  7.09it/s]
+Loading weights:  89%|████████▉ | 356/399 [00:38<00:05,  7.31it/s]
+Loading weights:  89%|████████▉ | 357/399 [00:39<00:05,  7.30it/s]
+Loading weights:  92%|█████████▏| 367/399 [00:40<00:04,  7.20it/s]
+Loading weights:  92%|█████████▏| 369/399 [00:40<00:03,  7.65it/s]
+Loading weights:  95%|█████████▍| 378/399 [00:41<00:02,  7.25it/s]
+Loading weights:  97%|█████████▋| 389/399 [00:43<00:01,  7.21it/s]
+Loading weights: 100%|██████████| 399/399 [00:43<00:00,  9.18it/s]
+model loaded in 133.5s
+dump_row=0 dim=113 run1=2.88s run2=1.53s max|r1-r2|=0
+dump_row=1 dim=113 run1=1.58s run2=1.50s max|r1-r2|=0
+dump_row=2 dim=113 run1=1.42s run2=1.41s max|r1-r2|=0
+dump_row=3 dim=113 run1=1.67s run2=1.64s max|r1-r2|=0
+dump_row=4 dim=113 run1=1.39s run2=1.38s max|r1-r2|=0
+dump_row=5 dim=113 run1=1.53s run2=1.60s max|r1-r2|=0
+dump_row=6 dim=113 run1=1.76s run2=1.76s max|r1-r2|=0
+dump_row=7 dim=113 run1=1.54s run2=1.46s max|r1-r2|=0
+dump_row=11 dim=113 run1=1.64s run2=1.53s max|r1-r2|=0
+dump_row=13 dim=113 run1=1.47s run2=1.40s max|r1-r2|=0
+{
+  "max_abs_diff_all": 0.0,
+  "max_abs_diff_v3": 0.0,
+  "median_per_feature_corr": 1.0,
+  "worst_3": [
+    [
+      "rename_cos_d0.25",
+      0.0
+    ],
+    [
+      "rename_norm_d0.25",
+      0.0
+    ],
+    [
+      "rename_cos_d0.5",
+      0.0
+    ]
+  ],
+  "second_run_identical": true,
+  "env": {
+    "gpu": [
+      "Tesla T4",
+      "Tesla T4"
+    ],
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "transformers": "5.13.0",
+    "accelerate": "1.13.0"
+  },
+  "seconds_per_problem": [
+    2.877,
+    1.576,
+    1.417,
+    1.671,
+    1.389,
+    1.534,
+    1.759,
+    1.537,
+    1.641,
+    1.467
+  ],
+  "seconds_per_problem_mean": 1.687,
+  "dump_rows": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    11,
+    13
+  ],
+  "n_problems": 10
+}
+wrote /kaggle/working/T-013/canary/canary_features.npz and /kaggle/working/T-013/canary/metrics.json
