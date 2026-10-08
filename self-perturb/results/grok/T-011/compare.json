@@ -1,0 +1,45 @@
+{
+  "table": [
+    {
+      "model": "Qwen_Qwen3.5-4B",
+      "rows": 14,
+      "matching": 14,
+      "robust_predicted": 7,
+      "seconds": 160.6,
+      "valid": true,
+      "error": null,
+      "same_row_order": true
+    },
+    {
+      "model": "Skywork_Skywork-OR1-Math-7B",
+      "rows": 3,
+      "matching": 3,
+      "robust_predicted": 1,
+      "seconds": 104.1,
+      "valid": true,
+      "error": null,
+      "same_row_order": true
+    },
+    {
+      "model": "allenai_Olmo-3-7B-Think",
+      "rows": 10,
+      "matching": 10,
+      "robust_predicted": 5,
+      "seconds": 137.3,
+      "valid": true,
+      "error": null,
+      "same_row_order": true
+    },
+    {
+      "model": "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B",
+      "rows": 10,
+      "matching": 10,
+      "robust_predicted": 5,
+      "seconds": 42.4,
+      "valid": true,
+      "error": null,
+      "same_row_order": true
+    }
+  ],
+  "mismatches": []
+}

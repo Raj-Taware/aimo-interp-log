@@ -1,0 +1,34 @@
+{
+  "env": {
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "transformers": "5.13.0",
+    "accelerate": "1.13.0",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ]
+  },
+  "timings": {
+    "canary": {
+      "seconds": 174.0,
+      "returncode": 0
+    },
+    "v4::deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "seconds": 53.6,
+      "returncode": 0
+    },
+    "v4::Qwen/Qwen3.5-4B": {
+      "seconds": 171.0,
+      "returncode": 0
+    },
+    "v4::Skywork/Skywork-OR1-Math-7B": {
+      "seconds": 113.5,
+      "returncode": 0
+    },
+    "v4::allenai/Olmo-3-7B-Think": {
+      "seconds": 148.0,
+      "returncode": 0
+    }
+  }
+}

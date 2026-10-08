@@ -1,0 +1,31 @@
+{
+  "zip_dir": "/kaggle/working/repo/zips/v4",
+  "model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "seconds": 42.4,
+  "valid": true,
+  "error": null,
+  "row_idx": [
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36
+  ],
+  "predictions": [
+    false,
+    false,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false
+  ]
+}

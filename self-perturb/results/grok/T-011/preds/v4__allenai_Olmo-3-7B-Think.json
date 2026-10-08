@@ -1,0 +1,31 @@
+{
+  "zip_dir": "/kaggle/working/repo/zips/v4",
+  "model": "allenai/Olmo-3-7B-Think",
+  "seconds": 137.3,
+  "valid": true,
+  "error": null,
+  "row_idx": [
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "predictions": [
+    false,
+    true,
+    false,
+    false,
+    true,
+    true,
+    true,
+    false,
+    true,
+    false
+  ]
+}
