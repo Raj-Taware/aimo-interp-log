@@ -1,6 +1,8 @@
 # Plan: label all four small models ourselves (H100, 1-2 slots)
 
-Status: **ON HOLD (2026-10-07).** `aimo-interp/train-main-v2` shows the four
+Status: **APPROVED by Raj 2026-10-08; rescoped — see T-014** (olympiad
+problems from AI-MO/aimo-validation-aime + -amc, two-stage solve-then-perturb,
+12k token cap; confirmatory test of H1). Previously: ON HOLD (2026-10-07). `aimo-interp/train-main-v2` shows the four
 small models never disagree on the 9 problems labelled for >= 2 of them, so
 the within-problem design below may have almost no discordant pairs to test.
 Revisit after T-010.
@@ -71,3 +73,11 @@ discordant pairs. Report either way.
 T-010: write the pipeline (`self-perturb/scripts/label_gen/`), dry-run it at
 toy scale (3 problems, Skywork, HF generate) so the H100 slot is pure
 execution.
+
+## Pre-registered confirmation of H1 (fixed 2026-10-08, before any labels)
+
+On the new labelled set: `distract_attnx_mean` (higher = spurious), pooled
+across models via within-model ranks, AUC(spurious) > 0.60 with
+problem-level permutation p < 0.05. Pass -> v5 (zero-parameter rule: rank by
+excess attention within each model batch). Fail -> v4 remains the nominee
+and H1 is reported as not replicated.
