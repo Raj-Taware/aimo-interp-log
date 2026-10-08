@@ -1,0 +1,6 @@
+{"model": "Skywork/Skywork-OR1-Math-7B", "problem_id": "aime-0", "n_samples": 2, "complete": true, "base_acc": 1.0, "kept": true, "tokens": [3710, 4096], "median_tokens": 3903.0, "n_hit_cap": 1, "extracted": ["116", "116"]}
+{"model": "Skywork/Skywork-OR1-Math-7B", "problem_id": "aime-1", "n_samples": 2, "complete": true, "base_acc": 0.5, "kept": true, "tokens": [4096, 4096], "median_tokens": 4096.0, "n_hit_cap": 2, "extracted": ["756", null]}
+{"model": "Skywork/Skywork-OR1-Math-7B", "problem_id": "aime-2", "n_samples": 2, "complete": true, "base_acc": 0.0, "kept": false, "tokens": [4096, 4096], "median_tokens": 4096.0, "n_hit_cap": 2, "extracted": [null, null]}
+{"model": "Skywork/Skywork-OR1-Math-7B", "problem_id": "amc-0", "n_samples": 2, "complete": true, "base_acc": 1.0, "kept": true, "tokens": [2223, 1942], "median_tokens": 2082.5, "n_hit_cap": 0, "extracted": ["142", "142"]}
+{"model": "Skywork/Skywork-OR1-Math-7B", "problem_id": "amc-1", "n_samples": 2, "complete": true, "base_acc": 0.0, "kept": false, "tokens": [4096, 4096], "median_tokens": 4096.0, "n_hit_cap": 2, "extracted": [null, null]}
+{"model": "Skywork/Skywork-OR1-Math-7B", "problem_id": "amc-2", "n_samples": 2, "complete": true, "base_acc": 1.0, "kept": true, "tokens": [2145, 2486], "median_tokens": 2315.5, "n_hit_cap": 0, "extracted": ["81", "81"]}

@@ -1,0 +1,25 @@
+[{"stream_name":"stdout","time":5.118595294,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.5/11.5 MB 92.3 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":5.157277041,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 383.7/383.7 kB 18.5 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":5.225841579,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 61.3 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":36.079096546,"data":"ENV {\"torch\": \"2.11.0+cu128\", \"cuda\": \"12.8\", \"transformers\": \"5.13.0\", \"accelerate\": \"1.13.0\", \"gpus\": [\"Tesla T4\", \"Tesla T4\"]}\n"}
+,{"stream_name":"stdout","time":36.15237736,"data":"=== stage1: kill run\n"}
+,{"stream_name":"stdout","time":712.522194357,"data":"=== stage1: resume run (6 records at kill)\n"}
+,{"stream_name":"stdout","time":1280.571976896,"data":"=== stage1: no-op rerun\n"}
+,{"stream_name":"stdout","time":1282.57579105,"data":"{\"stage\": \"stage1\", \"records_at_kill\": 6, \"injected_torn_line\": true, \"records_final\": 12, \"expected\": 12, \"duplicate_keys\": 0, \"torn_lines_in_file\": 1, \"killed_records_unchanged\": true, \"resumed_skipped_done\": [\"stage1 Skywork/Skywork-OR1-Math-7B: 6 done, 6 pending\"], \"noop_loaded_model\": false, \"pass\": true}\n"}
+,{"stream_name":"stdout","time":1282.577416435,"data":"=== stage2: kill run\n"}
+,{"stream_name":"stdout","time":2064.988377921,"data":"=== stage2: resume run (10 records at kill)\n"}
+,{"stream_name":"stdout","time":4205.159252183,"data":"=== stage2: no-op rerun\n"}
+,{"stream_name":"stdout","time":4207.173085209,"data":"{\"stage\": \"stage2\", \"records_at_kill\": 10, \"records_final\": 37, \"expected\": 37, \"duplicate_keys\": 0, \"torn_lines_in_file\": 0, \"killed_records_unchanged\": true, \"resumed_skipped_done\": [\"stage2 attempt 0: 10 pending\", \"stage2 attempt 1: 17 pending\", \"stage2 done: {'ok': 6, 'failed': 14, 'pending': 0}\"], \"noop_loaded_model\": false, \"pass\": true}\n"}
+,{"stream_name":"stdout","time":4207.180857835,"data":"=== stage3: kill run\n"}
+,{"stream_name":"stdout","time":4771.536944125,"data":"=== stage3: resume run (6 records at kill)\n"}
+,{"stream_name":"stdout","time":5337.589790988,"data":"=== stage3: no-op rerun\n"}
+,{"stream_name":"stdout","time":5339.593187346,"data":"{\"stage\": \"stage3\", \"records_at_kill\": 6, \"records_final\": 12, \"expected\": 12, \"duplicate_keys\": 0, \"torn_lines_in_file\": 0, \"killed_records_unchanged\": true, \"resumed_skipped_done\": [\"stage3 Skywork/Skywork-OR1-Math-7B: 4 kept problems, 6 done, 6 pending\"], \"noop_loaded_model\": false, \"pass\": true}\n"}
+,{"stream_name":"stdout","time":5339.594829092,"data":"DRYRUN DONE all_pass= True\n"}
+,{"stream_name":"stdout","time":5339.609374395,"data":"KERNEL DONE rc 0 seconds 5303.5\n"}
+,{"stream_name":"stderr","time":5342.308931921,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":5342.308959911,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":5342.563260106,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":5342.563287544,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":5343.339091886,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":5344.419935262,"data":"[NbConvertApp] Writing 940396 bytes to __results__.html\n"}
+]

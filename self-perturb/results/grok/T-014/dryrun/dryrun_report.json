@@ -1,0 +1,342 @@
+{
+  "args": {
+    "problems": "/kaggle/working/repo/results/grok/T-014/problems.jsonl",
+    "problem_id": [
+      "aime-0",
+      "aime-1",
+      "aime-2",
+      "amc-0",
+      "amc-1",
+      "amc-2"
+    ],
+    "model": "Skywork/Skywork-OR1-Math-7B",
+    "writer": "Skywork/Skywork-OR1-Math-7B",
+    "out": "/kaggle/working/T-014/run",
+    "samples": 2,
+    "variant_samples": 2,
+    "max_new_tokens": 4096,
+    "writer_max_new_tokens": 4096,
+    "min_base_acc": 0.5,
+    "batch1": 6,
+    "batch_cap": 10,
+    "attempts": 2,
+    "backend": "hf"
+  },
+  "stages": [
+    {
+      "stage": "stage1",
+      "kill_run": {
+        "seconds": 676.4,
+        "returncode": -9,
+        "killed": true,
+        "pending_lines": [
+          "stage1 Skywork/Skywork-OR1-Math-7B: 0 done, 12 pending"
+        ],
+        "loaded_model": true
+      },
+      "records_at_kill": 6,
+      "injected_torn_line": true,
+      "resume_run": {
+        "seconds": 568.0,
+        "returncode": 0,
+        "killed": false,
+        "pending_lines": [
+          "stage1 Skywork/Skywork-OR1-Math-7B: 6 done, 6 pending"
+        ],
+        "loaded_model": true
+      },
+      "noop_run": {
+        "seconds": 2.0,
+        "returncode": 0,
+        "killed": false,
+        "pending_lines": [
+          "stage1 Skywork/Skywork-OR1-Math-7B: 12 done, 0 pending"
+        ],
+        "loaded_model": false
+      },
+      "records_final": 12,
+      "expected": 12,
+      "duplicate_keys": 0,
+      "torn_lines_in_file": 1,
+      "killed_records_unchanged": true,
+      "resumed_skipped_done": [
+        "stage1 Skywork/Skywork-OR1-Math-7B: 6 done, 6 pending"
+      ],
+      "noop_loaded_model": false,
+      "pass": true
+    },
+    {
+      "stage": "stage2",
+      "kill_run": {
+        "seconds": 782.4,
+        "returncode": -9,
+        "killed": true,
+        "pending_lines": [
+          "stage2 attempt 0: 20 pending"
+        ],
+        "loaded_model": true
+      },
+      "records_at_kill": 10,
+      "resume_run": {
+        "seconds": 2140.2,
+        "returncode": 0,
+        "killed": false,
+        "pending_lines": [
+          "stage2 attempt 0: 10 pending",
+          "stage2 attempt 1: 17 pending",
+          "stage2 done: {'ok': 6, 'failed': 14, 'pending': 0}"
+        ],
+        "loaded_model": true
+      },
+      "noop_run": {
+        "seconds": 2.0,
+        "returncode": 0,
+        "killed": false,
+        "pending_lines": [
+          "stage2 attempt 0: 0 pending",
+          "stage2 attempt 1: 0 pending",
+          "stage2 done: {'ok': 6, 'failed': 14, 'pending': 0}"
+        ],
+        "loaded_model": false
+      },
+      "records_final": 37,
+      "expected": 37,
+      "duplicate_keys": 0,
+      "torn_lines_in_file": 0,
+      "killed_records_unchanged": true,
+      "resumed_skipped_done": [
+        "stage2 attempt 0: 10 pending",
+        "stage2 attempt 1: 17 pending",
+        "stage2 done: {'ok': 6, 'failed': 14, 'pending': 0}"
+      ],
+      "noop_loaded_model": false,
+      "pass": true
+    },
+    {
+      "stage": "stage3",
+      "kill_run": {
+        "seconds": 564.4,
+        "returncode": -9,
+        "killed": true,
+        "pending_lines": [
+          "stage3 Skywork/Skywork-OR1-Math-7B: 4 kept problems, 0 done, 12 pending"
+        ],
+        "loaded_model": true
+      },
+      "records_at_kill": 6,
+      "resume_run": {
+        "seconds": 566.1,
+        "returncode": 0,
+        "killed": false,
+        "pending_lines": [
+          "stage3 Skywork/Skywork-OR1-Math-7B: 4 kept problems, 6 done, 6 pending"
+        ],
+        "loaded_model": true
+      },
+      "noop_run": {
+        "seconds": 2.0,
+        "returncode": 0,
+        "killed": false,
+        "pending_lines": [
+          "stage3 Skywork/Skywork-OR1-Math-7B: 4 kept problems, 12 done, 0 pending"
+        ],
+        "loaded_model": false
+      },
+      "records_final": 12,
+      "expected": 12,
+      "duplicate_keys": 0,
+      "torn_lines_in_file": 0,
+      "killed_records_unchanged": true,
+      "resumed_skipped_done": [
+        "stage3 Skywork/Skywork-OR1-Math-7B: 4 kept problems, 6 done, 6 pending"
+      ],
+      "noop_loaded_model": false,
+      "pass": true
+    }
+  ],
+  "stage1_summary": [
+    {
+      "problem_id": "aime-0",
+      "base_acc": 1.0,
+      "kept": true,
+      "tokens": [
+        3710,
+        4096
+      ],
+      "extracted": [
+        "116",
+        "116"
+      ]
+    },
+    {
+      "problem_id": "aime-1",
+      "base_acc": 0.5,
+      "kept": true,
+      "tokens": [
+        4096,
+        4096
+      ],
+      "extracted": [
+        "756",
+        null
+      ]
+    },
+    {
+      "problem_id": "aime-2",
+      "base_acc": 0.0,
+      "kept": false,
+      "tokens": [
+        4096,
+        4096
+      ],
+      "extracted": [
+        null,
+        null
+      ]
+    },
+    {
+      "problem_id": "amc-0",
+      "base_acc": 1.0,
+      "kept": true,
+      "tokens": [
+        2223,
+        1942
+      ],
+      "extracted": [
+        "142",
+        "142"
+      ]
+    },
+    {
+      "problem_id": "amc-1",
+      "base_acc": 0.0,
+      "kept": false,
+      "tokens": [
+        4096,
+        4096
+      ],
+      "extracted": [
+        null,
+        null
+      ]
+    },
+    {
+      "problem_id": "amc-2",
+      "base_acc": 1.0,
+      "kept": true,
+      "tokens": [
+        2145,
+        2486
+      ],
+      "extracted": [
+        "81",
+        "81"
+      ]
+    }
+  ],
+  "stage1_tokens": {
+    "n": 12,
+    "sum": 41178,
+    "mean": 3431.5,
+    "median": 4096,
+    "max": 4096,
+    "n_hit_cap": 7,
+    "gen_seconds_approx": 1094.1
+  },
+  "stage2_variant_count": 6,
+  "stage2_tokens": {
+    "n": 37,
+    "sum": 133026,
+    "mean": 3595.3,
+    "median": 4096,
+    "max": 4096,
+    "n_hit_cap": 27,
+    "gen_seconds_approx": 2881.0
+  },
+  "stage2_reasons": {
+    "hit_cap": 27,
+    "contains_boxed": 1,
+    "no_tags": 3,
+    "ok": 6
+  },
+  "stage3_tokens": {
+    "n": 12,
+    "sum": 40265,
+    "mean": 3355.4,
+    "median": 4042,
+    "max": 4096,
+    "n_hit_cap": 5,
+    "gen_seconds_approx": 1089.6
+  },
+  "labels": [
+    {
+      "model_id": "Skywork/Skywork-OR1-Math-7B",
+      "problem_id": "aime-0",
+      "source": "self-labelled (T-014 pipeline)",
+      "base_acc": 1.0,
+      "n_base": 2,
+      "n_types": 3,
+      "complete": false,
+      "perm_acc_domain": null,
+      "perm_acc_distract": null,
+      "perm_acc_rephrase": 1.0,
+      "perm_acc_rename": 1.0,
+      "perm_acc_typos": 0.0,
+      "max_drop": 1.0,
+      "worst_type": "typos",
+      "is_robust": false
+    },
+    {
+      "model_id": "Skywork/Skywork-OR1-Math-7B",
+      "problem_id": "aime-1",
+      "source": "self-labelled (T-014 pipeline)",
+      "base_acc": 0.5,
+      "n_base": 2,
+      "n_types": 0,
+      "complete": false,
+      "perm_acc_domain": null,
+      "perm_acc_distract": null,
+      "perm_acc_rephrase": null,
+      "perm_acc_rename": null,
+      "perm_acc_typos": null,
+      "max_drop": null,
+      "worst_type": null,
+      "is_robust": null
+    },
+    {
+      "model_id": "Skywork/Skywork-OR1-Math-7B",
+      "problem_id": "amc-0",
+      "source": "self-labelled (T-014 pipeline)",
+      "base_acc": 1.0,
+      "n_base": 2,
+      "n_types": 1,
+      "complete": false,
+      "perm_acc_domain": null,
+      "perm_acc_distract": null,
+      "perm_acc_rephrase": 1.0,
+      "perm_acc_rename": null,
+      "perm_acc_typos": null,
+      "max_drop": 0.0,
+      "worst_type": "rephrase",
+      "is_robust": true
+    },
+    {
+      "model_id": "Skywork/Skywork-OR1-Math-7B",
+      "problem_id": "amc-2",
+      "source": "self-labelled (T-014 pipeline)",
+      "base_acc": 1.0,
+      "n_base": 2,
+      "n_types": 2,
+      "complete": false,
+      "perm_acc_domain": null,
+      "perm_acc_distract": 1.0,
+      "perm_acc_rephrase": 1.0,
+      "perm_acc_rename": null,
+      "perm_acc_typos": null,
+      "max_drop": 0.0,
+      "worst_type": "distract",
+      "is_robust": true
+    }
+  ],
+  "all_pass": true
+}
