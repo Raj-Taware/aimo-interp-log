@@ -17,5 +17,5 @@ Protocol: `collab/PROTOCOL.md`. Status: open → doing → review → done | red
 | T-011 | done | grok | GPU check of v4 ZIP on train-main-v2 vs expected predictions | yes, ~10 min |
 | T-012 | done | grok | Phase 1 geometry dumps (MATH DeepSeek + train-main-v2 x 4 models) | yes, ~45 min |
 | T-013 | done | grok | Re-run T-012 dumps with fixed geometry.py (hybrid attention, fp16 overflow) | yes, ~20 min |
-| T-014 | open | grok | Build olympiad self-labelling pipeline (vLLM, 3 stages) + Kaggle dry run | yes, ~1 h |
+| T-014 | doing | grok | Build olympiad self-labelling pipeline (vLLM, 3 stages) + Kaggle dry run | yes, ~1 h |
 | T-015 | blocked | grok | Lightning H100 run: gate vs official labels, then label 173 olympiad problems x 4 models (after T-014; ask Raj for access) | yes, <=2 H100 slots |
