@@ -62,7 +62,7 @@ setup)
   fi
   if step downloads; then
     for M in "$WRITER" "${MODELS[@]}"; do
-      X=(); [ "$M" = "$WRITER" ] && X=(--exclude "original/*" "metal/*")
+      X=(); [ "$M" = "$WRITER" ] && X=(--exclude "original/*" --exclude "metal/*")
       nohup "$VENV/bin/hf" download "$M" "${X[@]}" > "$R/logs/dl_${M//\//_}.log" 2>&1 &
     done
     echo "downloads started in background"; done_ downloads
