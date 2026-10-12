@@ -49,7 +49,7 @@ Perturbation type "{ptype}": {definition}
 Hard requirements:
 - The rewritten problem must have exactly the same final answer as the original, which is {answer}. Do not change any quantity, condition or relationship that the answer depends on, and keep the question asking for the same quantity.
 - Do not solve the problem, do not add hints, and never state the answer.
-- Keep any LaTeX valid.
+- Keep any LaTeX valid, and keep every math delimiter ($ signs) exactly where the original has them.
 - Output only the rewritten problem, enclosed in <variant> and </variant> tags, with nothing after the closing tag.
 
 Original problem:

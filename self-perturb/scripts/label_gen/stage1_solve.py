@@ -95,7 +95,8 @@ def main() -> None:
                     "finish_reason": res.finish_reason, "looping": is_looping(res.text),
                     "batch_seconds": res.seconds, "backend": backend.name, "sampling": sampling,
                     "max_new_tokens": args.max_new_tokens, "env": env,
-                    "finished_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "text": res.text,
+                    "finished_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "head_ids": res.head_ids,
+                    "text": res.text,
                 })
             store.append(recs)
             log(f"stage1 {model_id}: +{len(recs)} (tokens {[r['tokens'] for r in recs]}, "

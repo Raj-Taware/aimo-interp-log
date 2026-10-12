@@ -274,11 +274,15 @@ class Request:
         self.key, self.prompt_ids, self.seed, self.meta = key, prompt_ids, seed, meta
 
 
-class Result:
-    __slots__ = ("text", "n_tokens", "finish_reason", "seconds")
+HEAD_IDS = 64  # first generated token ids kept per record (T-015 amendment 2: correctness probes)
 
-    def __init__(self, text, n_tokens, finish_reason, seconds):
+
+class Result:
+    __slots__ = ("text", "n_tokens", "finish_reason", "seconds", "head_ids")
+
+    def __init__(self, text, n_tokens, finish_reason, seconds, head_ids=None):
         self.text, self.n_tokens, self.finish_reason, self.seconds = text, n_tokens, finish_reason, seconds
+        self.head_ids = head_ids
 
 
 def add_backend_args(parser) -> None:
@@ -367,7 +371,7 @@ class HFBackend:
                     new.pop()
                 finish = "length" if len(new) >= self.max_new_tokens else "stop"
                 text = self.tokenizer.decode(new, skip_special_tokens=True)
-                results.append(Result(text, len(new), finish, round(seconds, 1)))
+                results.append(Result(text, len(new), finish, round(seconds, 1), new[:HEAD_IDS]))
             yield batch, results
             i += len(batch)
 
@@ -416,7 +420,7 @@ class VLLMBackend:
                 comp = out.outputs[0]
                 ids = list(comp.token_ids)
                 text = self.tokenizer.decode(ids, skip_special_tokens=True)
-                results.append(Result(text, len(ids), comp.finish_reason or "stop", round(seconds, 1)))
+                results.append(Result(text, len(ids), comp.finish_reason or "stop", round(seconds, 1), ids[:HEAD_IDS]))
             yield chunk, results
 
 
