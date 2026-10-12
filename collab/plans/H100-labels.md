@@ -81,3 +81,24 @@ across models via within-model ranks, AUC(spurious) > 0.60 with
 problem-level permutation p < 0.05. Pass -> v5 (zero-parameter rule: rank by
 excess attention within each model batch). Fail -> v4 remains the nominee
 and H1 is reported as not replicated.
+
+## Pre-registration addendum (Claude, 2026-10-12, before any T-015 label exists)
+
+Data: T-015 pool labels (AIME/AMC, 4 small models), `complete=True` pairs,
+robust vs spurious (null excluded). Same problem-level permutation test and
+within-model ranks as H1.
+
+**H1-head (secondary, does not replace H1).** Excess distractor attention
+per (layer, head) on the distract variants, computed exactly as `attnx` but
+not averaged over heads. Head set per model chosen **without labels**: the
+top 5% of attention heads (full-attention layers only for Qwen3.5-4B) by mean
+excess over *all* pool pairs of that model, labelled or not. Score = mean
+excess over that head set. Confirmed iff AUC(spurious) > 0.60 and p < 0.05.
+H1-head can only promote v5 if H1 itself is not refuted in the opposite
+direction (AUC < 0.40).
+
+**Nomination rule.** Run v2 and v4 inference unchanged (exact released ZIPs)
+on all labelled pool pairs, grouped by model as the grader does. Metric:
+balanced accuracy. Nominate the higher; difference < 0.03 -> v2 (fewer
+moving parts). If v5 is built, it is compared the same way on pairs not used
+to build it.
