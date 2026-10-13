@@ -79,3 +79,13 @@ else the problem is dropped from the gate (report how many).
 | H100 not available / queue | wait; nothing spent |
 | traces longer than estimate (11.5 h case) | budget rule step 5 |
 | Claude's session dies mid-slot | driver keeps running in Studio; Grok can resume Tue with the same script |
+
+## Update 2026-10-13 — Kaggle-only (Lightning blocked)
+
+Raj has $8 Lightning credit and every GPU start is refused ("Insufficient
+balance"; L40S/L4 403). Studio `aimo-t015` stays prepared on disk
+(vLLM venv + gpt-oss-120b weights) in case credit appears. New route
+(T-016, Grok, Kaggle T4x2): gold answers by DeepSeek-R1-0528 majority (>= 6/8),
+variants written by Claude (gpt-oss-120b does not fit a T4), small models via
+vLLM on T4. Methodological change: variants written by a different LLM than
+the organizers' — the gate measures whether that matters.

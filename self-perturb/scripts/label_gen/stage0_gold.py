@@ -1,7 +1,8 @@
 """Stage 0 (T-015 gate): gold answers for the train-main-v2 small-track problems.
 
 train-main-v2 has no answer column, so the gate cannot grade the small models
-without one. gpt-oss-120b solves each problem ``--samples`` times; gold is the
+without one. ``--model`` (default gpt-oss-120b; DeepSeek-R1-0528-Qwen3-8B on Kaggle)
+solves each problem ``--samples`` times; gold is the
 majority normalized answer if at least ``--min-agree`` samples give it, else
 the problem is dropped from the gate (reported, never silently).
 
@@ -45,23 +46,24 @@ def main() -> None:
     parser.add_argument("--samples", type=int, default=8)
     parser.add_argument("--min-agree", type=int, default=6)
     parser.add_argument("--max-new-tokens", type=int, default=16384)
-    parser.add_argument("--reasoning-effort", default="high")
+    parser.add_argument("--reasoning-effort", default="high", help="gpt-oss only")
+    parser.add_argument("--model", default=WRITER)
     add_backend_args(parser)
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
 
     problems = gate_problems(args.trainv2)
     store = JsonlStore(args.out / "stage0_generations.jsonl")
-    tokenizer = load_tokenizer(WRITER)
-    kwargs = {"reasoning_effort": args.reasoning_effort}
+    tokenizer = load_tokenizer(args.model)
+    kwargs = {"reasoning_effort": args.reasoning_effort} if "gpt-oss" in args.model else {}
     requests = [Request(f"{p['problem_id']}|{s}", chat_ids(tokenizer, solve_prompt(p["problem"]), **kwargs),
                         stable_seed(f"stage0|{p['problem_id']}|{s}"), (p, s))
                 for p in problems for s in range(args.samples)]
     pending = [r for r in requests if r.key not in store]
     log(f"stage0: {len(requests) - len(pending)} done, {len(pending)} pending")
     if pending:
-        sampling = resolve_sampling(WRITER)
-        backend = make_backend(args, WRITER, tokenizer, sampling, args.max_new_tokens)
+        sampling = resolve_sampling(args.model)
+        backend = make_backend(args, args.model, tokenizer, sampling, args.max_new_tokens)
         env = runtime_env()
         try:
             for batch, results in backend.generate(pending):
@@ -70,11 +72,11 @@ def main() -> None:
                     p, s = req.meta
                     extracted, rule = extract_answer(res.text)
                     recs.append({
-                        "key": req.key, "stage": 0, "model": WRITER, "problem_id": p["problem_id"],
+                        "key": req.key, "stage": 0, "model": args.model, "problem_id": p["problem_id"],
                         "sample": s, "seed": req.seed, "extracted": extracted, "extraction_rule": rule,
                         "normalized": normalize_answer(extracted), "tokens": res.n_tokens,
                         "finish_reason": res.finish_reason, "backend": backend.name, "sampling": sampling,
-                        "reasoning_effort": args.reasoning_effort, "env": env,
+                        "reasoning_effort": kwargs.get("reasoning_effort"), "env": env,
                         "finished_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "text": res.text,
                     })
                 store.append(recs)
