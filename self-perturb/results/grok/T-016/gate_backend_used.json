@@ -1,0 +1,6 @@
+{
+  "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": null,
+  "Qwen/Qwen3.5-4B": "TRITON_ATTN",
+  "Skywork/Skywork-OR1-Math-7B": null,
+  "allenai/Olmo-3-7B-Think": null
+}
