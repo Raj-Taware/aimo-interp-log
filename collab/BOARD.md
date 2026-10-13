@@ -19,4 +19,4 @@ Protocol: `collab/PROTOCOL.md`. Status: open → doing → review → done | red
 | T-013 | done | grok | Re-run T-012 dumps with fixed geometry.py (hybrid attention, fp16 overflow) | yes, ~20 min |
 | T-014 | done | grok | Build olympiad self-labelling pipeline (vLLM, 3 stages) + Kaggle dry run | yes, ~1 h |
 | T-015 | blocked | claude | Lightning H100 run: gate vs official labels, then label 173 olympiad problems x 4 models (after T-014; ask Raj for access) | yes, <=2 H100 slots |
-| T-016 | open | grok | T-015 on Kaggle T4x2: vLLM-on-T4 check, gate gold (DeepSeek majority), gate stages with Claude-written variants, gate check; stop for review | yes, <=15 Kaggle GPU h |
+| T-016 | doing | grok | T-015 on Kaggle T4x2: vLLM-on-T4 check, gate gold (DeepSeek majority), gate stages with Claude-written variants, gate check; stop for review | yes, <=15 Kaggle GPU h |
