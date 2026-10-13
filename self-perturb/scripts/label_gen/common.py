@@ -294,6 +294,8 @@ def add_backend_args(parser) -> None:
     parser.add_argument("--gpu-memory-utilization", type=float, default=0.90)
     parser.add_argument("--tensor-parallel-size", type=int, default=1)
     parser.add_argument("--max-model-len", type=int, default=None)
+    parser.add_argument("--max-num-seqs", type=int, default=None,
+                        help="vllm: cap concurrent sequences (Qwen3.5-4B on T4: Mamba cache blocks < 256)")
     parser.add_argument("--enforce-eager", action="store_true", help="vllm: no CUDA graphs / compilation")
     parser.add_argument("--text-only", action="store_true",
                         help="vllm: limit_mm_per_prompt image/video = 0 (Qwen3.5-4B is a vision-language "
@@ -305,7 +307,7 @@ def make_backend(args, model_id: str, tokenizer, sampling: dict, max_new_tokens:
         return HFBackend(model_id, tokenizer, sampling, max_new_tokens, args.batch_size, args.dtype)
     return VLLMBackend(model_id, tokenizer, sampling, max_new_tokens, args.chunk_size, args.dtype,
                        args.gpu_memory_utilization, args.tensor_parallel_size, args.max_model_len,
-                       args.enforce_eager, args.text_only)
+                       args.enforce_eager, args.text_only, args.max_num_seqs)
 
 
 class HFBackend:
@@ -381,7 +383,7 @@ class VLLMBackend:
 
     def __init__(self, model_id, tokenizer, sampling, max_new_tokens, chunk_size, dtype,
                  gpu_memory_utilization, tensor_parallel_size, max_model_len, enforce_eager=False,
-                 text_only=False):
+                 text_only=False, max_num_seqs=None):
         from vllm import LLM
 
         self.tokenizer = tokenizer
@@ -389,6 +391,8 @@ class VLLMBackend:
         self.max_new_tokens = max_new_tokens
         self.chunk_size = chunk_size
         extra = {"limit_mm_per_prompt": {"image": 0, "video": 0}} if text_only else {}
+        if max_num_seqs:
+            extra["max_num_seqs"] = max_num_seqs
         t0 = time.time()
         self.llm = LLM(model=model_id, dtype=dtype, seed=0, **extra,
                        max_model_len=max_model_len or (max_new_tokens + 4096),
