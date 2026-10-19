@@ -102,6 +102,9 @@ def main() -> None:
         for family in FAMILIES:
             for metric in list(METRICS) + (["attnx"] if family == "distract" else []):
                 profiles.setdefault(f"profile__{family}__{metric}", []).append(profile[family][metric])
+        if profile["distract"]["attnx_heads"] is not None:  # (attention layers, heads); fixed per model
+            profiles.setdefault("profile__distract__attnx_heads", []).append(profile["distract"]["attnx_heads"])
+            profiles.setdefault("profile__distract__attnx_heads_case", []).append(index)  # row alignment
         if (index + 1) % arguments.flush_every == 0:
             flush()
             rate = (time.time() - started) / (index + 1 - done_before)

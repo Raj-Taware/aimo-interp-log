@@ -89,3 +89,13 @@ balance"; L40S/L4 403). Studio `aimo-t015` stays prepared on disk
 variants written by Claude (gpt-oss-120b does not fit a T4), small models via
 vLLM on T4. Methodological change: variants written by a different LLM than
 the organizers' — the gate measures whether that matters.
+
+## Decision 2026-10-19 — labelling stopped
+
+T-016: vLLM works on T4 but long traces run at ~60 tok/s; DeepSeek hit the
+12288 cap on 176/184 gold attempts (gold for 1/23; tv2-20 = 277, checked by
+hand). Pool needs 25-55M tokens = 115-255 T4 h vs ~30 Kaggle h/week before
+Nov 1. Raj chose: stop labelling; nominate from existing evidence; spend the
+time on the write-up plus one exploratory per-head attention test (T-017).
+The pre-registered H1 / H1-head confirmation and nomination rule are not run
+(no labels) — the write-up says so.
