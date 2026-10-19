@@ -62,7 +62,7 @@ def _score(artifact, features: np.ndarray) -> bool:
     return bool(_margin(artifact, features) >= 0.0)
 
 
-def decide(margins: list[float | None]) -> list[bool]:
+def decide(margins: list[float | None], threshold: float = 0.0) -> list[bool]:
     """Turn one model's batch of margins into predictions, split at the batch median.
 
     The artifact's own threshold is the median margin over the *training*
@@ -71,14 +71,16 @@ def decide(margins: list[float | None]) -> list[bool]:
     cases landed above it: all-True, 0.50. Hidden labels are balanced, and the
     harness hands us a whole model's problems at once, so the label-free fix
     is to split each batch at its own median: the higher-margin half is
-    "robust". Unscored cases (None) take the fallback; a batch of one keeps the
-    artifact threshold.
+    "robust". Unscored cases (None) take the fallback; a batch of one uses
+    ``threshold``: since Oct 2026 the grader calls once per problem in a fresh
+    process, so v4b artifacts carry the median margin over 173 unlabelled
+    AIME/AMC problems (competition-length) as that threshold.
     """
     scored = [m for m in margins if m is not None]
     if len(scored) >= 2:
         cut = float(np.median(scored))
         return [bool(m is not None and m > cut) for m in margins]
-    return [bool(m is not None and m >= 0.0) for m in margins]
+    return [bool(m is not None and m >= threshold) for m in margins]
 
 
 def predict_robustness(model_id: str, problem_texts: list[str]) -> list[bool]:
@@ -105,7 +107,7 @@ def predict_robustness(model_id: str, problem_texts: list[str]) -> list[bool]:
                 margins[index] = _margin(artifact, features)
             except Exception:
                 margins[index] = None
-        predictions = decide(margins)
+        predictions = decide(margins, float(artifact["threshold"]) if "threshold" in artifact else 0.0)
     finally:
         # The harness calls us once per model in one process. HF models hold
         # reference cycles, so without an explicit collect each checkpoint
