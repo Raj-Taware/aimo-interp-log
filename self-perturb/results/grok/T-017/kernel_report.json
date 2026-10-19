@@ -1,0 +1,40 @@
+{
+  "env": {
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "transformers": "5.13.0",
+    "accelerate": "1.13.0",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ]
+  },
+  "timings": {
+    "canary": {
+      "seconds": 177.8,
+      "returncode": 0
+    },
+    "trainv2::deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "seconds": 66.2,
+      "returncode": 0
+    }
+  },
+  "trainv2_canary": {
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "rows_new": 10,
+      "rows_ref": 10,
+      "n_features": 182,
+      "nan_positions_equal": true,
+      "max_abs_diff": 4.76837158203125e-07,
+      "n_cells_differ": 21,
+      "heads_shape": [
+        10,
+        36,
+        32
+      ],
+      "heads_case_rows": 10,
+      "pass": false
+    },
+    "stopped_at": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B"
+  }
+}
