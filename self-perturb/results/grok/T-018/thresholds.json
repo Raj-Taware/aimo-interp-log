@@ -1,0 +1,22 @@
+{
+  "Qwen/Qwen3.5-4B": {
+    "n": 173,
+    "threshold": 0.4477,
+    "share_above_zero": 0.896
+  },
+  "Skywork/Skywork-OR1-Math-7B": {
+    "n": 173,
+    "threshold": 1.2907,
+    "share_above_zero": 0.983
+  },
+  "allenai/Olmo-3-7B-Think": {
+    "n": 173,
+    "threshold": 0.2029,
+    "share_above_zero": 0.792
+  },
+  "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+    "n": 173,
+    "threshold": 0.7869,
+    "share_above_zero": 0.931
+  }
+}

@@ -1,0 +1,44 @@
+173 labelled cases for Qwen/Qwen3.5-4B
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files:  50%|█████     | 1/2 [00:29<00:29, 29.76s/it]
+Fetching 2 files: 100%|██████████| 2/2 [00:29<00:00, 14.92s/it]
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/426 [00:01<14:04,  1.99s/it]
+Loading weights:  31%|███       | 132/426 [00:02<00:03, 87.17it/s]
+Loading weights:  46%|████▌     | 197/426 [00:02<00:02, 100.60it/s]
+Loading weights:  56%|█████▌    | 239/426 [00:03<00:01, 97.48it/s] 
+Loading weights:  63%|██████▎   | 268/426 [00:03<00:01, 100.28it/s]
+Loading weights:  68%|██████▊   | 291/426 [00:03<00:01, 98.76it/s] 
+Loading weights:  73%|███████▎  | 309/426 [00:03<00:01, 101.07it/s]
+Loading weights:  76%|███████▋  | 325/426 [00:03<00:00, 103.97it/s]
+Loading weights:  80%|███████▉  | 340/426 [00:04<00:00, 104.41it/s]
+Loading weights:  83%|████████▎ | 354/426 [00:04<00:00, 108.72it/s]
+Loading weights:  86%|████████▋ | 368/426 [00:04<00:00, 98.72it/s] 
+Loading weights:  89%|████████▉ | 380/426 [00:04<00:00, 101.62it/s]
+Loading weights:  92%|█████████▏| 393/426 [00:04<00:00, 105.83it/s]
+Loading weights:  96%|█████████▌| 407/426 [00:04<00:00, 107.02it/s]
+Loading weights:  98%|█████████▊| 419/426 [00:04<00:00, 99.73it/s] 
+Loading weights: 100%|██████████| 426/426 [00:04<00:00, 88.62it/s]
+model loaded in 56.5s
+10/173 cases  6.97s/case
+20/173 cases  6.46s/case
+30/173 cases  5.72s/case
+40/173 cases  5.56s/case
+50/173 cases  5.26s/case
+60/173 cases  5.02s/case
+70/173 cases  4.84s/case
+80/173 cases  4.70s/case
+90/173 cases  4.68s/case
+100/173 cases  4.58s/case
+110/173 cases  4.48s/case
+120/173 cases  4.40s/case
+130/173 cases  4.34s/case
+140/173 cases  4.35s/case
+150/173 cases  4.30s/case
+160/173 cases  4.25s/case
+170/173 cases  4.21s/case
+wrote results/grok/T-018/features/Qwen_Qwen3.5-4B.npz with 173 cases
