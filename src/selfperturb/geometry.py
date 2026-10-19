@@ -190,33 +190,37 @@ def _attention_excess(attentions, inserted, pairs, n_states, layer_ids=None):
     """Excess attention on the inserted span, per layer (NaN where unavailable).
 
     ``layer_ids`` maps each attention tensor to its hidden-state index; without
-    it the profile stays NaN but the mean over layers is still returned.
+    it the profile stays NaN but the mean over layers is still returned. Also
+    returns the (attention layer, head) matrix behind it (H1-head), or None.
     """
     out = np.full(n_states, np.nan)                         # index = hidden-state layer
     values: list[float] = []
     if not attentions or not inserted:
-        return out, values
+        return out, values, None
     span_end = max(inserted)
     queries = sorted({j for _, j in pairs if j > span_end})
     if not queries:
-        return out, values
+        return out, values, None
     span = torch.tensor(inserted, dtype=torch.long)
     q = torch.tensor(queries, dtype=torch.long)
     expected = torch.tensor([len(inserted) / (t + 1) for t in queries], dtype=torch.float32)
     present = [a for a in attentions if a is not None]      # linear-attention layers give None
     if layer_ids is None and len(present) == len(attentions) == n_states - 1:
         layer_ids = list(range(1, n_states))
+    heads = []
     for k, a in enumerate(present):
         a = a[0].float()                                    # (heads, T, T)
         mass = a[:, q.to(a.device)][:, :, span.to(a.device)].sum(-1)   # (heads, |q|)
-        value = float((mass.cpu() / expected).mean())
+        per_head = (mass.cpu() / expected).mean(-1)
+        heads.append(per_head.numpy())
+        value = float(per_head.mean())
         if layer_ids is not None:
             out[layer_ids[k]] = value
         # fp16 attention can overflow in a model's last block (Skywork); keep
         # it out of the mean, which then matches the earlier nanmean definition.
         if np.isfinite(value):
             values.append(value)
-    return out, values
+    return out, values, np.stack(heads)
 
 
 # --------------------------------------------------------------------------
@@ -256,6 +260,7 @@ def case_geometry(tokenizer, model, problem: str, system_prompt: str = ""):
     applied: dict[str, float] = {}
     attn_runs: list[np.ndarray] = []
     attn_means: list[float] = []
+    head_runs: list[np.ndarray] = []
     for family in FAMILIES:
         runs = []
         for text in texts[family]:
@@ -270,8 +275,10 @@ def case_geometry(tokenizer, model, problem: str, system_prompt: str = ""):
             if want_attn:
                 present = [a for a in (attentions or []) if a is not None]
                 layer_ids = _attention_layer_ids(model, len(present), n_states) if present else None
-                profile, values = _attention_excess(attentions, inserted, pairs, n_states, layer_ids)
+                profile, values, per_head = _attention_excess(attentions, inserted, pairs, n_states, layer_ids)
                 attn_runs.append(profile)
+                if per_head is not None:
+                    head_runs.append(per_head)
                 if values:
                     attn_means.append(float(np.mean(values)))
             del var_states, attentions
@@ -282,6 +289,7 @@ def case_geometry(tokenizer, model, problem: str, system_prompt: str = ""):
         }
     attn_profile = np.nanmean(attn_runs, axis=0) if attn_runs else np.full(n_states, np.nan)
     profiles["distract"]["attnx"] = attn_profile
+    profiles["distract"]["attnx_heads"] = np.nanmean(head_runs, axis=0) if head_runs else None
 
     values: list[float] = []
     for family in FAMILIES:
