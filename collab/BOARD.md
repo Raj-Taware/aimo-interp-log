@@ -21,4 +21,4 @@ Protocol: `collab/PROTOCOL.md`. Status: open → doing → review → done | red
 | T-015 | dropped | claude | Lightning H100 run: gate vs official labels, then label 173 olympiad problems x 4 models (after T-014; ask Raj for access) | yes, <=2 H100 slots |
 | T-016 | review | grok | T-015 on Kaggle T4x2: vLLM-on-T4 check, gate gold (DeepSeek majority), gate stages with Claude-written variants, gate check; stop for review | yes, <=15 Kaggle GPU h |
 | T-017 | doing | grok | Exploratory per-head distractor attention on train-main-v2 (dumps with per-head matrix, canary, eval_heads.py) | yes, ~1-2 Kaggle h |
-| T-018 | open | grok | v4 features on 173 unlabelled AIME/AMC problems -> v4b per-model thresholds (grader now calls once per problem) | yes, ~1-2 Kaggle h |
+| T-018 | doing | grok | v4 features on 173 unlabelled AIME/AMC problems -> v4b per-model thresholds (grader now calls once per problem) | yes, ~1-2 Kaggle h |
