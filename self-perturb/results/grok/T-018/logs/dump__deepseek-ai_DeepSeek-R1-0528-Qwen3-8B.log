@@ -1,0 +1,63 @@
+173 labelled cases for deepseek-ai/DeepSeek-R1-0528-Qwen3-8B
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/399 [00:02<14:57,  2.26s/it]
+Loading weights:  10%|▉         | 39/399 [00:02<00:17, 20.84it/s]
+Loading weights:  14%|█▍        | 56/399 [00:02<00:10, 31.31it/s]
+Loading weights:  17%|█▋        | 68/399 [00:02<00:08, 37.38it/s]
+Loading weights:  20%|█▉        | 78/399 [00:03<00:09, 35.31it/s]
+Loading weights:  22%|██▏       | 87/399 [00:03<00:07, 39.71it/s]
+Loading weights:  24%|██▍       | 95/399 [00:03<00:07, 40.12it/s]
+Loading weights:  26%|██▌       | 103/399 [00:03<00:07, 38.93it/s]
+Loading weights:  29%|██▊       | 114/399 [00:03<00:06, 42.82it/s]
+Loading weights:  31%|███▏      | 125/399 [00:04<00:06, 44.62it/s]
+Loading weights:  34%|███▍      | 136/399 [00:04<00:06, 42.13it/s]
+Loading weights:  37%|███▋      | 147/399 [00:04<00:05, 47.29it/s]
+Loading weights:  40%|███▉      | 158/399 [00:04<00:05, 46.41it/s]
+Loading weights:  42%|████▏     | 169/399 [00:05<00:04, 49.66it/s]
+Loading weights:  45%|████▌     | 180/399 [00:05<00:04, 48.75it/s]
+Loading weights:  48%|████▊     | 191/399 [00:05<00:04, 48.73it/s]
+Loading weights:  51%|█████     | 202/399 [00:05<00:03, 50.62it/s]
+Loading weights:  53%|█████▎    | 210/399 [00:05<00:03, 55.35it/s]
+Loading weights:  54%|█████▍    | 217/399 [00:05<00:03, 50.59it/s]
+Loading weights:  56%|█████▌    | 224/399 [00:06<00:03, 45.32it/s]
+Loading weights:  59%|█████▉    | 235/399 [00:06<00:03, 46.58it/s]
+Loading weights:  62%|██████▏   | 246/399 [00:06<00:03, 46.81it/s]
+Loading weights:  64%|██████▍   | 257/399 [00:06<00:03, 43.74it/s]
+Loading weights:  67%|██████▋   | 268/399 [00:07<00:02, 53.07it/s]
+Loading weights:  69%|██████▉   | 275/399 [00:07<00:02, 52.40it/s]
+Loading weights:  70%|███████   | 281/399 [00:07<00:02, 49.60it/s]
+Loading weights:  73%|███████▎  | 290/399 [00:07<00:02, 47.63it/s]
+Loading weights:  75%|███████▌  | 301/399 [00:07<00:01, 49.62it/s]
+Loading weights:  78%|███████▊  | 312/399 [00:07<00:01, 49.69it/s]
+Loading weights:  81%|████████  | 323/399 [00:08<00:01, 52.40it/s]
+Loading weights:  82%|████████▏ | 329/399 [00:08<00:01, 51.60it/s]
+Loading weights:  84%|████████▍ | 335/399 [00:08<00:01, 44.99it/s]
+Loading weights:  87%|████████▋ | 346/399 [00:08<00:00, 56.36it/s]
+Loading weights:  89%|████████▉ | 356/399 [00:08<00:00, 49.66it/s]
+Loading weights:  92%|█████████▏| 367/399 [00:09<00:00, 42.14it/s]
+Loading weights:  95%|█████████▍| 378/399 [00:09<00:00, 50.72it/s]
+Loading weights:  97%|█████████▋| 389/399 [00:09<00:00, 48.52it/s]
+Loading weights: 100%|██████████| 399/399 [00:09<00:00, 41.90it/s]
+model loaded in 14.4s
+10/173 cases  2.42s/case
+20/173 cases  2.14s/case
+30/173 cases  2.06s/case
+40/173 cases  2.09s/case
+50/173 cases  2.06s/case
+60/173 cases  2.08s/case
+70/173 cases  2.05s/case
+80/173 cases  2.05s/case
+90/173 cases  2.11s/case
+100/173 cases  2.09s/case
+110/173 cases  2.09s/case
+120/173 cases  2.08s/case
+130/173 cases  2.07s/case
+140/173 cases  2.10s/case
+150/173 cases  2.10s/case
+160/173 cases  2.09s/case
+170/173 cases  2.08s/case
+wrote results/grok/T-018/features/deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.npz with 173 cases
