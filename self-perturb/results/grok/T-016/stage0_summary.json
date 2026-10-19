@@ -1,0 +1,117 @@
+{
+  "n_problems": 23,
+  "n_kept": 1,
+  "min_agree": 6,
+  "dropped": [
+    {
+      "problem_id": "tv2-0",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-1",
+      "votes": 2,
+      "top": "2"
+    },
+    {
+      "problem_id": "tv2-2",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-3",
+      "votes": 1,
+      "top": "504"
+    },
+    {
+      "problem_id": "tv2-4",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-5",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-6",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-7",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-8",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-9",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-10",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-11",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-12",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-13",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-14",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-15",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-16",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-17",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-18",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-19",
+      "votes": 1,
+      "top": "0"
+    },
+    {
+      "problem_id": "tv2-21",
+      "votes": 0,
+      "top": ""
+    },
+    {
+      "problem_id": "tv2-22",
+      "votes": 0,
+      "top": ""
+    }
+  ]
+}

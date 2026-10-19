@@ -1,0 +1,6 @@
+{
+  "pip_rc": 0,
+  "env": "{\"torch\": \"2.13.0+cu130\", \"cuda\": \"13.0\", \"vllm\": \"0.31.0\", \"transformers\": \"5.13.0\", \"gpus\": [\"Tesla T4\", \"Tesla T4\"], \"cc\": [7, 5]}",
+  "env_err": "",
+  "nvidia_smi": "name, memory.total [MiB], driver_version\nTesla T4, 15360 MiB, 580.178.04\nTesla T4, 15360 MiB, 580.178.04\n"
+}

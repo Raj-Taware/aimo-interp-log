@@ -1,0 +1,42 @@
+{
+  "Qwen/Qwen3.5-4B": {
+    "rc": 0,
+    "backend": null,
+    "wall_s": 830.7,
+    "n": 8,
+    "tokens": 16384,
+    "gen_seconds": 112.6,
+    "tok_per_s": 145.5,
+    "n_hit_cap": 8
+  },
+  "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+    "rc": 0,
+    "backend": null,
+    "wall_s": 437.6,
+    "n": 8,
+    "tokens": 16384,
+    "gen_seconds": 125.3,
+    "tok_per_s": 130.8,
+    "n_hit_cap": 8
+  },
+  "Qwen/Qwen3.5-4B@64seq": {
+    "rc": 0,
+    "backend": null,
+    "wall_s": 805.1,
+    "n": 64,
+    "tokens": 131072,
+    "gen_seconds": 573.2,
+    "tok_per_s": 228.7,
+    "n_hit_cap": 64
+  },
+  "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B@64seq": {
+    "rc": 0,
+    "backend": null,
+    "wall_s": 599.9,
+    "n": 64,
+    "tokens": 131072,
+    "gen_seconds": 483.8,
+    "tok_per_s": 270.9,
+    "n_hit_cap": 64
+  }
+}
