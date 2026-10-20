@@ -10,7 +10,7 @@ def are_robust(model_id: str, problems: list[str]) -> list[bool]:
     out = []
     for problem in problems:
         try:
-            out.append(bool(run_case(model_id, problem)))
+            out.append(bool(run_case(model_id, problem)[0]))
         except Exception:
             log(traceback.format_exc())
             out.append(FALLBACK)

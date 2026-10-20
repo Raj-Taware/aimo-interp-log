@@ -31,8 +31,9 @@ def main() -> None:
     destination.parent.mkdir(exist_ok=True)
 
     with ZipFile(destination, "w", ZIP_DEFLATED) as bundle:
-        for path in sorted(solution.glob("*.py")):
-            bundle.write(path, path.name)
+        for path in sorted(solution.rglob("*")):  # solution files and vendored packages (hybrid: sp2/)
+            if path.is_file() and "__pycache__" not in path.parts:
+                bundle.write(path, path.relative_to(solution).as_posix())
         for path in sorted(PACKAGE.glob("*.py")):
             bundle.write(path, f"selfperturb/{path.name}")
         for path in sorted(ARTIFACTS.glob("*.npz")) if ARTIFACTS.is_dir() else []:

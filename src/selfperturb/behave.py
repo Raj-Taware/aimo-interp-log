@@ -83,7 +83,7 @@ def decide(groups: list[str], answers: list[str | None]) -> tuple[bool, dict]:
 
 
 @torch.no_grad()
-def run_case(model_id: str, problem: str) -> bool:
+def run_case(model_id: str, problem: str, seconds: float = CASE_SECONDS) -> tuple[bool, dict]:
     start = time.time()
     tokenizer, model = load_model(model_id, dtype=torch.bfloat16)
     groups_texts = prompts_for(problem)
@@ -92,7 +92,7 @@ def run_case(model_id: str, problem: str) -> bool:
                                            tokenize=False, add_generation_prompt=True)
              for _, t in groups_texts]
     batch = tokenizer(chats, return_tensors="pt", padding=True, add_special_tokens=False).to(model.device)
-    budget = CASE_SECONDS - (time.time() - start) - 10
+    budget = seconds - (time.time() - start) - 10
     log(f"{model_id} load {time.time() - start:.1f}s, {len(chats)} seqs, gen budget {budget:.0f}s")
     t0 = time.time()
     out = model.generate(**batch, do_sample=True, max_new_tokens=MAX_NEW, max_time=max(budget, 5.0),
@@ -105,4 +105,6 @@ def run_case(model_id: str, problem: str) -> bool:
     robust, info = decide(groups, answers)
     log(f"gen {secs:.0f}s {ntok} tok ({ntok / max(secs, 1e-6):.0f} tok/s), steps {new.shape[1]}, "
         f"answered {sum(a is not None for a in answers)}/{len(answers)} -> robust={robust} {info}")
-    return robust
+    del model
+    torch.cuda.empty_cache()
+    return robust, info
