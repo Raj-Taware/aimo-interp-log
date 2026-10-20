@@ -14,7 +14,6 @@ from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
 ROOT = Path(__file__).resolve().parent.parent
-SOLUTION = ROOT / "solutions" / "self-perturb"
 PACKAGE = ROOT / "src" / "selfperturb"
 ARTIFACTS = ROOT / "artifacts" / "probe_artifacts"
 
@@ -22,14 +21,17 @@ ARTIFACTS = ROOT / "artifacts" / "probe_artifacts"
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--main", action="store_true", help="build for the main track")
+    parser.add_argument("--solution", default="self-perturb", help="solutions/<name> to package")
+    parser.add_argument("--name", default=None, help="zip name (default solution-<solution>)")
     arguments = parser.parse_args()
 
     suffix = "" if arguments.main else "-small"
-    destination = ROOT / "dist" / f"solution-self-perturb{suffix}.zip"
+    solution = ROOT / "solutions" / arguments.solution
+    destination = ROOT / "dist" / f"{arguments.name or 'solution-' + arguments.solution}{suffix}.zip"
     destination.parent.mkdir(exist_ok=True)
 
     with ZipFile(destination, "w", ZIP_DEFLATED) as bundle:
-        for path in sorted(SOLUTION.glob("*.py")):
+        for path in sorted(solution.glob("*.py")):
             bundle.write(path, path.name)
         for path in sorted(PACKAGE.glob("*.py")):
             bundle.write(path, f"selfperturb/{path.name}")
