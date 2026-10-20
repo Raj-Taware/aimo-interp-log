@@ -11,30 +11,104 @@
   },
   "timings": {
     "canary": {
-      "seconds": 177.8,
+      "seconds": 177.0,
       "returncode": 0
     },
     "trainv2::deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
-      "seconds": 66.2,
+      "seconds": 71.9,
+      "returncode": 0
+    },
+    "trainv2::Qwen/Qwen3.5-4B": {
+      "seconds": 193.6,
+      "returncode": 0
+    },
+    "trainv2::Skywork/Skywork-OR1-Math-7B": {
+      "seconds": 112.0,
       "returncode": 0
     }
   },
+  "wall_seconds": 601.7,
+  "wall_hours": 0.167,
   "trainv2_canary": {
     "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "rule": "non-attnx exact; distract_attnx_* rel<=1e-06",
       "rows_new": 10,
       "rows_ref": 10,
       "n_features": 182,
+      "problems_equal": true,
+      "names_equal": true,
       "nan_positions_equal": true,
+      "n_attnx_features": 8,
       "max_abs_diff": 4.76837158203125e-07,
+      "non_attnx_max_abs_diff": 0.0,
+      "non_attnx_cells_differ": 0,
+      "attnx_max_abs_diff": 4.76837158203125e-07,
+      "attnx_max_rel_diff": 1.2033160019729568e-07,
+      "attnx_cells_differ": 21,
       "n_cells_differ": 21,
+      "non_attnx_exact": true,
+      "attnx_within_tol": true,
+      "pass": true,
       "heads_shape": [
         10,
         36,
         32
       ],
-      "heads_case_rows": 10,
-      "pass": false
+      "heads_case_rows": 10
     },
-    "stopped_at": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B"
-  }
+    "Qwen/Qwen3.5-4B": {
+      "rule": "non-attnx exact; distract_attnx_* rel<=1e-06",
+      "rows_new": 14,
+      "rows_ref": 14,
+      "n_features": 182,
+      "problems_equal": true,
+      "names_equal": true,
+      "nan_positions_equal": true,
+      "n_attnx_features": 8,
+      "max_abs_diff": 1.1920928955078125e-07,
+      "non_attnx_max_abs_diff": 0.0,
+      "non_attnx_cells_differ": 0,
+      "attnx_max_abs_diff": 1.1920928955078125e-07,
+      "attnx_max_rel_diff": 1.433320017790368e-07,
+      "attnx_cells_differ": 32,
+      "n_cells_differ": 32,
+      "non_attnx_exact": true,
+      "attnx_within_tol": true,
+      "pass": true,
+      "heads_shape": [
+        14,
+        8,
+        16
+      ],
+      "heads_case_rows": 14
+    },
+    "Skywork/Skywork-OR1-Math-7B": {
+      "rule": "non-attnx exact; distract_attnx_* rel<=1e-06",
+      "rows_new": 3,
+      "rows_ref": 3,
+      "n_features": 182,
+      "problems_equal": true,
+      "names_equal": true,
+      "nan_positions_equal": false,
+      "n_attnx_features": 8,
+      "max_abs_diff": 0.53529292345047,
+      "non_attnx_max_abs_diff": 0.0,
+      "non_attnx_cells_differ": 0,
+      "attnx_max_abs_diff": 0.53529292345047,
+      "attnx_max_rel_diff": Infinity,
+      "attnx_cells_differ": 9,
+      "n_cells_differ": 12,
+      "non_attnx_exact": true,
+      "attnx_within_tol": false,
+      "pass": false,
+      "heads_shape": [
+        3,
+        28,
+        28
+      ],
+      "heads_case_rows": 3
+    },
+    "stopped_at": "Skywork/Skywork-OR1-Math-7B"
+  },
+  "eval_heads": null
 }

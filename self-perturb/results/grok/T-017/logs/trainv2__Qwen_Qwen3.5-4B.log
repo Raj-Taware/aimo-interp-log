@@ -1,0 +1,50 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files:  50%|█████     | 1/2 [00:35<00:35, 35.87s/it]
+Fetching 2 files: 100%|██████████| 2/2 [00:35<00:00, 17.96s/it]
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/426 [00:01<09:29,  1.34s/it]
+Loading weights:   1%|          | 3/426 [00:11<28:24,  4.03s/it]
+Loading weights:   6%|▌         | 25/426 [00:11<02:09,  3.09it/s]
+Loading weights:   9%|▉         | 39/426 [00:11<01:09,  5.58it/s]
+Loading weights:  12%|█▏        | 51/426 [00:11<00:45,  8.28it/s]
+Loading weights:  15%|█▌        | 65/426 [00:11<00:28, 12.50it/s]
+Loading weights:  19%|█▊        | 79/426 [00:11<00:19, 18.13it/s]
+Loading weights:  22%|██▏       | 93/426 [00:12<00:13, 25.40it/s]
+Loading weights:  24%|██▍       | 104/426 [00:12<00:10, 30.62it/s]
+Loading weights:  27%|██▋       | 114/426 [00:12<00:08, 36.58it/s]
+Loading weights:  31%|███       | 132/426 [00:12<00:06, 47.41it/s]
+Loading weights:  34%|███▍      | 146/426 [00:12<00:05, 55.89it/s]
+Loading weights:  37%|███▋      | 159/426 [00:12<00:04, 61.10it/s]
+Loading weights:  41%|████      | 173/426 [00:13<00:03, 70.68it/s]
+Loading weights:  44%|████▍     | 187/426 [00:13<00:02, 81.86it/s]
+Loading weights:  47%|████▋     | 199/426 [00:13<00:02, 82.83it/s]
+Loading weights:  50%|████▉     | 212/426 [00:13<00:02, 85.93it/s]
+Loading weights:  53%|█████▎    | 224/426 [00:13<00:02, 88.50it/s]
+Loading weights:  56%|█████▌    | 239/426 [00:13<00:02, 91.51it/s]
+Loading weights:  59%|█████▉    | 252/426 [00:13<00:01, 97.96it/s]
+Loading weights:  62%|██████▏   | 263/426 [00:13<00:01, 95.18it/s]
+Loading weights:  65%|██████▌   | 277/426 [00:14<00:01, 99.99it/s]
+Loading weights:  68%|██████▊   | 288/426 [00:14<00:01, 93.19it/s]
+Loading weights:  71%|███████   | 301/426 [00:14<00:01, 90.61it/s]
+Loading weights:  73%|███████▎  | 311/426 [00:14<00:01, 83.54it/s]
+Loading weights:  77%|███████▋  | 326/426 [00:14<00:01, 96.16it/s]
+Loading weights:  81%|████████  | 343/426 [00:14<00:00, 110.69it/s]
+Loading weights:  83%|████████▎ | 355/426 [00:14<00:00, 98.63it/s] 
+Loading weights:  86%|████████▌ | 366/426 [00:15<00:00, 86.44it/s]
+Loading weights:  88%|████████▊ | 376/426 [00:15<00:00, 88.43it/s]
+Loading weights:  91%|█████████ | 386/426 [00:15<00:00, 84.00it/s]
+Loading weights:  93%|█████████▎| 397/426 [00:15<00:00, 89.77it/s]
+Loading weights:  96%|█████████▋| 411/426 [00:15<00:00, 89.66it/s]
+Loading weights:  99%|█████████▉| 421/426 [00:15<00:00, 91.39it/s]
+Loading weights: 100%|██████████| 426/426 [00:15<00:00, 27.19it/s]
+14 cases | model loaded in 56.6s
+/kaggle/working/repo/src/selfperturb/geometry.py:287: RuntimeWarning: Mean of empty slice
+  metric: (np.nanmean([r[metric] for r in runs], axis=0) if runs else np.full(n_states, np.nan))
+/kaggle/working/repo/src/selfperturb/geometry.py:290: RuntimeWarning: Mean of empty slice
+  attn_profile = np.nanmean(attn_runs, axis=0) if attn_runs else np.full(n_states, np.nan)
+10/14  9.39s/case
+wrote /kaggle/working/T-017/dumps/trainv2__Qwen_Qwen3.5-4B.npz (14 cases, 182 features)

@@ -1,0 +1,37 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]
+Fetching 4 files:  25%|██▌       | 1/4 [00:10<00:31, 10.48s/it]
+Fetching 4 files:  50%|█████     | 2/4 [00:45<00:49, 24.71s/it]
+Fetching 4 files:  75%|███████▌  | 3/4 [00:59<00:19, 19.96s/it]
+Fetching 4 files: 100%|██████████| 4/4 [00:59<00:00, 12.12s/it]
+Fetching 4 files: 100%|██████████| 4/4 [00:59<00:00, 14.89s/it]
+
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/339 [00:09<53:38,  9.52s/it]
+Loading weights:  40%|████      | 137/339 [00:09<00:10, 20.05it/s]
+Loading weights:  56%|█████▌    | 190/339 [00:19<00:14, 10.33it/s]
+Loading weights:  65%|██████▍   | 219/339 [00:19<00:09, 12.47it/s]
+Loading weights:  71%|███████   | 239/339 [00:22<00:08, 11.71it/s]
+Loading weights:  74%|███████▍  | 252/339 [00:24<00:08, 10.47it/s]
+Loading weights:  77%|███████▋  | 261/339 [00:25<00:08,  9.15it/s]
+Loading weights:  79%|███████▉  | 268/339 [00:27<00:08,  8.77it/s]
+Loading weights:  81%|████████  | 273/339 [00:27<00:07,  9.22it/s]
+Loading weights:  83%|████████▎ | 280/339 [00:28<00:07,  8.41it/s]
+Loading weights:  83%|████████▎ | 283/339 [00:28<00:06,  8.80it/s]
+Loading weights:  86%|████████▌ | 292/339 [00:28<00:04, 11.38it/s]
+Loading weights:  87%|████████▋ | 295/339 [00:29<00:04, 10.94it/s]
+Loading weights:  90%|████████▉ | 304/339 [00:29<00:02, 14.80it/s]
+Loading weights:  91%|█████████ | 307/339 [00:29<00:02, 15.71it/s]
+Loading weights:  93%|█████████▎| 316/339 [00:30<00:01, 17.99it/s]
+Loading weights:  97%|█████████▋| 328/339 [00:30<00:00, 25.75it/s]
+Loading weights:  98%|█████████▊| 332/339 [00:30<00:00, 27.10it/s]
+Loading weights: 100%|██████████| 339/339 [00:30<00:00, 11.18it/s]
+3 cases | model loaded in 94.0s
+/kaggle/working/repo/src/selfperturb/geometry.py:287: RuntimeWarning: Mean of empty slice
+  metric: (np.nanmean([r[metric] for r in runs], axis=0) if runs else np.full(n_states, np.nan))
+/kaggle/working/repo/src/selfperturb/geometry.py:290: RuntimeWarning: Mean of empty slice
+  attn_profile = np.nanmean(attn_runs, axis=0) if attn_runs else np.full(n_states, np.nan)
+/kaggle/working/repo/src/selfperturb/geometry.py:292: RuntimeWarning: Mean of empty slice
+  profiles["distract"]["attnx_heads"] = np.nanmean(head_runs, axis=0) if head_runs else None
+wrote /kaggle/working/T-017/dumps/trainv2__Skywork_Skywork-OR1-Math-7B.npz (3 cases, 182 features)
