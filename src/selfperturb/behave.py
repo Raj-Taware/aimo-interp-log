@@ -35,6 +35,11 @@ N_VAR = int(os.environ.get("BEHAVE_N_VAR", "2"))
 MAX_NEW = int(os.environ.get("BEHAVE_MAX_NEW", "8192"))
 CASE_SECONDS = float(os.environ.get("BEHAVE_SECONDS", "250"))  # job budget 4200 s / 14 cases
 DROP_CUT = float(os.environ.get("BEHAVE_DROP_CUT", "0.25"))
+# v5c: traces rarely finish in the budget (19-38 steps/s per sequence vs 10-20k-token AIME traces),
+# so unfinished sequences are cut and forced to answer; FORCE_RESERVE s are kept for that pass.
+FORCE_RESERVE = float(os.environ.get("BEHAVE_FORCE_RESERVE", "40"))
+FORCE_NEW = int(os.environ.get("BEHAVE_FORCE_NEW", "24"))
+FORCE_SUFFIX = "\n\nFinal answer: \\boxed{"
 FALLBACK = False  # original never finished within budget: hard problem
 
 
@@ -67,6 +72,38 @@ def prompts_for(problem: str) -> list[tuple[str, str]]:
     return groups
 
 
+@torch.no_grad()
+def force_answers(tokenizer, model, batch, new, answers: list[str | None], seconds: float) -> list[str | None]:
+    """Append </think> + 'Final answer: \\boxed{' to each unanswered trace and read a short greedy answer."""
+    todo = [i for i, a in enumerate(answers) if a is None]
+    if not todo:
+        return answers
+    stop = {tokenizer.pad_token_id, tokenizer.eos_token_id}
+    rows = []
+    for i in todo:
+        prompt = batch["input_ids"][i][batch["attention_mask"][i].bool()].tolist()
+        gen = new[i].tolist()
+        while gen and gen[-1] in stop:
+            gen.pop()
+        text = tokenizer.decode(gen, skip_special_tokens=False)
+        suffix = ("" if "</think>" in text else "\n</think>") + FORCE_SUFFIX
+        rows.append(prompt + gen + tokenizer.encode(suffix, add_special_tokens=False))
+    width = max(map(len, rows))
+    pad = tokenizer.pad_token_id
+    ids = torch.tensor([[pad] * (width - len(r)) + r for r in rows], device=model.device)
+    mask = torch.tensor([[0] * (width - len(r)) + [1] * len(r) for r in rows], device=model.device)
+    t0 = time.time()
+    out = model.generate(input_ids=ids, attention_mask=mask, do_sample=False, max_new_tokens=FORCE_NEW,
+                         max_time=max(seconds, 5.0), pad_token_id=pad)
+    conts = tokenizer.batch_decode(out[:, width:], skip_special_tokens=True)
+    answers = list(answers)
+    for i, c in zip(todo, conts):
+        answers[i] = last_boxed("\\boxed{" + c)
+    log(f"forced {len(todo)} seqs (width {width}) in {time.time() - t0:.0f}s, "
+        f"got {sum(answers[i] is not None for i in todo)}/{len(todo)}: {[answers[i] for i in todo]}")
+    return answers
+
+
 def decide(groups: list[str], answers: list[str | None]) -> tuple[bool, dict]:
     orig = [a for g, a in zip(groups, answers) if g == "original"]
     votes = Counter(a for a in orig if a)
@@ -92,7 +129,7 @@ def run_case(model_id: str, problem: str, seconds: float = CASE_SECONDS) -> tupl
                                            tokenize=False, add_generation_prompt=True)
              for _, t in groups_texts]
     batch = tokenizer(chats, return_tensors="pt", padding=True, add_special_tokens=False).to(model.device)
-    budget = seconds - (time.time() - start) - 10
+    budget = seconds - (time.time() - start) - 10 - FORCE_RESERVE
     log(f"{model_id} load {time.time() - start:.1f}s, {len(chats)} seqs, gen budget {budget:.0f}s")
     t0 = time.time()
     out = model.generate(**batch, do_sample=True, max_new_tokens=MAX_NEW, max_time=max(budget, 5.0),
@@ -102,9 +139,11 @@ def run_case(model_id: str, problem: str, seconds: float = CASE_SECONDS) -> tupl
     answers = [last_boxed(t) for t in texts]
     ntok = int((new != tokenizer.pad_token_id).sum())
     secs = time.time() - t0
-    robust, info = decide(groups, answers)
     log(f"gen {secs:.0f}s {ntok} tok ({ntok / max(secs, 1e-6):.0f} tok/s), steps {new.shape[1]}, "
-        f"answered {sum(a is not None for a in answers)}/{len(answers)} -> robust={robust} {info}")
+        f"answered {sum(a is not None for a in answers)}/{len(answers)}")
+    answers = force_answers(tokenizer, model, batch, new, answers, seconds - (time.time() - start) - 5)
+    robust, info = decide(groups, answers)
+    log(f"-> robust={robust} {info}")
     del model
     torch.cuda.empty_cache()
     return robust, info

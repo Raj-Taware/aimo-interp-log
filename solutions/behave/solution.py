@@ -1,4 +1,4 @@
-"""Codabench entry point for v5 (behavioural self-test, selfperturb.behave)."""
+"""Codabench entry point for v5/v5c (behavioural self-test, selfperturb.behave; v5c forces an answer from unfinished traces)."""
 
 import traceback
 
