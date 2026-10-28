@@ -133,7 +133,7 @@ else:
     rc = step("smoke", [py, "scripts/dump_selfdomain.py", "--model", model, "--source", "data/math.parquet",
                         "--out", str(final / "smoke"), "--limit", "5"])
     z = np.load(final / "smoke" / name, allow_pickle=True) if rc == 0 else None
-    bad = [] if z is None else [r for r in z["rewrites"] if not r.strip() or "<think>" in r or "boxed{" in r in r]
+    bad = [] if z is None else [r for r in z["rewrites"] if not r.strip() or "<think>" in r or "boxed{" in r]
     runs["smoke"] = {"returncode": rc, "rewrites": [] if z is None else list(map(str, z["rewrites"])), "bad": len(bad)}
     write_report()
     if rc != 0 or bad:
