@@ -1,0 +1,45 @@
+{
+  "ablate": "shuffled",
+  "cut": 4.046,
+  "train_acc": 0.721,
+  "loo_problem_acc": 0.674,
+  "always_robust_acc": 0.721,
+  "models": {
+    "Qwen_Qwen3.5-4B": {
+      "kind": "shuffled",
+      "layer": 16,
+      "pooling": "mean",
+      "alpha": 100000.0,
+      "aime_cv_rho": 0.5804876568531472,
+      "pool_mu": 8.006810188293457,
+      "pool_sd": 0.12128996849060059
+    },
+    "Skywork_Skywork-OR1-Math-7B": {
+      "kind": "shuffled",
+      "layer": 8,
+      "pooling": "last",
+      "alpha": 100000.0,
+      "aime_cv_rho": 0.5641540171224566,
+      "pool_mu": 8.003523826599121,
+      "pool_sd": 0.18682949244976044
+    },
+    "allenai_Olmo-3-7B-Think": {
+      "kind": "shuffled",
+      "layer": 12,
+      "pooling": "mean",
+      "alpha": 100000.0,
+      "aime_cv_rho": 0.5963263378041198,
+      "pool_mu": 7.970849990844727,
+      "pool_sd": 0.17332302033901215
+    },
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B": {
+      "kind": "shuffled",
+      "layer": 20,
+      "pooling": "mean",
+      "alpha": 100000.0,
+      "aime_cv_rho": 0.5817745496804138,
+      "pool_mu": 8.115693092346191,
+      "pool_sd": 0.6129916906356812
+    }
+  }
+}

@@ -7,6 +7,10 @@ leave-one-problem-out accuracy is reported). Writes <out>/ (solution.py,
 difficulty_infer.py, selfperturb/, probe_artifacts/<model>.npz, small.txt) and <out>.zip.
 
     python scripts/build_v6.py --out ../../AIMO/results/submissions/solution-v6-difficulty-small
+
+White-Box ablations (same cut procedure): ``--ablate shuffled`` fits the probe at the same
+layer on permuted AIME numbers (seed 0), removing the difficulty direction; ``--ablate length``
+replaces the probe by log word count (no model forward pass).
 """
 
 from __future__ import annotations
@@ -53,6 +57,7 @@ from __future__ import annotations
 import gc
 import os
 import re
+import sys
 import time
 from pathlib import Path
 
@@ -90,6 +95,9 @@ def predict_robustness(model_id: str, problems: list[str]) -> list[bool]:
     if not path.is_file():
         return preds
     artifact = np.load(path, allow_pickle=True)
+    if str(artifact["kind"]) == "length":  # ablation control: text length only
+        return [bool((np.log(len(p.split()) + 1) - float(artifact["pool_mu"])) / float(artifact["pool_sd"])
+                     < float(artifact["cut"])) for p in problems]
     try:
         tokenizer, model = load_model(model_id)
     except Exception:
@@ -97,11 +105,17 @@ def predict_robustness(model_id: str, problems: list[str]) -> list[bool]:
     try:
         for i, problem in enumerate(problems):
             if time.time() >= deadline:
+                print(f"[v6] {model_id} deadline at case {i}", file=sys.stderr, flush=True)
                 break
             try:
-                preds[i] = bool(difficulty(tokenizer, model, artifact, problem) < float(artifact["cut"]))
-            except Exception:
+                z = difficulty(tokenizer, model, artifact, problem)
+                preds[i] = bool(z < float(artifact["cut"]))
+                print(f"[v6] {model_id} case {i} z={z:.3f} robust={preds[i]}", file=sys.stderr, flush=True)
+            except Exception as error:  # keep the case, log why it fell back
                 preds[i] = FALLBACK
+                print(f"[v6] {model_id} case {i} FALLBACK {type(error).__name__}: {error}", file=sys.stderr, flush=True)
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
     finally:
         del model
         gc.collect()
@@ -123,7 +137,9 @@ def best_cut(scores: np.ndarray, robust: np.ndarray) -> float:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--ablate", choices=("shuffled", "length"), default=None)
     args = parser.parse_args()
+    rng = np.random.default_rng(0)
     meta = {key(r["problem"]): r for r in map(json.loads, POOL.open(encoding="utf-8"))}
     exclude = {key(p) for p in pd.read_parquet(TRAINV2)["problem"]}
     arts, rows = {}, []
@@ -131,16 +147,23 @@ def main() -> None:
         pool = np.load(STATES / f"pool__{m}__states.npz", allow_pickle=True)
         idx, d = aime_rows([key(p) for p in pool["problems"]], meta, exclude)
         rho, pooling, li = pick_layer(pool, idx, d)
-        probe = ridge().fit(pool[pooling][idx][:, li].astype(np.float32), d)
-        sc, rg = probe.named_steps["standardscaler"], probe.named_steps["ridgecv"]
-        ps = probe.predict(pool[pooling][:, li].astype(np.float32))  # all 173 pool problems, no labels
-        arts[m] = {"layer": int(pool["layers"][li]), "pooling": pooling, "mean": sc.mean_.astype(np.float32),
-                   "scale": sc.scale_.astype(np.float32), "coef": rg.coef_.astype(np.float32),
-                   "intercept": float(rg.intercept_), "alpha": float(rg.alpha_), "aime_cv_rho": float(rho),
-                   "pool_mu": float(ps.mean()), "pool_sd": float(ps.std())}
         tr = np.load(STATES / f"trainv2__{m}__states.npz", allow_pickle=True)
         ok = ~np.isnan(tr["labels"])
-        s = (probe.predict(tr[pooling][ok][:, li].astype(np.float32)) - ps.mean()) / ps.std()
+        if args.ablate == "length":
+            ps = np.log([len(p.split()) + 1 for p in pool["problems"]])
+            arts[m] = {"kind": "length", "pool_mu": float(ps.mean()), "pool_sd": float(ps.std())}
+            s = (np.log([len(p.split()) + 1 for p in tr["problems"][ok]]) - ps.mean()) / ps.std()
+        else:
+            target = rng.permutation(d) if args.ablate == "shuffled" else d
+            probe = ridge().fit(pool[pooling][idx][:, li].astype(np.float32), target)
+            sc, rg = probe.named_steps["standardscaler"], probe.named_steps["ridgecv"]
+            ps = probe.predict(pool[pooling][:, li].astype(np.float32))  # all 173 pool problems, no labels
+            arts[m] = {"kind": args.ablate or "probe", "layer": int(pool["layers"][li]), "pooling": pooling,
+                       "mean": sc.mean_.astype(np.float32), "scale": sc.scale_.astype(np.float32),
+                       "coef": rg.coef_.astype(np.float32), "intercept": float(rg.intercept_),
+                       "alpha": float(rg.alpha_), "aime_cv_rho": float(rho),
+                       "pool_mu": float(ps.mean()), "pool_sd": float(ps.std())}
+            s = (probe.predict(tr[pooling][ok][:, li].astype(np.float32)) - ps.mean()) / ps.std()
         rows += [{"model": m, "problem": key(p), "robust": bool(y), "score": float(v)}
                  for p, y, v in zip(tr["problems"][ok], tr["labels"][ok], s)]
     df = pd.DataFrame(rows)
@@ -150,9 +173,10 @@ def main() -> None:
         held = df["problem"] == p
         c = best_cut(df.loc[~held, "score"].values, df.loc[~held, "robust"].values)
         loo += list((df.loc[held, "score"] < c) == df.loc[held, "robust"])
-    summary = {"cut": round(cut, 3), "train_acc": round(float(((df["score"] < cut) == df["robust"]).mean()), 3),
+    summary = {"ablate": args.ablate, "cut": round(cut, 3), "train_acc": round(float(((df["score"] < cut) == df["robust"]).mean()), 3),
                "loo_problem_acc": round(float(np.mean(loo)), 3), "always_robust_acc": round(float(df["robust"].mean()), 3),
-               "models": {m: {k: a[k] for k in ("layer", "pooling", "alpha", "aime_cv_rho", "pool_mu", "pool_sd")} for m, a in arts.items()}}
+               "models": {m: {k: a[k] for k in ("kind", "layer", "pooling", "alpha", "aime_cv_rho", "pool_mu", "pool_sd")
+                              if k in a} for m, a in arts.items()}}
 
     out = args.out
     shutil.rmtree(out, ignore_errors=True)

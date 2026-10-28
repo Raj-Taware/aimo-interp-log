@@ -1,0 +1,29 @@
+{
+  "ablate": "length",
+  "cut": 2.211,
+  "train_acc": 0.767,
+  "loo_problem_acc": 0.767,
+  "always_robust_acc": 0.721,
+  "models": {
+    "Qwen_Qwen3.5-4B": {
+      "kind": "length",
+      "pool_mu": 3.836700554603291,
+      "pool_sd": 0.5583658015857588
+    },
+    "Skywork_Skywork-OR1-Math-7B": {
+      "kind": "length",
+      "pool_mu": 3.836700554603291,
+      "pool_sd": 0.5583658015857588
+    },
+    "allenai_Olmo-3-7B-Think": {
+      "kind": "length",
+      "pool_mu": 3.836700554603291,
+      "pool_sd": 0.5583658015857588
+    },
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B": {
+      "kind": "length",
+      "pool_mu": 3.836700554603291,
+      "pool_sd": 0.5583658015857588
+    }
+  }
+}

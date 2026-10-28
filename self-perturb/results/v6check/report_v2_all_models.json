@@ -1,0 +1,97 @@
+{
+  "env": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.13.0",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ]
+  },
+  "models": {
+    "allenai/Olmo-3-7B-Think": {
+      "n": 10,
+      "call_seconds": 127.0,
+      "max_abs_diff_z": 3.47506352138538e-07,
+      "preds_match_offline": 10,
+      "types_ok": true,
+      "preds": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true
+      ]
+    },
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "n": 10,
+      "call_seconds": 124.1,
+      "max_abs_diff_z": 3.2293248208858927e-07,
+      "preds_match_offline": 9,
+      "types_ok": true,
+      "preds": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "Qwen/Qwen3.5-4B": {
+      "n": 14,
+      "call_seconds": 66.7,
+      "max_abs_diff_z": 4.1274690643078316e-07,
+      "preds_match_offline": 14,
+      "types_ok": true,
+      "preds": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false
+      ]
+    },
+    "Skywork/Skywork-OR1-Math-7B": {
+      "n": 15,
+      "call_seconds": 112.8,
+      "max_abs_diff_z": 5.793421544719735e-07,
+      "preds_match_offline": 15,
+      "types_ok": true,
+      "preds": [
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true
+      ]
+    }
+  }
+}
