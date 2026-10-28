@@ -1,0 +1,66 @@
+{
+  "models": {
+    "Qwen_Qwen3.5-4B": {
+      "layer": 16,
+      "pooling": "mean",
+      "aime_cv_rho": 0.58
+    },
+    "Skywork_Skywork-OR1-Math-7B": {
+      "layer": 8,
+      "pooling": "last",
+      "aime_cv_rho": 0.564
+    },
+    "allenai_Olmo-3-7B-Think": {
+      "layer": 12,
+      "pooling": "mean",
+      "aime_cv_rho": 0.596
+    },
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B": {
+      "layer": 20,
+      "pooling": "mean",
+      "aime_cv_rho": 0.582
+    }
+  },
+  "text_control": {
+    "alpha": 10.0,
+    "aime_cv_rho": 0.12
+  },
+  "row_probe": {
+    "auc": 0.801,
+    "perm_p": 0.001
+  },
+  "row_text": {
+    "auc": 0.946,
+    "perm_p": 0.0
+  },
+  "row_length": {
+    "auc": 0.523,
+    "perm_p": 0.4078
+  },
+  "row_probe_shuffled_null": {
+    "mean": 0.505,
+    "max": 0.712
+  },
+  "per_model_probe_auc": {
+    "Qwen_Qwen3.5-4B": 0.812,
+    "Skywork_Skywork-OR1-Math-7B": 0.741,
+    "allenai_Olmo-3-7B-Think": 1.0,
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B": 0.714
+  },
+  "problem_probe": {
+    "auc": 0.848,
+    "perm_p": 0.003
+  },
+  "problem_text": {
+    "auc": 0.91,
+    "perm_p": 0.0008
+  },
+  "problem_length": {
+    "auc": 0.586,
+    "perm_p": 0.2654
+  },
+  "n_rows": 43,
+  "n_problems": 22,
+  "nonrobust_rows": 12,
+  "nonrobust_problems": 7
+}
