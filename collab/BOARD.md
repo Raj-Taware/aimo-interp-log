@@ -23,4 +23,4 @@ Protocol: `collab/PROTOCOL.md`. Status: open â†’ doing â†’ review â�
 | T-017 | blocked | grok | Exploratory per-head distractor attention on train-main-v2 (dumps with per-head matrix, canary, eval_heads.py) | yes, ~1-2 Kaggle h |
 | T-018 | done | grok | v4 features on 173 unlabelled AIME/AMC problems -> v4b per-model thresholds (grader now calls once per problem) | yes, ~1-2 Kaggle h |
 | T-019 | done | grok | Question-only residual-stream dump (137 MATH DeepSeek, train-main-v2, 173 pool; 4 models) for the pre-registered beyond-length test | yes, ~40 Kaggle min; due Thu 30 Oct 18:00 IST |
-| T-020 | todo | grok | Self-made DeepSeek labels on MATH train (40 gate + 161 new, rule variants, vLLM) + v2/state dumps; gate pre-registered | yes, ~10-14 Kaggle GPU h, Raj confirms budget before Phase 2; gate due Wed 29 Oct 12:00 IST |
+| T-020 | doing | grok | Self-made DeepSeek labels on MATH train (40 gate + 161 new, rule variants, vLLM) + v2/state dumps; gate pre-registered | yes, ~10-14 Kaggle GPU h, Raj confirms budget before Phase 2; gate due Wed 29 Oct 12:00 IST |
