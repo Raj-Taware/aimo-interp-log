@@ -1,0 +1,60 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/399 [00:02<14:58,  2.26s/it]
+Loading weights:  12%|█▏        | 48/399 [00:02<00:13, 26.10it/s]
+Loading weights:  15%|█▌        | 60/399 [00:02<00:11, 29.71it/s]
+Loading weights:  18%|█▊        | 70/399 [00:02<00:09, 34.70it/s]
+Loading weights:  20%|█▉        | 78/399 [00:03<00:08, 38.66it/s]
+Loading weights:  22%|██▏       | 86/399 [00:03<00:07, 39.75it/s]
+Loading weights:  23%|██▎       | 93/399 [00:03<00:08, 37.58it/s]
+Loading weights:  26%|██▌       | 103/399 [00:03<00:07, 40.18it/s]
+Loading weights:  29%|██▊       | 114/399 [00:03<00:06, 42.40it/s]
+Loading weights:  31%|███▏      | 125/399 [00:04<00:06, 41.55it/s]
+Loading weights:  34%|███▍      | 136/399 [00:04<00:05, 44.27it/s]
+Loading weights:  37%|███▋      | 147/399 [00:04<00:05, 44.86it/s]
+Loading weights:  40%|███▉      | 158/399 [00:04<00:05, 45.75it/s]
+Loading weights:  42%|████▏     | 169/399 [00:05<00:05, 43.75it/s]
+Loading weights:  45%|████▌     | 180/399 [00:05<00:04, 49.87it/s]
+Loading weights:  48%|████▊     | 191/399 [00:05<00:04, 47.32it/s]
+Loading weights:  51%|█████     | 202/399 [00:05<00:04, 43.96it/s]
+Loading weights:  53%|█████▎    | 213/399 [00:05<00:03, 52.33it/s]
+Loading weights:  56%|█████▌    | 224/399 [00:06<00:03, 45.13it/s]
+Loading weights:  59%|█████▉    | 235/399 [00:06<00:03, 49.37it/s]
+Loading weights:  62%|██████▏   | 246/399 [00:06<00:02, 51.41it/s]
+Loading weights:  63%|██████▎   | 252/399 [00:06<00:02, 49.21it/s]
+Loading weights:  65%|██████▍   | 259/399 [00:06<00:02, 49.95it/s]
+Loading weights:  67%|██████▋   | 268/399 [00:07<00:02, 54.82it/s]
+Loading weights:  69%|██████▊   | 274/399 [00:07<00:02, 47.87it/s]
+Loading weights:  70%|███████   | 280/399 [00:07<00:02, 48.59it/s]
+Loading weights:  73%|███████▎  | 290/399 [00:07<00:02, 49.44it/s]
+Loading weights:  75%|███████▌  | 301/399 [00:07<00:01, 49.10it/s]
+Loading weights:  78%|███████▊  | 312/399 [00:07<00:01, 50.22it/s]
+Loading weights:  81%|████████  | 323/399 [00:08<00:01, 48.41it/s]
+Loading weights:  84%|████████▎ | 334/399 [00:08<00:01, 49.25it/s]
+Loading weights:  86%|████████▋ | 345/399 [00:08<00:01, 48.31it/s]
+Loading weights:  89%|████████▉ | 356/399 [00:08<00:00, 47.55it/s]
+Loading weights:  92%|█████████▏| 367/399 [00:09<00:00, 49.17it/s]
+Loading weights:  95%|█████████▍| 378/399 [00:09<00:00, 51.79it/s]
+Loading weights:  97%|█████████▋| 389/399 [00:09<00:00, 48.35it/s]
+Loading weights: 100%|██████████| 399/399 [00:09<00:00, 41.66it/s]
+1/137 4.6s/row kl=1.171 retain=0.33 | 'A farmer has a set of apple trees numbered from 1 to 16 in his orchard. He wants to know how many different positive integer distances (in feet) can be measured'
+2/137 5.0s/row kl=0.257 retain=0.80 | 'A group of 5 friends is sharing a pizza. Each friend eats a piece that is proportional to \\(10x^3\\) minus half of \\(x^2\\) in the denominator, but they want to f'
+3/137 4.2s/row kl=1.202 retain=1.00 | 'A person is looking at an angle of -300 degrees on a protractor. What is the secant of that angle?'
+4/137 4.8s/row kl=0.896 retain=1.00 | 'A baker has a recipe that requires 7/30 of a cup of sugar and 10/21 of a cup of flour. The operation @ is defined as multiplying the first fraction by the secon'
+5/137 4.4s/row kl=1.650 retain=1.00 | 'A word is formed by arranging the letters of "ELLIPSE" in different orders. How many unique arrangements are possible if there are repeated letters?'
+10/137 9.3s/row kl=0.810 retain=1.00 | 'The population of a small town is projected to grow according to the formula \\( (2 + 3)^{23} \\) in the next 23 years. What is the sum of the tens digit and the '
+20/137 8.6s/row kl=0.042 retain=1.00 | 'A group of friends has a set of letters: A, B, C, D, and E. They want to form 4-letter words using these letters, and they can reuse letters if they wish. The v'
+30/137 8.4s/row kl=0.066 retain=1.00 | 'A construction worker needs to determine the largest integer side length of a square that can fit inside a storage container with an area of 80 square feet. Wha'
+40/137 8.3s/row kl=3.304 retain=1.00 | 'A man and a woman have a combined age of 8 years, and the product of their ages is 7. What is the absolute difference between their ages?\n\nThe absolute differen'
+50/137 8.3s/row kl=0.948 retain=1.00 | 'A farmer has 5 sheep and wants to know how many sheep he will have after 999,999 days if he doubles the number every day. How many sheep will he have at the end'
+60/137 8.2s/row kl=0.186 retain=1.00 | 'A farmer has a rectangular field with length \\( y \\) meters and width \\( x \\) meters. If the dimensions are \\( (x, y) = (3, 9) \\), what is the value of \\( y^2 -'
+70/137 8.1s/row kl=1.073 retain=0.67 | 'A farmer has two fields, one with 513 apple trees and the other with 487 orange trees. Each tree produces the same number of fruits. If the farmer wants to find'
+80/137 8.2s/row kl=7.455 retain=1.00 | 'A farmer has a list of the first one hundred positive integers representing the number of apples he harvested each day. He wants to know how many of these days '
+90/137 8.4s/row kl=0.626 retain=1.00 | 'In a regular polygon, the measure of an interior angle is 6.5 times the measure of an exterior angle. How many sides does the polygon have?\n\nRewritten as a shor'
+100/137 8.6s/row kl=0.550 retain=0.11 | 'A regular hexagon has a side length of 16 cm. If a regular octagon has the same perimeter as this hexagon, how long is each side of the octagon?'
+110/137 8.2s/row kl=0.203 retain=0.40 | 'A list contains numbers starting from -4 and increasing by 3 each time, ending with 32. How many numbers are in this list?'
+120/137 8.1s/row kl=0.047 retain=1.00 | 'A person has a wallet with a total of 40 dollars in bills. They need to find two different ways to make a purchase of 17 dollars using only 27-dollar bills, but'
+130/137 8.0s/row kl=0.153 retain=0.75 | 'Karla drove her SUV 12,000 miles last year. If she had used a fuel-efficient hybrid car that averages 48 miles per gallon instead, how many gallons of gasoline '

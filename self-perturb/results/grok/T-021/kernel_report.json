@@ -1,0 +1,78 @@
+{
+  "env": {
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "transformers": "5.13.0",
+    "accelerate": "1.13.0",
+    "python": "3.13.15",
+    "dtype": "fp16",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ]
+  },
+  "kernel_started_utc": "2026-10-28T19:03:30.106568+00:00",
+  "wall_seconds": 1367.1,
+  "wall_hours": 0.38,
+  "finished": true,
+  "parquet_sha256_prefix": {
+    "data/math.parquet": "b785750259a3f452"
+  },
+  "timings": {
+    "canary": {
+      "seconds": 162.3,
+      "returncode": 0
+    },
+    "smoke": {
+      "seconds": 46.6,
+      "returncode": 0
+    },
+    "full": {
+      "seconds": 1121.7,
+      "returncode": 0
+    }
+  },
+  "canary": {
+    "max_abs_diff_all": 0.0,
+    "max_abs_diff_v3": 0.0,
+    "median_per_feature_corr": 1.0,
+    "min_per_feature_corr": 0.9999999999999998,
+    "worst_3": [
+      [
+        "rename_cos_d0.25",
+        0.0
+      ],
+      [
+        "rename_norm_d0.25",
+        0.0
+      ],
+      [
+        "rename_cos_d0.5",
+        0.0
+      ]
+    ],
+    "second_run_identical": true,
+    "n_problems": 10,
+    "seconds_per_problem_mean": 1.58,
+    "pass": true
+  },
+  "runs": {
+    "smoke": {
+      "returncode": 0,
+      "rewrites": [
+        "A farmer has a set of apple trees numbered from 1 to 16 in his orchard. He wants to know how many different positive integer distances (in feet) can be measured between any two distinct trees.",
+        "A group of 5 friends is sharing a pizza. Each friend eats a piece that is proportional to \\(10x^3\\) minus half of \\(x^2\\) in the denominator, but they want to find the constant term in the expansion of that expression raised to the power of 5.",
+        "A person is looking at an angle of -300 degrees on a protractor. What is the secant of that angle?",
+        "A baker has a recipe that requires 7/30 of a cup of sugar and 10/21 of a cup of flour. The operation @ is defined as multiplying the first fraction by the second fraction and then multiplying by the reciprocal of the denominator of the first fraction. What is the simplified value of the baker's sugar amount @ the flour amount?",
+        "A word is formed by arranging the letters of \"ELLIPSE\" in different orders. How many unique arrangements are possible if there are repeated letters?"
+      ],
+      "bad": 0
+    },
+    "full": {
+      "returncode": 0,
+      "rows": 137,
+      "expected_rows": 137,
+      "nonfinite": 0
+    }
+  }
+}

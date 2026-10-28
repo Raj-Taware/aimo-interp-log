@@ -1,0 +1,30 @@
+{
+  "n": 137,
+  "robust": 36,
+  "L": 0.6702,
+  "L+W": {
+    "balanced": 0.5772,
+    "gain": -0.093,
+    "wins": 5,
+    "losses": 19,
+    "win_share": 0.208,
+    "p": 0.9992
+  },
+  "L+text": {
+    "balanced": 0.6485,
+    "gain": -0.0217,
+    "wins": 0,
+    "losses": 11,
+    "win_share": 0.0,
+    "p": 1.0
+  },
+  "L+text+W": {
+    "balanced": 0.5781,
+    "gain": -0.0921,
+    "wins": 4,
+    "losses": 19,
+    "win_share": 0.174,
+    "p": 0.9998
+  },
+  "pass": false
+}
