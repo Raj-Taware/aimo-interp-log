@@ -1,0 +1,53 @@
+{
+ "n": 137,
+ "robust": 36,
+ "non_robust_cause": {
+  "domain": 80,
+  "distract": 17,
+  "rephrase": 3,
+  "rename": 1
+ },
+ "mean_decay_by_type": {
+  "distract": 0.178,
+  "domain": 0.551,
+  "rename": 0.033,
+  "rephrase": 0.05,
+  "typos": 0.007
+ },
+ "harmful_by_type": {
+  "distract": {
+   "n": 46,
+   "acc": 0.035,
+   "missing_number": 0.652
+  },
+  "domain": {
+   "n": 276,
+   "acc": 0.052,
+   "missing_number": 0.88
+  },
+  "rename": {
+   "n": 1,
+   "acc": 0.0,
+   "missing_number": 0.0
+  },
+  "rephrase": {
+   "n": 12,
+   "acc": 0.008,
+   "missing_number": 1.0
+  }
+ },
+ "domain_acc_by_missing_number": {
+  "false": {
+   "mean": 0.365,
+   "size": 33
+  },
+  "true": {
+   "mean": 0.009,
+   "size": 243
+  }
+ },
+ "words_by_label": {
+  "false": 16.8,
+  "true": 27.9
+ }
+}
