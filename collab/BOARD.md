@@ -22,4 +22,4 @@ Protocol: `collab/PROTOCOL.md`. Status: open → doing → review → done | red
 | T-016 | review | grok | T-015 on Kaggle T4x2: vLLM-on-T4 check, gate gold (DeepSeek majority), gate stages with Claude-written variants, gate check; stop for review | yes, <=15 Kaggle GPU h |
 | T-017 | blocked | grok | Exploratory per-head distractor attention on train-main-v2 (dumps with per-head matrix, canary, eval_heads.py) | yes, ~1-2 Kaggle h |
 | T-018 | done | grok | v4 features on 173 unlabelled AIME/AMC problems -> v4b per-model thresholds (grader now calls once per problem) | yes, ~1-2 Kaggle h |
-| T-019 | doing | grok | Question-only residual-stream dump (137 MATH DeepSeek, train-main-v2, 173 pool; 4 models) for the pre-registered beyond-length test | yes, ~40 Kaggle min; due Thu 30 Oct 18:00 IST |
+| T-019 | review | grok | Question-only residual-stream dump (137 MATH DeepSeek, train-main-v2, 173 pool; 4 models) for the pre-registered beyond-length test | yes, ~40 Kaggle min; due Thu 30 Oct 18:00 IST |
