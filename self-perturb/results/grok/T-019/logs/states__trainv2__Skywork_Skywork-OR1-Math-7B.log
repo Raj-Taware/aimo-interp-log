@@ -1,0 +1,21 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]
+Fetching 4 files:  25%|██▌       | 1/4 [00:50<02:30, 50.21s/it]
+Fetching 4 files:  50%|█████     | 2/4 [01:35<01:35, 47.59s/it]
+Fetching 4 files:  75%|███████▌  | 3/4 [01:36<00:25, 25.93s/it]
+Fetching 4 files: 100%|██████████| 4/4 [02:06<00:00, 27.81s/it]
+Fetching 4 files: 100%|██████████| 4/4 [02:06<00:00, 31.70s/it]
+
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/339 [00:16<1:31:06, 16.17s/it]
+Loading weights:  44%|████▎     | 148/339 [00:16<00:14, 12.86it/s]
+Loading weights:  70%|███████   | 238/339 [00:21<00:06, 15.12it/s]
+Loading weights:  81%|████████▏ | 276/339 [00:27<00:05, 11.41it/s]
+Loading weights:  88%|████████▊ | 297/339 [00:29<00:03, 11.55it/s]
+Loading weights:  92%|█████████▏| 311/339 [00:29<00:02, 12.64it/s]
+Loading weights:  95%|█████████▍| 321/339 [00:29<00:01, 13.38it/s]
+Loading weights: 100%|██████████| 339/339 [00:29<00:00, 11.35it/s]
+15 rows | model loaded in 160.0s
+10/15  0.21s/row
+wrote /kaggle/working/repo/scratch/trainv2__Skywork_Skywork-OR1-Math-7B/states.npz (1.7 MB)

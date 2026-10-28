@@ -1,0 +1,344 @@
+{
+  "env": {
+    "torch": "2.11.0+cu128",
+    "cuda": "12.8",
+    "transformers": "5.13.0",
+    "accelerate": "1.13.0",
+    "python": "3.13.15",
+    "dtype": "fp16",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ]
+  },
+  "kernel_started_utc": "2026-10-28T01:57:27.935875+00:00",
+  "wall_seconds": 901.6,
+  "wall_hours": 0.25,
+  "finished": true,
+  "parquet_sha256_prefix": {
+    "data/pool_unlabelled.parquet": "55c6ca3c21616a2a",
+    "data/math.parquet": "b785750259a3f452",
+    "data/trainv2.parquet": "e18eb44207e79877"
+  },
+  "timings": {
+    "canary": {
+      "seconds": 174.3,
+      "returncode": 0
+    },
+    "states::math::deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "seconds": 40.7,
+      "returncode": 0
+    },
+    "states::trainv2::deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "seconds": 24.5,
+      "returncode": 0
+    },
+    "states::pool::deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "seconds": 47.1,
+      "returncode": 0
+    },
+    "states::trainv2::Qwen/Qwen3.5-4B": {
+      "seconds": 77.8,
+      "returncode": 0
+    },
+    "states::pool::Qwen/Qwen3.5-4B": {
+      "seconds": 119.2,
+      "returncode": 0
+    },
+    "states::trainv2::Skywork/Skywork-OR1-Math-7B": {
+      "seconds": 171.5,
+      "returncode": 0
+    },
+    "states::pool::Skywork/Skywork-OR1-Math-7B": {
+      "seconds": 42.3,
+      "returncode": 0
+    },
+    "states::trainv2::allenai/Olmo-3-7B-Think": {
+      "seconds": 112.5,
+      "returncode": 0
+    },
+    "states::pool::allenai/Olmo-3-7B-Think": {
+      "seconds": 51.9,
+      "returncode": 0
+    }
+  },
+  "canary": {
+    "max_abs_diff_all": 0.0,
+    "max_abs_diff_v3": 0.0,
+    "median_per_feature_corr": 1.0,
+    "min_per_feature_corr": 0.9999999999999998,
+    "worst_3": [
+      [
+        "rename_cos_d0.25",
+        0.0
+      ],
+      [
+        "rename_norm_d0.25",
+        0.0
+      ],
+      [
+        "rename_cos_d0.5",
+        0.0
+      ]
+    ],
+    "second_run_identical": true,
+    "n_problems": 10,
+    "seconds_per_problem_mean": 1.564,
+    "pass": true
+  },
+  "runs": {
+    "math::deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "returncode": 0,
+      "files": [
+        {
+          "file": "math__deepseek-ai_DeepSeek-R1-0528-Qwen3-8B__states.npz",
+          "bytes": 22465111,
+          "rows": 137,
+          "layers": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36
+          ],
+          "d": 4096,
+          "dtype": "float16",
+          "n_tokens_min": 19,
+          "n_tokens_max": 237,
+          "nonfinite_cells": 0
+        }
+      ],
+      "rows": 137,
+      "expected_rows": 137
+    },
+    "trainv2::deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "returncode": 0,
+      "files": [
+        {
+          "file": "trainv2__deepseek-ai_DeepSeek-R1-0528-Qwen3-8B__states.npz",
+          "bytes": 1644178,
+          "rows": 10,
+          "layers": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36
+          ],
+          "d": 4096,
+          "dtype": "float16",
+          "n_tokens_min": 38,
+          "n_tokens_max": 648,
+          "nonfinite_cells": 0
+        }
+      ],
+      "rows": 10,
+      "expected_rows": null
+    },
+    "pool::deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "returncode": 0,
+      "files": [
+        {
+          "file": "pool__deepseek-ai_DeepSeek-R1-0528-Qwen3-8B__states.npz",
+          "bytes": 28403519,
+          "rows": 173,
+          "layers": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32,
+            36
+          ],
+          "d": 4096,
+          "dtype": "float16",
+          "n_tokens_min": 30,
+          "n_tokens_max": 403,
+          "nonfinite_cells": 0
+        }
+      ],
+      "rows": 173,
+      "expected_rows": 173
+    },
+    "trainv2::Qwen/Qwen3.5-4B": {
+      "returncode": 0,
+      "files": [
+        {
+          "file": "trainv2__Qwen_Qwen3.5-4B__states.npz",
+          "bytes": 1296394,
+          "rows": 14,
+          "layers": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32
+          ],
+          "d": 2560,
+          "dtype": "float16",
+          "n_tokens_min": 45,
+          "n_tokens_max": 219,
+          "nonfinite_cells": 0
+        }
+      ],
+      "rows": 14,
+      "expected_rows": null
+    },
+    "pool::Qwen/Qwen3.5-4B": {
+      "returncode": 0,
+      "files": [
+        {
+          "file": "pool__Qwen_Qwen3.5-4B__states.npz",
+          "bytes": 16002787,
+          "rows": 173,
+          "layers": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32
+          ],
+          "d": 2560,
+          "dtype": "float16",
+          "n_tokens_min": 37,
+          "n_tokens_max": 410,
+          "nonfinite_cells": 0
+        }
+      ],
+      "rows": 173,
+      "expected_rows": 173
+    },
+    "trainv2::Skywork/Skywork-OR1-Math-7B": {
+      "returncode": 0,
+      "files": [
+        {
+          "file": "trainv2__Skywork_Skywork-OR1-Math-7B__states.npz",
+          "bytes": 1727437,
+          "rows": 15,
+          "layers": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28
+          ],
+          "d": 3584,
+          "dtype": "float16",
+          "n_tokens_min": 41,
+          "n_tokens_max": 651,
+          "nonfinite_cells": 0
+        }
+      ],
+      "rows": 15,
+      "expected_rows": null
+    },
+    "pool::Skywork/Skywork-OR1-Math-7B": {
+      "returncode": 0,
+      "files": [
+        {
+          "file": "pool__Skywork_Skywork-OR1-Math-7B__states.npz",
+          "bytes": 19900175,
+          "rows": 173,
+          "layers": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28
+          ],
+          "d": 3584,
+          "dtype": "float16",
+          "n_tokens_min": 33,
+          "n_tokens_max": 406,
+          "nonfinite_cells": 0
+        }
+      ],
+      "rows": 173,
+      "expected_rows": 173
+    },
+    "trainv2::allenai/Olmo-3-7B-Think": {
+      "returncode": 0,
+      "files": [
+        {
+          "file": "trainv2__allenai_Olmo-3-7B-Think__states.npz",
+          "bytes": 1480632,
+          "rows": 10,
+          "layers": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32
+          ],
+          "d": 4096,
+          "dtype": "float16",
+          "n_tokens_min": 107,
+          "n_tokens_max": 690,
+          "nonfinite_cells": 0
+        }
+      ],
+      "rows": 10,
+      "expected_rows": null
+    },
+    "pool::allenai/Olmo-3-7B-Think": {
+      "returncode": 0,
+      "files": [
+        {
+          "file": "pool__allenai_Olmo-3-7B-Think__states.npz",
+          "bytes": 25569027,
+          "rows": 173,
+          "layers": [
+            0,
+            4,
+            8,
+            12,
+            16,
+            20,
+            24,
+            28,
+            32
+          ],
+          "d": 4096,
+          "dtype": "float16",
+          "n_tokens_min": 99,
+          "n_tokens_max": 455,
+          "nonfinite_cells": 0
+        }
+      ],
+      "rows": 173,
+      "expected_rows": 173
+    }
+  }
+}
