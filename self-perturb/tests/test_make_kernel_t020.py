@@ -75,3 +75,15 @@ def test_math_gate_on_inputs_runs(tmp_path):
     assert r.returncode == 0, r.stderr
     rep = json.loads((tmp_path / "gate_report.json").read_text())
     assert rep["rule_a"]["agreement"] == 1.0 and rep["pass"] is True
+
+
+def test_embeds_every_selfperturb_module_the_scripts_import():
+    # gate v1 died with "No module named 'selfperturb.features'" (common.load_tokenizer).
+    import re
+    used = set()
+    for name in ("common.py", "stage1_solve.py", "stage3_solve_variants.py", "math_gate.py", "t020_phases.py"):
+        used |= set(re.findall(r"selfperturb\.(\w+)", (ROOT / "scripts" / "label_gen" / name).read_text()))
+    for py in (ROOT / "src" / "selfperturb").glob("*.py"):
+        used |= set(re.findall(r"from \.(\w+) import", py.read_text())) if f"src/selfperturb/{py.name}" in mk.FILES else set()
+    for mod in used:
+        assert f"src/selfperturb/{mod}.py" in mk.FILES, mod

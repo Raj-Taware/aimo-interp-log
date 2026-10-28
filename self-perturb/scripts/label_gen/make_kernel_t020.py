@@ -17,7 +17,7 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent.parent  # self-perturb/
-FILES = ["src/selfperturb/__init__.py", "src/selfperturb/perturbations.py",
+FILES = ["src/selfperturb/__init__.py", "src/selfperturb/perturbations.py", "src/selfperturb/features.py",
          *[f"scripts/label_gen/{n}" for n in ("common.py", "stage1_solve.py", "stage3_solve_variants.py",
                                               "math_gate.py", "t020_phases.py")],
          *[f"results/grok/T-020/{n}" for n in ("problems.jsonl", "problems_gate.jsonl", "problems_new.jsonl",
