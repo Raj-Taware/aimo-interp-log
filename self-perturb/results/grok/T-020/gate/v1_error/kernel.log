@@ -1,0 +1,76 @@
+[{"stream_name":"stdout","time":0.771519858,"data":"[      0s] $ /usr/bin/python3 -m pip install -q vllm==0.31.0 transformers==5.13.0 pandas pyarrow scikit-learn\n"}
+,{"stream_name":"stderr","time":220.324795476,"data":"ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n"}
+,{"stream_name":"stderr","time":220.324832787,"data":"grpcio-tools 1.71.2 requires protobuf\u003c6.0dev,\u003e=5.26.1, but you have protobuf 7.36.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324837793,"data":"ydata-profiling 4.18.4 requires numba\u003c0.63,\u003e=0.60, but you have numba 0.65.0 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324841074,"data":"dask-cuda 26.2.0 requires cuda-core==0.3.*, but you have cuda-core 1.2.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324844111,"data":"gradio 6.26.0 requires pillow\u003c13.0,\u003e=8.0, but you have pillow 13.0.0 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324847157,"data":"pylibcudf-cu12 26.2.1 requires cuda-python\u003c13.0,\u003e=12.9.2, but you have cuda-python 13.4.4 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.32485014,"data":"numba-cuda 0.22.2 requires cuda-core\u003c1.0.0,\u003e=0.3.2, but you have cuda-core 1.2.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324853367,"data":"libcuml-cu12 26.2.0 requires cuda-toolkit[cublas,cufft,curand,cusolver,cusparse]==12.*, but you have cuda-toolkit 13.0.3.0 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324856398,"data":"rmm-cu12 26.2.0 requires cuda-python\u003c13.0,\u003e=12.9.2, but you have cuda-python 13.4.4 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324859366,"data":"cuml-cu12 26.2.0 requires cuda-python\u003c13.0,\u003e=12.9.2, but you have cuda-python 13.4.4 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324862277,"data":"cuml-cu12 26.2.0 requires cuda-toolkit[cublas,cufft,curand,cusolver,cusparse]==12.*, but you have cuda-toolkit 13.0.3.0 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324865167,"data":"cuml-cu12 26.2.0 requires numba\u003c0.62.0,\u003e=0.60.0, but you have numba 0.65.0 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324868118,"data":"pylibraft-cu12 26.2.0 requires cuda-python\u003c13.0,\u003e=12.9.2, but you have cuda-python 13.4.4 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324871077,"data":"cuvs-cu12 26.2.0 requires cuda-python\u003c13.0,\u003e=12.9.2, but you have cuda-python 13.4.4 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324874009,"data":"google-ai-generativelanguage 0.6.15 requires protobuf!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,\u003c6.0.0dev,\u003e=3.20.2, but you have protobuf 7.36.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324877885,"data":"ydf 0.15.0 requires protobuf\u003c7.0.0,\u003e=5.29.1, but you have protobuf 7.36.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324880806,"data":"cudf-cu12 26.2.1 requires cuda-python\u003c13.0,\u003e=12.9.2, but you have cuda-python 13.4.4 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324884774,"data":"cudf-cu12 26.2.1 requires cuda-toolkit[nvcc,nvrtc]==12.*, but you have cuda-toolkit 13.0.3.0 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324887747,"data":"cudf-cu12 26.2.1 requires numba\u003c0.62.0,\u003e=0.60.0, but you have numba 0.65.0 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324890933,"data":"libcuvs-cu12 26.2.0 requires cuda-toolkit[cublas,curand,cusolver,cusparse]==12.*, but you have cuda-toolkit 13.0.3.0 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324894042,"data":"libraft-cu12 26.2.0 requires cuda-toolkit[cublas,curand,cusolver,cusparse]==12.*, but you have cuda-toolkit 13.0.3.0 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324905446,"data":"grpcio-status 1.71.2 requires protobuf\u003c6.0dev,\u003e=5.26.1, but you have protobuf 7.36.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.324908162,"data":"google-adk 2.7.1 requires opentelemetry-api\u003c=1.42.1,\u003e=1.39, but you have opentelemetry-api 1.45.1 which is incompatible.\n"}
+,{"stream_name":"stderr","time":220.32491066,"data":"google-adk 2.7.1 requires opentelemetry-sdk\u003c=1.42.1,\u003e=1.39, but you have opentelemetry-sdk 1.45.1 which is incompatible.\n"}
+,{"stream_name":"stdout","time":220.942433565,"data":"[    220s] $ /usr/bin/python3 -m pip uninstall -y -q torchaudio\n"}
+,{"stream_name":"stdout","time":238.541327248,"data":"[    238s] ENV {\"pip_rc\": 0, \"env\": \"{\\\"torch\\\": \\\"2.13.0+cu130\\\", \\\"cuda\\\": \\\"13.0\\\", \\\"vllm\\\": \\\"0.31.0\\\", \\\"transformers\\\": \\\"5.13.0\\\", \\\"gpus\\\": [\\\"Tesla T4\\\", \\\"Tesla T4\\\"]}\", \"env_err\": \"\", \"nvidia_smi\": \"name, memory.total [MiB], driver_version\\nTesla T4, 15360 MiB, 580.178.04\\nTesla T4, 15360 MiB, 580.178.04\\n\"}\n"}
+,{"stream_name":"stdout","time":238.5433646,"data":"[    238s] run gate: 40 problems\n"}
+,{"stream_name":"stdout","time":238.543720447,"data":"[    238s] $ /usr/bin/python3 scripts/label_gen/stage1_solve.py --backend vllm --model deepseek-ai/DeepSeek-R1-0528-Qwen3-8B --tensor-parallel-size 2 --dtype float16 --problems /kaggle/working/T-020/gate/problems_run.jsonl --out /kaggle/working/T-020/gate --samples 5 --max-new-tokens 6144 --min-base-acc 0.5 --chunk-size 96\n"}
+,{"stream_name":"stdout","time":238.618160126,"data":"08:02:46 stage1: 40 problems, 0 samples on disk (bad lines 0, duplicates 0)\n"}
+,{"stream_name":"stdout","time":238.618325205,"data":"08:02:46 stage1 deepseek-ai/DeepSeek-R1-0528-Qwen3-8B: 0 done, 200 pending\n"}
+,{"stream_name":"stderr","time":238.620799017,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":238.621325077,"data":"  File \"/kaggle/working/repo/self-perturb/scripts/label_gen/stage1_solve.py\", line 113, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":238.621337773,"data":"    main()\n"}
+,{"stream_name":"stderr","time":238.621342283,"data":"    ~~~~^^\n"}
+,{"stream_name":"stderr","time":238.621346358,"data":"  File \"/kaggle/working/repo/self-perturb/scripts/label_gen/stage1_solve.py\", line 76, in main\n"}
+,{"stream_name":"stderr","time":238.621350892,"data":"    tokenizer = load_tokenizer(model_id)\n"}
+,{"stream_name":"stderr","time":238.62135504,"data":"  File \"/kaggle/working/repo/self-perturb/scripts/label_gen/common.py\", line 235, in load_tokenizer\n"}
+,{"stream_name":"stderr","time":238.62135966,"data":"    from selfperturb.features import load_tokenizer as _load\n"}
+,{"stream_name":"stderr","time":238.621363954,"data":"ModuleNotFoundError: No module named 'selfperturb.features'\n"}
+,{"stream_name":"stdout","time":238.658124733,"data":"[    238s] s1 backend=TRITON_ATTN rc=1\n"}
+,{"stream_name":"stdout","time":238.658144695,"data":"[    238s] $ /usr/bin/python3 scripts/label_gen/stage1_solve.py --backend vllm --model deepseek-ai/DeepSeek-R1-0528-Qwen3-8B --tensor-parallel-size 2 --dtype float16 --problems /kaggle/working/T-020/gate/problems_run.jsonl --out /kaggle/working/T-020/gate --samples 5 --max-new-tokens 6144 --min-base-acc 0.5 --chunk-size 96\n"}
+,{"stream_name":"stdout","time":238.728978668,"data":"08:02:46 stage1: 40 problems, 0 samples on disk (bad lines 0, duplicates 0)\n"}
+,{"stream_name":"stdout","time":238.729142048,"data":"08:02:46 stage1 deepseek-ai/DeepSeek-R1-0528-Qwen3-8B: 0 done, 200 pending\n"}
+,{"stream_name":"stderr","time":238.730027991,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":238.730524724,"data":"  File \"/kaggle/working/repo/self-perturb/scripts/label_gen/stage1_solve.py\", line 113, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":238.73053684,"data":"    main()\n"}
+,{"stream_name":"stderr","time":238.730542349,"data":"    ~~~~^^\n"}
+,{"stream_name":"stderr","time":238.730548949,"data":"  File \"/kaggle/working/repo/self-perturb/scripts/label_gen/stage1_solve.py\", line 76, in main\n"}
+,{"stream_name":"stderr","time":238.730551425,"data":"    tokenizer = load_tokenizer(model_id)\n"}
+,{"stream_name":"stderr","time":238.730553921,"data":"  File \"/kaggle/working/repo/self-perturb/scripts/label_gen/common.py\", line 235, in load_tokenizer\n"}
+,{"stream_name":"stderr","time":238.730556351,"data":"    from selfperturb.features import load_tokenizer as _load\n"}
+,{"stream_name":"stderr","time":238.730558594,"data":"ModuleNotFoundError: No module named 'selfperturb.features'\n"}
+,{"stream_name":"stdout","time":238.772374561,"data":"[    238s] s1 backend=None rc=1\n"}
+,{"stream_name":"stdout","time":238.77239223,"data":"[    238s] $ /usr/bin/python3 scripts/label_gen/stage1_solve.py --backend vllm --model deepseek-ai/DeepSeek-R1-0528-Qwen3-8B --tensor-parallel-size 2 --dtype float16 --problems /kaggle/working/T-020/gate/problems_run.jsonl --out /kaggle/working/T-020/gate --samples 5 --max-new-tokens 6144 --min-base-acc 0.5 --chunk-size 96\n"}
+,{"stream_name":"stdout","time":238.845836252,"data":"08:02:46 stage1: 40 problems, 0 samples on disk (bad lines 0, duplicates 0)\n"}
+,{"stream_name":"stdout","time":238.84600038600001,"data":"08:02:46 stage1 deepseek-ai/DeepSeek-R1-0528-Qwen3-8B: 0 done, 200 pending\n"}
+,{"stream_name":"stderr","time":238.846883307,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":238.847343683,"data":"  File \"/kaggle/working/repo/self-perturb/scripts/label_gen/stage1_solve.py\", line 113, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":238.847351872,"data":"    main()\n"}
+,{"stream_name":"stderr","time":238.847355494,"data":"    ~~~~^^\n"}
+,{"stream_name":"stderr","time":238.847362097,"data":"  File \"/kaggle/working/repo/self-perturb/scripts/label_gen/stage1_solve.py\", line 76, in main\n"}
+,{"stream_name":"stderr","time":238.847365645,"data":"    tokenizer = load_tokenizer(model_id)\n"}
+,{"stream_name":"stderr","time":238.847367959,"data":"  File \"/kaggle/working/repo/self-perturb/scripts/label_gen/common.py\", line 235, in load_tokenizer\n"}
+,{"stream_name":"stderr","time":238.847370438,"data":"    from selfperturb.features import load_tokenizer as _load\n"}
+,{"stream_name":"stderr","time":238.847373358,"data":"ModuleNotFoundError: No module named 'selfperturb.features'\n"}
+,{"stream_name":"stdout","time":238.886722951,"data":"[    238s] s1 backend=FLEX_ATTENTION rc=1\n"}
+,{"stream_name":"stdout","time":238.886991763,"data":"[    238s] TOKEN_STATS {}\n"}
+,{"stream_name":"stdout","time":238.887244386,"data":"[    238s] DONE gate rc 1\n"}
+,{"stream_name":"stderr","time":240.920381518,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":240.920405565,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":241.148489051,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":241.148542215,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":242.060296931,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":243.168694704,"data":"[NbConvertApp] Writing 2802854 bytes to __results__.html\n"}
+]
