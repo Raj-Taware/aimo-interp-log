@@ -1,0 +1,21 @@
+{
+  "stage1_kept": 26,
+  "complete": 26,
+  "rule_a": {
+    "n": 26,
+    "agreement": 0.346,
+    "kappa": -0.182,
+    "official_robust": 4,
+    "mine_robust": 15
+  },
+  "rule_b": {
+    "n": 26,
+    "agreement": 0.346,
+    "kappa": -0.182,
+    "official_robust": 4,
+    "mine_robust": 15
+  },
+  "pass": false,
+  "new_labelled": 0,
+  "new_robust": 0
+}

@@ -1,0 +1,6 @@
+{
+  "run": "gate",
+  "rc": 0,
+  "wall_h": 4.049,
+  "n_problems": 40
+}

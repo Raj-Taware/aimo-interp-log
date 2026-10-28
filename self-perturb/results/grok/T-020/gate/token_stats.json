@@ -1,0 +1,26 @@
+{
+  "stage1": {
+    "n": 200,
+    "tokens_total": 816316,
+    "median_tokens": 3897.0,
+    "mean_tokens": 4081.6,
+    "max_tokens": 6144,
+    "n_hit_cap": 72,
+    "hit_cap_rate": 0.36,
+    "gen_seconds": 6333.1,
+    "tok_per_s": 128.9,
+    "n_chunks": 3
+  },
+  "stage3": {
+    "n": 320,
+    "tokens_total": 1075937,
+    "median_tokens": 3228.0,
+    "mean_tokens": 3362.3,
+    "max_tokens": 6144,
+    "n_hit_cap": 43,
+    "hit_cap_rate": 0.1344,
+    "gen_seconds": 7306.9,
+    "tok_per_s": 147.2,
+    "n_chunks": 4
+  }
+}
