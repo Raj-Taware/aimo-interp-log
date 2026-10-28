@@ -1,0 +1,57 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/339 [00:01<10:44,  1.91s/it]
+Loading weights:   1%|          | 2/339 [00:02<05:03,  1.11it/s]
+Loading weights:  15%|█▌        | 52/339 [00:02<00:07, 37.10it/s]
+Loading weights:  19%|█▉        | 64/339 [00:02<00:06, 43.27it/s]
+Loading weights:  22%|██▏       | 73/339 [00:02<00:06, 41.96it/s]
+Loading weights:  24%|██▎       | 80/339 [00:02<00:06, 42.27it/s]
+Loading weights:  26%|██▌       | 88/339 [00:03<00:06, 41.00it/s]
+Loading weights:  28%|██▊       | 94/339 [00:03<00:05, 42.32it/s]
+Loading weights:  30%|██▉       | 101/339 [00:03<00:06, 36.33it/s]
+Loading weights:  34%|███▎      | 114/339 [00:03<00:04, 49.56it/s]
+Loading weights:  37%|███▋      | 124/339 [00:03<00:04, 43.70it/s]
+Loading weights:  40%|████      | 136/339 [00:04<00:03, 55.44it/s]
+Loading weights:  42%|████▏     | 144/339 [00:04<00:04, 47.73it/s]
+Loading weights:  45%|████▍     | 151/339 [00:04<00:04, 46.43it/s]
+Loading weights:  47%|████▋     | 160/339 [00:04<00:04, 42.53it/s]
+Loading weights:  51%|█████     | 172/339 [00:04<00:03, 52.56it/s]
+Loading weights:  53%|█████▎    | 179/339 [00:04<00:02, 55.77it/s]
+Loading weights:  55%|█████▍    | 186/339 [00:05<00:03, 40.16it/s]
+Loading weights:  58%|█████▊    | 197/339 [00:05<00:02, 49.27it/s]
+Loading weights:  61%|██████▏   | 208/339 [00:05<00:02, 48.27it/s]
+Loading weights:  63%|██████▎   | 214/339 [00:05<00:02, 42.28it/s]
+Loading weights:  65%|██████▌   | 222/339 [00:06<00:02, 42.55it/s]
+Loading weights:  68%|██████▊   | 232/339 [00:06<00:02, 48.76it/s]
+Loading weights:  72%|███████▏  | 244/339 [00:06<00:01, 56.10it/s]
+Loading weights:  74%|███████▎  | 250/339 [00:06<00:01, 46.55it/s]
+Loading weights:  76%|███████▌  | 257/339 [00:06<00:01, 48.29it/s]
+Loading weights:  79%|███████▉  | 268/339 [00:07<00:01, 41.71it/s]
+Loading weights:  81%|████████  | 273/339 [00:07<00:01, 40.48it/s]
+Loading weights:  83%|████████▎ | 282/339 [00:07<00:01, 44.91it/s]
+Loading weights:  86%|████████▌ | 292/339 [00:07<00:01, 45.80it/s]
+Loading weights:  90%|████████▉ | 304/339 [00:07<00:00, 45.92it/s]
+Loading weights:  93%|█████████▎| 316/339 [00:07<00:00, 56.24it/s]
+Loading weights:  95%|█████████▌| 323/339 [00:08<00:00, 56.45it/s]
+Loading weights:  97%|█████████▋| 330/339 [00:08<00:00, 45.27it/s]
+Loading weights: 100%|██████████| 339/339 [00:08<00:00, 40.91it/s]
+173 rows | model loaded in 10.9s
+10/173  0.21s/row
+20/173  0.16s/row
+30/173  0.15s/row
+40/173  0.14s/row
+50/173  0.14s/row
+60/173  0.14s/row
+70/173  0.13s/row
+80/173  0.13s/row
+90/173  0.13s/row
+100/173  0.13s/row
+110/173  0.13s/row
+120/173  0.13s/row
+130/173  0.13s/row
+140/173  0.13s/row
+150/173  0.13s/row
+160/173  0.13s/row
+170/173  0.13s/row
+wrote /kaggle/working/repo/scratch/pool__Skywork_Skywork-OR1-Math-7B/states.npz (19.9 MB)

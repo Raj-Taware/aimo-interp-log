@@ -1,0 +1,63 @@
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/399 [00:02<15:20,  2.31s/it]
+Loading weights:  13%|█▎        | 50/399 [00:02<00:13, 25.79it/s]
+Loading weights:  18%|█▊        | 70/399 [00:02<00:10, 32.21it/s]
+Loading weights:  20%|██        | 81/399 [00:03<00:08, 36.85it/s]
+Loading weights:  23%|██▎       | 92/399 [00:03<00:08, 37.59it/s]
+Loading weights:  26%|██▌       | 103/399 [00:03<00:07, 41.18it/s]
+Loading weights:  29%|██▊       | 114/399 [00:03<00:06, 46.19it/s]
+Loading weights:  30%|███       | 121/399 [00:03<00:06, 45.73it/s]
+Loading weights:  32%|███▏      | 127/399 [00:04<00:06, 44.03it/s]
+Loading weights:  34%|███▍      | 136/399 [00:04<00:06, 43.12it/s]
+Loading weights:  37%|███▋      | 147/399 [00:04<00:05, 46.25it/s]
+Loading weights:  38%|███▊      | 152/399 [00:04<00:05, 45.17it/s]
+Loading weights:  40%|███▉      | 158/399 [00:04<00:05, 46.19it/s]
+Loading weights:  42%|████▏     | 169/399 [00:04<00:04, 48.60it/s]
+Loading weights:  45%|████▌     | 180/399 [00:05<00:04, 47.07it/s]
+Loading weights:  48%|████▊     | 191/399 [00:05<00:05, 40.99it/s]
+Loading weights:  51%|█████     | 204/399 [00:05<00:04, 48.55it/s]
+Loading weights:  53%|█████▎    | 213/399 [00:05<00:03, 52.77it/s]
+Loading weights:  56%|█████▌    | 224/399 [00:05<00:03, 57.47it/s]
+Loading weights:  58%|█████▊    | 231/399 [00:06<00:03, 55.46it/s]
+Loading weights:  59%|█████▉    | 237/399 [00:06<00:03, 49.97it/s]
+Loading weights:  62%|██████▏   | 246/399 [00:06<00:02, 52.86it/s]
+Loading weights:  64%|██████▍   | 257/399 [00:06<00:02, 47.96it/s]
+Loading weights:  67%|██████▋   | 268/399 [00:06<00:02, 52.58it/s]
+Loading weights:  70%|██████▉   | 279/399 [00:07<00:02, 48.89it/s]
+Loading weights:  73%|███████▎  | 290/399 [00:07<00:02, 48.12it/s]
+Loading weights:  74%|███████▍  | 295/399 [00:07<00:02, 48.41it/s]
+Loading weights:  77%|███████▋  | 307/399 [00:07<00:01, 59.74it/s]
+Loading weights:  79%|███████▊  | 314/399 [00:07<00:01, 46.79it/s]
+Loading weights:  81%|████████  | 323/399 [00:08<00:01, 49.00it/s]
+Loading weights:  82%|████████▏ | 329/399 [00:08<00:01, 51.02it/s]
+Loading weights:  84%|████████▍ | 335/399 [00:08<00:01, 48.62it/s]
+Loading weights:  86%|████████▋ | 345/399 [00:08<00:01, 46.84it/s]
+Loading weights:  89%|████████▉ | 356/399 [00:08<00:01, 42.18it/s]
+Loading weights:  92%|█████████▏| 367/399 [00:08<00:00, 48.83it/s]
+Loading weights:  93%|█████████▎| 373/399 [00:09<00:00, 48.79it/s]
+Loading weights:  95%|█████████▍| 379/399 [00:09<00:00, 49.97it/s]
+Loading weights:  97%|█████████▋| 389/399 [00:09<00:00, 48.25it/s]
+Loading weights: 100%|██████████| 399/399 [00:09<00:00, 42.23it/s]
+173 rows | model loaded in 13.3s
+10/173  0.23s/row
+20/173  0.18s/row
+30/173  0.16s/row
+40/173  0.16s/row
+50/173  0.15s/row
+60/173  0.15s/row
+70/173  0.15s/row
+80/173  0.15s/row
+90/173  0.15s/row
+100/173  0.15s/row
+110/173  0.15s/row
+120/173  0.15s/row
+130/173  0.15s/row
+140/173  0.15s/row
+150/173  0.15s/row
+160/173  0.15s/row
+170/173  0.15s/row
+wrote /kaggle/working/repo/scratch/pool__deepseek-ai_DeepSeek-R1-0528-Qwen3-8B/states.npz (28.4 MB)

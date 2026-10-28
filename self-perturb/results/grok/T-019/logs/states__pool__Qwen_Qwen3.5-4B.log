@@ -1,0 +1,43 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 1059.84it/s]
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/426 [00:01<14:04,  1.99s/it]
+Loading weights:  30%|███       | 128/426 [00:02<00:03, 84.34it/s]
+Loading weights:  44%|████▍     | 189/426 [00:02<00:02, 93.10it/s]
+Loading weights:  53%|█████▎    | 227/426 [00:03<00:02, 93.90it/s]
+Loading weights:  60%|█████▉    | 254/426 [00:03<00:01, 95.53it/s]
+Loading weights:  65%|██████▍   | 275/426 [00:03<00:01, 98.03it/s]
+Loading weights:  69%|██████▉   | 293/426 [00:03<00:01, 101.07it/s]
+Loading weights:  73%|███████▎  | 309/426 [00:03<00:01, 98.99it/s] 
+Loading weights:  76%|███████▌  | 323/426 [00:03<00:01, 102.46it/s]
+Loading weights:  79%|███████▉  | 337/426 [00:04<00:00, 106.66it/s]
+Loading weights:  82%|████████▏ | 350/426 [00:04<00:00, 101.41it/s]
+Loading weights:  85%|████████▍ | 362/426 [00:04<00:00, 102.17it/s]
+Loading weights:  88%|████████▊ | 374/426 [00:04<00:00, 105.30it/s]
+Loading weights:  91%|█████████ | 386/426 [00:04<00:00, 97.91it/s] 
+Loading weights:  93%|█████████▎| 397/426 [00:04<00:00, 96.87it/s]
+Loading weights:  96%|█████████▋| 411/426 [00:04<00:00, 98.97it/s]
+Loading weights: 100%|██████████| 426/426 [00:04<00:00, 86.24it/s]
+173 rows | model loaded in 7.8s
+10/173  0.87s/row
+20/173  0.80s/row
+30/173  0.78s/row
+40/173  0.77s/row
+50/173  0.76s/row
+60/173  0.74s/row
+70/173  0.71s/row
+80/173  0.70s/row
+90/173  0.69s/row
+100/173  0.67s/row
+110/173  0.66s/row
+120/173  0.65s/row
+130/173  0.64s/row
+140/173  0.63s/row
+150/173  0.61s/row
+160/173  0.60s/row
+170/173  0.59s/row
+wrote /kaggle/working/repo/scratch/pool__Qwen_Qwen3.5-4B/states.npz (16.0 MB)
