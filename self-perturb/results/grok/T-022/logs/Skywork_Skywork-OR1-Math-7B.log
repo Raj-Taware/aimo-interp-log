@@ -1,0 +1,205 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]
+Fetching 4 files:  25%|██▌       | 1/4 [00:13<00:41, 13.93s/it]
+Fetching 4 files:  50%|█████     | 2/4 [00:47<00:50, 25.32s/it]
+Fetching 4 files:  75%|███████▌  | 3/4 [00:56<00:17, 17.86s/it]
+Fetching 4 files: 100%|██████████| 4/4 [00:57<00:00, 11.14s/it]
+Fetching 4 files: 100%|██████████| 4/4 [00:57<00:00, 14.26s/it]
+
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/339 [00:08<46:58,  8.34s/it]
+Loading weights:  13%|█▎        | 45/339 [00:08<00:39,  7.53it/s]
+Loading weights:  40%|████      | 137/339 [00:08<00:07, 27.60it/s]
+Loading weights:  49%|████▊     | 165/339 [00:17<00:17,  9.99it/s]
+Loading weights:  65%|██████▍   | 220/339 [00:17<00:07, 15.57it/s]
+Loading weights:  69%|██████▉   | 234/339 [00:19<00:07, 14.40it/s]
+Loading weights:  72%|███████▏  | 244/339 [00:20<00:07, 13.46it/s]
+Loading weights:  74%|███████▍  | 251/339 [00:20<00:06, 13.16it/s]
+Loading weights:  76%|███████▌  | 256/339 [00:22<00:07, 10.86it/s]
+Loading weights:  77%|███████▋  | 260/339 [00:22<00:06, 11.48it/s]
+Loading weights:  79%|███████▉  | 268/339 [00:23<00:06, 11.00it/s]
+Loading weights:  80%|███████▉  | 271/339 [00:23<00:06, 11.29it/s]
+Loading weights:  83%|████████▎ | 280/339 [00:23<00:04, 12.93it/s]
+Loading weights:  83%|████████▎ | 283/339 [00:24<00:04, 13.07it/s]
+Loading weights:  86%|████████▌ | 292/339 [00:24<00:02, 18.14it/s]
+Loading weights:  87%|████████▋ | 296/339 [00:24<00:02, 19.57it/s]
+Loading weights:  90%|████████▉ | 304/339 [00:24<00:01, 22.75it/s]
+Loading weights:  93%|█████████▎| 316/339 [00:24<00:00, 28.51it/s]
+Loading weights:  94%|█████████▍| 320/339 [00:25<00:00, 27.33it/s]
+Loading weights:  97%|█████████▋| 328/339 [00:25<00:00, 33.62it/s]
+Loading weights: 100%|██████████| 339/339 [00:25<00:00, 13.46it/s]
+[0] gold=116 orig='106' alt='106' lp=-7.84/-7.44
+[1] gold=756 orig='560' alt='560' lp=-9.51/-9.56
+[2] gold=150 orig='144' alt='144' lp=-10.84/-10.99
+[3] gold=245 orig='202' alt='101' lp=-11.72/-11.53
+[4] gold=392 orig='976' alt='976' lp=-9.11/-9.47
+[5] gold=459 orig='438' alt='420' lp=-11.13/-15.46
+[6] gold=33 orig='103' alt='19' lp=-8.23/-8.55
+[7] gold=227 orig='342' alt='' lp=-7.78/nan
+[8] gold=242 orig='125' alt='333' lp=-10.58/-11.48
+[9] gold=834 orig='50' alt='100' lp=-21.17/-19.40
+[10] gold=550 orig='176' alt='120' lp=-11.28/-10.26
+[11] gold=228 orig='105' alt='105' lp=-11.05/-11.00
+[12] gold=289 orig='113' alt='' lp=-10.53/nan
+[13] gold=378 orig='324' alt='' lp=-9.14/nan
+[14] gold=247 orig='128' alt='' lp=-8.87/nan
+[15] gold=154 orig='220' alt='220' lp=-8.46/-8.96
+[16] gold=4 orig='56' alt='56' lp=-11.51/-9.38
+[17] gold=180 orig='100' alt='108' lp=-7.86/-7.29
+[18] gold=23 orig='25' alt='29' lp=-6.78/-7.88
+[19] gold=220 orig='12' alt='12' lp=-11.10/-10.50
+[20] gold=188 orig='501' alt='1001' lp=-11.73/-11.75
+[21] gold=140 orig='120' alt='120' lp=-11.49/-11.39
+[22] gold=125 orig='11' alt='11' lp=-9.63/-9.58
+[23] gold=21 orig='145' alt='101' lp=-9.14/-9.21
+[24] gold=112 orig='201' alt='201' lp=-8.41/-8.44
+[25] gold=72 orig='140' alt='190' lp=-11.78/-12.31
+[26] gold=841 orig='11' alt='11' lp=-11.69/-11.84
+[27] gold=192 orig='144\\sqrt{3' alt='168' lp=-7.92/-9.84
+[28] gold=80 orig='240' alt='360' lp=-10.44/-10.80
+[29] gold=244 orig='26' alt='26' lp=-17.18/-16.88
+[30] gold=191 orig='113' alt='' lp=-10.84/nan
+[31] gold=944 orig='1012' alt='1014' lp=-12.27/-12.08
+[32] gold=235 orig='386' alt='256' lp=-10.61/-8.78
+[33] gold=75 orig='100' alt='100' lp=-6.75/-6.73
+[34] gold=125 orig='11' alt='11' lp=-9.14/-9.28
+[35] gold=608 orig='120' alt='120' lp=-11.28/-11.17
+[36] gold=349 orig='997' alt='997' lp=-15.97/-14.34
+[37] gold=881 orig='11' alt='' lp=-18.55/nan
+[38] gold=607 orig='105' alt='123' lp=-13.30/-14.76
+[39] gold=12 orig='15' alt='15' lp=-7.50/-7.80
+[40] gold=106 orig='56' alt='43' lp=-8.42/-8.04
+[41] gold=51 orig='13' alt='11' lp=-9.09/-8.57
+[42] gold=49 orig='24' alt='12' lp=-7.17/-7.50
+[43] gold=125 orig='48' alt='40' lp=-14.29/-14.06
+[44] gold=738 orig='1980' alt='1992' lp=-12.14/-12.51
+[45] gold=220 orig='270' alt='' lp=-4.79/nan
+[46] gold=144 orig='128' alt='128' lp=-3.98/-4.32
+[47] gold=81 orig='256' alt='1024' lp=-13.29/-13.03
+[48] gold=247 orig='14' alt='145' lp=-10.05/-9.25
+[49] gold=167 orig='334' alt='334' lp=-8.75/-8.58
+[50] gold=751 orig='143' alt='113' lp=-12.64/-11.97
+[51] gold=363 orig='256' alt='128' lp=-9.88/-10.78
+[52] gold=585 orig='797' alt='919' lp=-10.63/-9.85
+[53] gold=250 orig='200' alt='100' lp=-5.40/-7.07
+[54] gold=273 orig='108' alt='100' lp=-11.24/-11.31
+[55] gold=719 orig='113' alt='113' lp=-11.02/-10.69
+[56] gold=35 orig='53' alt='53' lp=-9.03/-9.35
+[57] gold=928 orig='12' alt='12' lp=-12.99/-13.34
+[58] gold=24 orig='49' alt='49' lp=-9.47/-10.62
+[59] gold=33 orig='117' alt='117' lp=-7.51/-7.45
+[60] gold=204 orig='120' alt='120' lp=-9.22/-9.26
+[61] gold=113 orig='103' alt='12' lp=-9.08/-9.28
+[62] gold=371 orig='101' alt='' lp=-14.25/nan
+[63] gold=385 orig='16' alt='16' lp=-14.50/-13.41
+[64] gold=110 orig='30' alt='30' lp=-14.85/-9.05
+[65] gold=104 orig='35' alt='35' lp=-10.89/-10.77
+[66] gold=721 orig='34' alt='145' lp=-12.11/-11.42
+[67] gold=25 orig='16' alt='100' lp=-6.46/-5.42
+[68] gold=809 orig='675' alt='506' lp=-9.41/-11.43
+[69] gold=116 orig='50' alt='5' lp=-11.37/-11.37
+[70] gold=104 orig='111' alt='111' lp=-9.19/-9.29
+[71] gold=294 orig='70' alt='1792' lp=-13.20/-12.62
+[72] gold=540 orig='312' alt='312' lp=-7.71/-6.38
+[73] gold=197 orig='1013' alt='1013' lp=-9.50/-8.66
+[74] gold=480 orig='112' alt='16' lp=-13.31/-10.63
+[75] gold=73 orig='10' alt='10' lp=-10.66/-10.90
+[76] gold=468 orig='156' alt='196' lp=-10.46/-10.81
+[77] gold=601 orig='301' alt='301' lp=-6.77/-6.86
+[78] gold=23 orig='109' alt='109' lp=-8.48/-8.62
+[79] gold=321 orig='376' alt='376' lp=-10.77/-11.45
+[80] gold=211 orig='101' alt='101' lp=-8.58/-8.90
+[81] gold=315 orig='1080' alt='105' lp=-10.76/-8.35
+[82] gold=236 orig='154' alt='122' lp=-9.05/-9.27
+[83] gold=45 orig='12' alt='12' lp=-10.14/-10.41
+[84] gold=33 orig='11' alt='11' lp=-7.72/-7.09
+[85] gold=80 orig='100' alt='100' lp=-5.54/-8.27
+[86] gold=55 orig='2024' alt='81' lp=-10.02/-10.74
+[87] gold=699 orig='9876' alt='9876' lp=-12.30/-12.09
+[88] gold=127 orig='112' alt='11' lp=-11.03/-10.71
+[89] gold=902 orig='120' alt='120' lp=-11.15/-11.82
+[90] gold=142 orig='82' alt='28' lp=-7.70/-10.26
+[91] gold=144 orig='128' alt='128' lp=-5.86/-6.21
+[92] gold=81 orig='36' alt='42' lp=-5.26/-8.54
+[93] gold=4 orig='4' alt='' lp=-4.29/nan
+[94] gold=13 orig='13' alt='13' lp=-3.01/-4.01
+[95] gold=2 orig='0' alt='0' lp=-3.67/-5.12
+[96] gold=30 orig='120' alt='210' lp=-7.23/-7.33
+[97] gold=18 orig='1489' alt='1489' lp=-9.71/-9.55
+[98] gold=-4 orig='2 + \\sqrt{3' alt='2' lp=-18.89/-17.98
+[99] gold=359 orig='720' alt='720' lp=-18.69/-14.71
+[100] gold=8178 orig='1287' alt='1287' lp=-17.74/-17.83
+[101] gold=5 orig='72' alt='56' lp=-13.12/-12.28
+[102] gold=4 orig='34' alt='5' lp=-5.98/-5.38
+[103] gold=20 orig='2\\sqrt{2' alt='2\\sqrt{2' lp=-5.98/-5.60
+[104] gold=8 orig='13' alt='13' lp=-7.96/-7.21
+[105] gold=1296 orig='120' alt='1296' lp=-8.64/-6.51
+[106] gold=17 orig='3' alt='3' lp=-7.94/-8.40
+[107] gold=6 orig='15' alt='15' lp=-3.41/-5.56
+[108] gold=841 orig='421' alt='421' lp=-3.84/-3.83
+[109] gold=36 orig='12' alt='12' lp=-7.79/-7.39
+[110] gold=10 orig='100' alt='10' lp=-3.61/-2.71
+[111] gold=7 orig='12' alt='22' lp=-8.69/-8.39
+[112] gold=2 orig='0' alt='1' lp=-3.48/-4.46
+[113] gold=2 orig='1' alt='1' lp=-6.30/-6.28
+[114] gold=20 orig='19' alt='42' lp=-7.64/-8.45
+[115] gold=5 orig='17' alt='25' lp=-6.42/-5.28
+[116] gold=4 orig='1' alt='12' lp=-5.89/-6.22
+[117] gold=76 orig='232' alt='2304' lp=-15.59/-13.53
+[118] gold=22 orig='16' alt='40' lp=-9.51/-9.55
+[119] gold=44 orig='113' alt='' lp=-8.58/nan
+[120] gold=20 orig='15' alt='12' lp=-10.81/-10.53
+[121] gold=23 orig='13' alt='10' lp=-8.72/-8.11
+[122] gold=36 orig='100' alt='100' lp=-8.20/-7.95
+[123] gold=5 orig='1001' alt='121' lp=-10.46/-10.40
+[124] gold=6 orig='14' alt='15' lp=-5.91/-6.04
+[125] gold=47 orig='19' alt='14' lp=-9.40/-8.75
+[126] gold=4 orig='5 - 2\\sqrt{3' alt='5 - 2\\sqrt{3' lp=-7.51/-7.76
+[127] gold=0 orig='0' alt='0' lp=-3.18/-3.31
+[128] gold=8 orig='12' alt='4' lp=-4.62/-5.70
+[129] gold=5 orig='5' alt='5' lp=-3.50/-3.65
+[130] gold=42 orig='142' alt='14' lp=-11.26/-12.02
+[131] gold=11 orig='7' alt='10' lp=-5.76/-3.94
+[132] gold=12 orig='24' alt='28' lp=-6.27/-6.88
+[133] gold=27 orig='27' alt='26' lp=-4.25/-7.47
+[134] gold=36 orig='10' alt='6' lp=-7.33/-11.78
+[135] gold=45 orig='45' alt='30' lp=-4.14/-6.47
+[136] gold=3159 orig='190' alt='100' lp=-22.29/-20.55
+[137] gold=36 orig='15' alt='15' lp=-5.62/-7.24
+[138] gold=7 orig='6' alt='7' lp=-5.65/-3.34
+[139] gold=21 orig='10' alt='10' lp=-7.93/-8.65
+[140] gold=3 orig='1024' alt='1093' lp=-10.51/-9.69
+[141] gold=1 orig='49' alt='1' lp=-3.98/-3.71
+[142] gold=4 orig='10' alt='4' lp=-5.38/-4.74
+[143] gold=5 orig='6' alt='6' lp=-6.33/-5.99
+[144] gold=29 orig='123' alt='123' lp=-10.16/-10.02
+[145] gold=96 orig='1' alt='1' lp=-12.04/-8.61
+[146] gold=1 orig='3' alt='3' lp=-4.44/-4.65
+[147] gold=5 orig='5' alt='5' lp=-5.04/-5.18
+[148] gold=-1 orig='2023' alt='2023' lp=-18.82/-18.19
+[149] gold=8 orig='20' alt='20' lp=-13.73/-11.81
+[150] gold=18 orig='13' alt='12' lp=-10.50/-10.02
+[151] gold=265 orig='40' alt='433' lp=-10.22/-10.26
+[152] gold=9 orig='10' alt='12' lp=-6.99/-5.94
+[153] gold=9 orig='24' alt='24' lp=-9.05/-9.60
+[154] gold=7 orig='7' alt='7' lp=-3.66/-3.55
+[155] gold=7 orig='10' alt='15' lp=-7.65/-6.69
+[156] gold=7 orig='13' alt='11' lp=-7.37/-7.07
+[157] gold=13 orig='25' alt='125' lp=-7.80/-9.06
+[158] gold=50 orig='40' alt='16' lp=-6.77/-8.22
+[159] gold=13 orig='13' alt='13' lp=-6.44/-6.73
+[160] gold=5 orig='16' alt='16' lp=-12.00/-8.58
+[161] gold=11 orig='43' alt='11' lp=-4.26/-5.53
+[162] gold=18 orig='15' alt='108 + 36\\sqrt{5' lp=-7.55/-7.95
+[163] gold=50 orig='40' alt='45' lp=-7.08/-7.03
+[164] gold=11 orig='10' alt='10' lp=-7.60/-7.11
+[165] gold=3 orig='2^1 \\cdot 3^1 \\cdot 5^1' alt='2^1 \\cdot 3^2 \\cdot 5^1' lp=-8.24/-5.79
+[166] gold=194 orig='25' alt='25' lp=-17.30/-14.57
+[167] gold=1625 orig='16250' alt='1690' lp=-6.98/-14.22
+[168] gold=4 orig='4' alt='4' lp=-3.54/-3.48
+[169] gold=6 orig='5' alt='6' lp=-3.59/-3.10
+[170] gold=901 orig='12' alt='12' lp=-14.12/-15.18
+[171] gold=144 orig='144' alt='126' lp=-3.42/-6.07
+[172] gold=8 orig='8' alt='' lp=-3.65/nan
+SUMMARY {"model": "Skywork/Skywork-OR1-Math-7B", "n": 173, "altered": 162, "knows": 12, "knows_and_pm": 7, "knows_not_pm": 5, "seconds": 409.2}

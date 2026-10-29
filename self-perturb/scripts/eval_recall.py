@@ -23,6 +23,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from scipy.stats import spearmanr
 from sklearn.metrics import roc_auc_score
 
 from difficulty_probe import STATES, TRAINV2, key
@@ -31,7 +32,9 @@ MIN_EACH = 12
 
 
 def direction(X, y):
-    return X[y].mean(0) - X[~y].mean(0)
+    if y.dtype == bool:
+        return X[y].mean(0) - X[~y].mean(0)
+    return (X - X.mean(0)).T @ (y - y.mean()) / len(y)  # continuous label: covariance direction
 
 
 def loo_auc(X, y):
@@ -39,13 +42,14 @@ def loo_auc(X, y):
     for i in range(len(y)):
         m = np.arange(len(y)) != i
         s[i] = X[i] @ direction(X[m], y[m])
-    return roc_auc_score(y, s)
+    return roc_auc_score(y, s) if y.dtype == bool else spearmanr(y, s)[0]
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("run", type=Path)
     parser.add_argument("--null-draws", type=int, default=200)
+    parser.add_argument("--fallback", action="store_true", help="pre-registered continuous label pull = lp_alt - lp_orig")
     args = parser.parse_args()
     rng = np.random.default_rng(0)
     tv = pd.read_parquet(TRAINV2)
@@ -58,12 +62,15 @@ def main() -> None:
         g1 = {"knows": int(knows.sum()), "knows_pm": int((knows & pm).sum()), "knows_not_pm": int((knows & ~pm).sum())}
         g1["pass"] = g1["knows_pm"] >= MIN_EACH and g1["knows_not_pm"] >= MIN_EACH
         report["gate1"][safe] = g1
-        if not g1["pass"]:
+        if not (g1["pass"] or args.fallback):
             continue
         pool = np.load(STATES / f"pool__{safe}__states.npz", allow_pickle=True)
         idx = {key(p): i for i, p in enumerate(pool["problems"])}
-        sel = [idx[key(p)] for p, k in zip(r["problems"], knows) if k and key(p) in idx and key(p) not in exclude]
-        y = np.array([pm[i] for i, (p, k) in enumerate(zip(r["problems"], knows)) if k and key(p) in idx and key(p) not in exclude])
+        label = r["lp_alt"].astype(float) - r["lp_orig"].astype(float) if args.fallback else pm
+        use = ~np.isnan(label) if args.fallback else knows
+        keep = [i for i, p in enumerate(r["problems"]) if use[i] and key(p) in idx and key(p) not in exclude]
+        sel = [idx[key(r["problems"][i])] for i in keep]
+        y = label[keep]
         best = max(((loo_auc(pool[pl][sel][:, li].astype(np.float64), y), pl, li)
                     for pl in ("mean", "last") for li in range(1, len(pool["layers"]))), key=lambda t: t[0])
         auc, pl, li = best
@@ -74,7 +81,7 @@ def main() -> None:
         H = tr[pl][ok][:, li].astype(np.float64)
         s = H @ w
         null = [H @ direction(X, rng.permutation(y)) for _ in range(args.null_draws)]
-        report["gate2"][safe] = {"pooling": pl, "layer": int(pool["layers"][li]), "pool_loo_auc": round(float(auc), 3), "n_fit": len(y)}
+        report["gate2"][safe] = {"pooling": pl, "layer": int(pool["layers"][li]), "pool_loo_" + ("spearman" if args.fallback else "auc"): round(float(auc), 3), "n_fit": len(y)}
         for j, p in enumerate(tr["problems"][ok]):
             rows.append({"model": safe, "problem": key(p), "robust": bool(tr["labels"][ok][j]),
                          "score": float(pd.Series(s).rank(pct=True)[j]),
@@ -93,7 +100,7 @@ def main() -> None:
         report["gate2"]["null_p"] = round(float((null_auc >= auc).mean()), 4)
         report["gate2"]["n_problems"] = int(len(prob))
         report["gate2"]["pass"] = bool(auc >= 0.70 and auc > length_auc and report["gate2"]["null_p"] < 0.05)
-    (args.run / "eval_recall.json").write_text(json.dumps(report, indent=2))
+    (args.run / ("eval_recall_fallback.json" if args.fallback else "eval_recall.json")).write_text(json.dumps(report, indent=2))
     print(json.dumps(report, indent=2))
 
 

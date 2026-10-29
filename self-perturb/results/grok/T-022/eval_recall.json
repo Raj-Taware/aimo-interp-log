@@ -1,0 +1,29 @@
+{
+  "gate1": {
+    "allenai_Olmo-3-7B-Think": {
+      "knows": 3,
+      "knows_pm": 3,
+      "knows_not_pm": 0,
+      "pass": false
+    },
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B": {
+      "knows": 7,
+      "knows_pm": 4,
+      "knows_not_pm": 3,
+      "pass": false
+    },
+    "Qwen_Qwen3.5-4B": {
+      "knows": 5,
+      "knows_pm": 4,
+      "knows_not_pm": 1,
+      "pass": false
+    },
+    "Skywork_Skywork-OR1-Math-7B": {
+      "knows": 12,
+      "knows_pm": 7,
+      "knows_not_pm": 5,
+      "pass": false
+    }
+  },
+  "gate2": {}
+}
