@@ -138,6 +138,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--ablate", choices=("shuffled", "length"), default=None)
+    parser.add_argument("--cut", type=float, default=None,
+                        help="fixed cut instead of the train-main-v2 fit (0 = pool mean, label-free)")
     args = parser.parse_args()
     rng = np.random.default_rng(0)
     meta = {key(r["problem"]): r for r in map(json.loads, POOL.open(encoding="utf-8"))}
@@ -167,13 +169,13 @@ def main() -> None:
         rows += [{"model": m, "problem": key(p), "robust": bool(y), "score": float(v)}
                  for p, y, v in zip(tr["problems"][ok], tr["labels"][ok], s)]
     df = pd.DataFrame(rows)
-    cut = best_cut(df["score"].values, df["robust"].values)
+    cut = best_cut(df["score"].values, df["robust"].values) if args.cut is None else args.cut
     loo = []  # leave-one-problem-out: cut chosen without the held-out problem
     for p in df["problem"].unique():
         held = df["problem"] == p
-        c = best_cut(df.loc[~held, "score"].values, df.loc[~held, "robust"].values)
+        c = best_cut(df.loc[~held, "score"].values, df.loc[~held, "robust"].values) if args.cut is None else args.cut
         loo += list((df.loc[held, "score"] < c) == df.loc[held, "robust"])
-    summary = {"ablate": args.ablate, "cut": round(cut, 3), "train_acc": round(float(((df["score"] < cut) == df["robust"]).mean()), 3),
+    summary = {"ablate": args.ablate, "fixed_cut": args.cut is not None, "cut": round(cut, 3), "train_acc": round(float(((df["score"] < cut) == df["robust"]).mean()), 3),
                "loo_problem_acc": round(float(np.mean(loo)), 3), "always_robust_acc": round(float(df["robust"].mean()), 3),
                "models": {m: {k: a[k] for k in ("kind", "layer", "pooling", "alpha", "aime_cv_rho", "pool_mu", "pool_sd")
                               if k in a} for m, a in arts.items()}}
