@@ -1,0 +1,37 @@
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files:  50%|█████     | 1/2 [01:09<01:09, 69.02s/it]
+Fetching 2 files: 100%|██████████| 2/2 [01:09<00:00, 34.51s/it]
+
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/399 [00:01<08:36,  1.30s/it]
+Loading weights:   1%|          | 2/399 [00:06<24:41,  3.73s/it]
+Loading weights:  33%|███▎      | 131/399 [00:06<00:09, 28.50it/s]
+Loading weights:  45%|████▍     | 178/399 [00:07<00:06, 33.30it/s]
+Loading weights:  52%|█████▏    | 209/399 [00:08<00:05, 36.16it/s]
+Loading weights:  58%|█████▊    | 230/399 [00:11<00:08, 20.60it/s]
+Loading weights:  61%|██████▏   | 245/399 [00:12<00:08, 17.44it/s]
+Loading weights:  64%|██████▍   | 255/399 [00:14<00:09, 14.85it/s]
+Loading weights:  66%|██████▌   | 262/399 [00:15<00:11, 11.58it/s]
+Loading weights:  67%|██████▋   | 268/399 [00:17<00:13,  9.49it/s]
+Loading weights:  70%|██████▉   | 279/399 [00:18<00:13,  8.70it/s]
+Loading weights:  73%|███████▎  | 290/399 [00:20<00:13,  8.31it/s]
+Loading weights:  75%|███████▌  | 301/399 [00:21<00:12,  7.94it/s]
+Loading weights:  78%|███████▊  | 312/399 [00:23<00:11,  7.63it/s]
+Loading weights:  81%|████████  | 323/399 [00:24<00:09,  7.70it/s]
+Loading weights:  81%|████████▏ | 325/399 [00:24<00:09,  7.98it/s]
+Loading weights:  84%|████████▎ | 334/399 [00:26<00:08,  7.31it/s]
+Loading weights:  86%|████████▋ | 345/399 [00:27<00:07,  7.33it/s]
+Loading weights:  89%|████████▉ | 356/399 [00:29<00:05,  7.35it/s]
+Loading weights:  92%|█████████▏| 367/399 [00:30<00:04,  7.22it/s]
+Loading weights:  95%|█████████▍| 378/399 [00:32<00:02,  7.36it/s]
+Loading weights:  95%|█████████▍| 379/399 [00:32<00:02,  7.41it/s]
+Loading weights:  97%|█████████▋| 389/399 [00:33<00:01,  7.22it/s]
+Loading weights: 100%|██████████| 399/399 [00:33<00:00, 11.74it/s]
+[0] trace=64 identity=2.76e-07 drift=[0.01077 0.02446] nll_gap=[0.0257 0.0641]
+[1] trace=64 identity=3.05e-07 drift=[0.00678 0.00874] nll_gap=[ 0.0044 -0.0002]
+[2] trace=64 identity=2.78e-07 drift=[    nan 0.00725] nll_gap=[   nan 0.0207]
+SUMMARY {"model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B", "n": 3, "median_identity": 2.775341272354126e-07, "median_drift": 0.008736134506762028, "median_trace": 64.0, "seconds": 19.2}

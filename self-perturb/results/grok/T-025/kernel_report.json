@@ -1,0 +1,76 @@
+{
+  "env": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.13.0",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ]
+  },
+  "wall_hours": 1.225,
+  "finished": true,
+  "timings": {
+    "smoke": {
+      "seconds": 157.0,
+      "returncode": 0
+    },
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B": {
+      "seconds": 1040.0,
+      "returncode": 0
+    },
+    "Qwen_Qwen3.5-4B": {
+      "seconds": 1337.5,
+      "returncode": 0
+    },
+    "Skywork_Skywork-OR1-Math-7B": {
+      "seconds": 891.9,
+      "returncode": 0
+    },
+    "allenai_Olmo-3-7B-Think": {
+      "seconds": 947.9,
+      "returncode": 0
+    }
+  },
+  "summaries": {
+    "smoke": {
+      "model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "n": 3,
+      "median_identity": 2.775341272354126e-07,
+      "median_drift": 0.008736134506762028,
+      "median_trace": 64.0,
+      "seconds": 19.2
+    },
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B": {
+      "model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "n": 161,
+      "median_identity": 2.8870999813079834e-07,
+      "median_drift": 0.008210084866732359,
+      "median_trace": 64.0,
+      "seconds": 1015.5
+    },
+    "Qwen_Qwen3.5-4B": {
+      "model": "Qwen/Qwen3.5-4B",
+      "n": 161,
+      "median_identity": 2.9709190130233765e-07,
+      "median_drift": 0.01528799906373024,
+      "median_trace": 64.0,
+      "seconds": 1268.2
+    },
+    "Skywork_Skywork-OR1-Math-7B": {
+      "model": "Skywork/Skywork-OR1-Math-7B",
+      "n": 161,
+      "median_identity": 2.384185791015625e-07,
+      "median_drift": 0.00439582159742713,
+      "median_trace": 64.0,
+      "seconds": 789.1
+    },
+    "allenai_Olmo-3-7B-Think": {
+      "model": "allenai/Olmo-3-7B-Think",
+      "n": 161,
+      "median_identity": 1.816079020500183e-07,
+      "median_drift": 0.013085856102406979,
+      "median_trace": 64.0,
+      "seconds": 838.8
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "gate0": {
+    "allenai_Olmo-3-7B-Think": {
+      "identity": 1.816079020500183e-07,
+      "drift": 0.013085856102406979,
+      "trace": 64.0,
+      "scored": 1.0,
+      "pass": true
+    },
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B": {
+      "identity": 2.8870999813079834e-07,
+      "drift": 0.008210084866732359,
+      "trace": 64.0,
+      "scored": 1.0,
+      "pass": true
+    },
+    "Qwen_Qwen3.5-4B": {
+      "identity": 2.9709190130233765e-07,
+      "drift": 0.01528799906373024,
+      "trace": 64.0,
+      "scored": 1.0,
+      "pass": true
+    },
+    "Skywork_Skywork-OR1-Math-7B": {
+      "identity": 2.384185791015625e-07,
+      "drift": 0.00439582159742713,
+      "trace": 64.0,
+      "scored": 1.0,
+      "pass": true
+    }
+  },
+  "gate1": {
+    "n": 22,
+    "positives": 7,
+    "auc": 0.295,
+    "best_length_auc": 0.586,
+    "p": 0.943,
+    "pass": false
+  },
+  "gate2": {
+    "n": 137,
+    "positives": 101,
+    "auc": 0.588,
+    "best_length_auc": 0.744,
+    "p": 0.0665,
+    "pass": false
+  },
+  "pass": false
+}
