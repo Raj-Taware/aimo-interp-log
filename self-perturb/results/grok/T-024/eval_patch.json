@@ -1,0 +1,49 @@
+{
+  "gate0": {
+    "allenai_Olmo-3-7B-Think": {
+      "identity_kl": 0.0,
+      "kl_pert": 0.06925690174102783,
+      "kl_patch_075": 0.005957667715847492,
+      "scored": 1.0,
+      "pass": true
+    },
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B": {
+      "identity_kl": 0.0,
+      "kl_pert": 0.04447755217552185,
+      "kl_patch_075": 0.0071237762458622456,
+      "scored": 1.0,
+      "pass": true
+    },
+    "Qwen_Qwen3.5-4B": {
+      "identity_kl": 0.0,
+      "kl_pert": 0.016548721119761467,
+      "kl_patch_075": 0.0026105144061148167,
+      "scored": 1.0,
+      "pass": true
+    },
+    "Skywork_Skywork-OR1-Math-7B": {
+      "identity_kl": 0.0,
+      "kl_pert": 0.04631529003381729,
+      "kl_patch_075": 0.012140764854848385,
+      "scored": 1.0,
+      "pass": true
+    }
+  },
+  "gate1": {
+    "n": 22,
+    "positives": 7,
+    "auc": 0.386,
+    "best_length_auc": 0.586,
+    "p": 0.799,
+    "pass": false
+  },
+  "gate2": {
+    "n": 137,
+    "positives": 101,
+    "auc": 0.544,
+    "best_length_auc": 0.744,
+    "p": 0.2175,
+    "pass": false
+  },
+  "pass": false
+}

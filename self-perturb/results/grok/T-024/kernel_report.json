@@ -1,0 +1,96 @@
+{
+  "env": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.13.0",
+    "gpus": [
+      "Tesla T4",
+      "Tesla T4"
+    ]
+  },
+  "wall_hours": 0.666,
+  "finished": true,
+  "timings": {
+    "smoke": {
+      "seconds": 151.0,
+      "returncode": 0
+    },
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B": {
+      "seconds": 354.9,
+      "returncode": 0
+    },
+    "Qwen_Qwen3.5-4B": {
+      "seconds": 912.1,
+      "returncode": 0
+    },
+    "Skywork_Skywork-OR1-Math-7B": {
+      "seconds": 403.0,
+      "returncode": 0
+    },
+    "allenai_Olmo-3-7B-Think": {
+      "seconds": 514.9,
+      "returncode": 0
+    }
+  },
+  "summaries": {
+    "smoke": {
+      "model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "n": 3,
+      "median_identity_kl": 0.0,
+      "median_kl_pert": 0.057533660903573036,
+      "median_kl_patch": [
+        0.051536645740270615,
+        0.03662738390266895,
+        0.006756740855053067
+      ],
+      "seconds": 6.4
+    },
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B": {
+      "model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+      "n": 161,
+      "median_identity_kl": 0.0,
+      "median_kl_pert": 0.04447755217552185,
+      "median_kl_patch": [
+        0.04148224741220474,
+        0.024144098162651062,
+        0.0071237762458622456
+      ],
+      "seconds": 329.0
+    },
+    "Qwen_Qwen3.5-4B": {
+      "model": "Qwen/Qwen3.5-4B",
+      "n": 161,
+      "median_identity_kl": 0.0,
+      "median_kl_pert": 0.016548721119761467,
+      "median_kl_patch": [
+        0.01598880998790264,
+        0.01113999541848898,
+        0.0026105144061148167
+      ],
+      "seconds": 842.2
+    },
+    "Skywork_Skywork-OR1-Math-7B": {
+      "model": "Skywork/Skywork-OR1-Math-7B",
+      "n": 161,
+      "median_identity_kl": 0.0,
+      "median_kl_pert": 0.04631529003381729,
+      "median_kl_patch": [
+        0.046483371406793594,
+        0.03303074464201927,
+        0.012140764854848385
+      ],
+      "seconds": 295.2
+    },
+    "allenai_Olmo-3-7B-Think": {
+      "model": "allenai/Olmo-3-7B-Think",
+      "n": 161,
+      "median_identity_kl": 0.0,
+      "median_kl_pert": 0.06925690174102783,
+      "median_kl_patch": [
+        0.06547628343105316,
+        0.03414400666952133,
+        0.005957667715847492
+      ],
+      "seconds": 395.5
+    }
+  }
+}
