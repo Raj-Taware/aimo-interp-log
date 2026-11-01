@@ -1,0 +1,38 @@
+{
+  "bins": [
+    36,
+    39,
+    29,
+    33
+  ],
+  "nonrobust_by_bin": [
+    35,
+    31,
+    16,
+    19
+  ],
+  "control_v2_hidden": {
+    "n": 137,
+    "stratified_auc": 0.581,
+    "p": 0.0896
+  },
+  "gate_usable": false,
+  "T-023": {
+    "n": 132,
+    "stratified_auc": 0.654,
+    "p": 0.0084,
+    "pass": false
+  },
+  "T-024": {
+    "n": 137,
+    "stratified_auc": 0.546,
+    "p": 0.2412,
+    "pass": false
+  },
+  "T-025": {
+    "n": 137,
+    "stratified_auc": 0.527,
+    "p": 0.3364,
+    "pass": false
+  }
+}
