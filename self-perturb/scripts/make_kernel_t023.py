@@ -1,6 +1,7 @@
-"""T-023: generate the Kaggle kernel for the gradient x input saliency sample.
+"""T-023/T-024: generate the Kaggle kernel for a forward-only or gradient sample on the labelled rows.
 
     python scripts/make_kernel_t023.py --out <dir>
+    python scripts/make_kernel_t023.py --out <dir> --task T-024 --dump dump_patch.py --slug aimo-t024-patch
     kaggle kernels push -p <dir> --accelerator NvidiaTeslaT4
 
 Same environment as T-019/T-021 (torch pin, transformers 5.13.0, fp16). Runs dump_saliency.py on
@@ -22,22 +23,24 @@ from make_kernel_t022 import MODELS, RUNNER, ROOT, TORCH_PIN
 STATES = ROOT / "results/grok/T-019/states"
 SELFDOMAIN = ROOT / "results/grok/T-021/dump/selfdomain__deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.npz"
 TEXT = ["src/selfperturb/__init__.py", "src/selfperturb/perturbations.py", "src/selfperturb/features.py",
-        "scripts/dump_saliency.py"]
+        "src/selfperturb/geometry.py"]
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--slug", default="aimo-t023-saliency")
+    parser.add_argument("--task", default="T-023")
+    parser.add_argument("--dump", default="dump_saliency.py")
     parser.add_argument("--user", default="rajtaware10")
     args = parser.parse_args()
-    text = {rel: (ROOT / rel).read_text(encoding="utf-8") for rel in TEXT}
+    text = {rel: (ROOT / rel).read_text(encoding="utf-8") for rel in [*TEXT, f"scripts/{args.dump}"]}
     problems = list(np.load(SELFDOMAIN, allow_pickle=True)["problems"])
     for f in sorted(STATES.glob("trainv2__*__states.npz")):
         problems += list(np.load(f, allow_pickle=True)["problems"])
     text["rows.jsonl"] = "".join(json.dumps({"problem": p}) + "\n" for p in dict.fromkeys(map(str, problems)))
-    source = (RUNNER.replace("make_kernel_t022", "make_kernel_t023").replace("T-022", "T-023").replace("T022", "T023")
-              .replace("dump_recall.py", "dump_saliency.py").replace('"--pool"', '"--rows"')
+    source = (RUNNER.replace("make_kernel_t022", "make_kernel_t023").replace("T-022", args.task).replace("T022", "T02X")
+              .replace("dump_recall.py", args.dump).replace('"--pool"', '"--rows"')
               .replace("results/grok/T-014/problems.jsonl", "rows.jsonl")
               .replace("@@TEXT@@", repr(json.dumps(text))).replace("@@MODELS@@", repr(json.dumps(MODELS)))
               .replace("@@TORCH_PIN@@", repr(TORCH_PIN)))
