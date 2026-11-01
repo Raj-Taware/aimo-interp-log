@@ -1,0 +1,195 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]
+Fetching 4 files:  25%|██▌       | 1/4 [00:23<01:09, 23.03s/it]
+Fetching 4 files:  50%|█████     | 2/4 [00:45<00:44, 22.45s/it]
+Fetching 4 files:  75%|███████▌  | 3/4 [00:49<00:14, 14.18s/it]
+Fetching 4 files: 100%|██████████| 4/4 [01:04<00:00, 14.42s/it]
+Fetching 4 files: 100%|██████████| 4/4 [01:04<00:00, 16.05s/it]
+
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/339 [00:16<1:34:43, 16.82s/it]
+Loading weights:   1%|          | 3/339 [00:16<24:37,  4.40s/it]  
+Loading weights:  48%|████▊     | 162/339 [00:17<00:09, 18.48it/s]
+Loading weights:  55%|█████▌    | 187/339 [00:17<00:07, 20.59it/s]
+Loading weights:  60%|█████▉    | 203/339 [00:18<00:06, 22.61it/s]
+Loading weights:  63%|██████▎   | 215/339 [00:18<00:05, 24.51it/s]
+Loading weights:  66%|██████▋   | 225/339 [00:19<00:06, 17.84it/s]
+Loading weights:  68%|██████▊   | 232/339 [00:20<00:06, 17.65it/s]
+Loading weights:  70%|██████▉   | 237/339 [00:20<00:06, 16.67it/s]
+Loading weights:  72%|███████▏  | 244/339 [00:22<00:09, 10.40it/s]
+Loading weights:  73%|███████▎  | 247/339 [00:22<00:08, 10.94it/s]
+Loading weights:  76%|███████▌  | 256/339 [00:23<00:08, 10.15it/s]
+Loading weights:  76%|███████▌  | 258/339 [00:24<00:10,  7.44it/s]
+Loading weights:  79%|███████▉  | 268/339 [00:25<00:08,  8.26it/s]
+Loading weights:  80%|███████▉  | 270/339 [00:26<00:10,  6.46it/s]
+Loading weights:  83%|████████▎ | 280/339 [00:27<00:08,  7.28it/s]
+Loading weights:  83%|████████▎ | 282/339 [00:28<00:07,  7.46it/s]
+Loading weights:  86%|████████▌ | 292/339 [00:29<00:06,  7.53it/s]
+Loading weights:  86%|████████▋ | 293/339 [00:29<00:06,  7.56it/s]
+Loading weights:  94%|█████████▎| 317/339 [00:29<00:01, 19.19it/s]
+Loading weights:  97%|█████████▋| 328/339 [00:29<00:00, 24.41it/s]
+Loading weights:  98%|█████████▊| 333/339 [00:30<00:00, 26.45it/s]
+Loading weights: 100%|██████████| 339/339 [00:30<00:00, 11.26it/s]
+[0] tokens=46 enrichment=-0.125 zero_grad=0.000
+[1] tokens=33 enrichment=0.428 zero_grad=0.000
+[2] tokens=11 enrichment=0.079 zero_grad=0.000
+[3] tokens=72 enrichment=0.076 zero_grad=0.000
+[4] tokens=18 enrichment=nan zero_grad=0.000
+[5] tokens=48 enrichment=-0.012 zero_grad=0.000
+[6] tokens=100 enrichment=-0.070 zero_grad=0.000
+[7] tokens=26 enrichment=-0.132 zero_grad=0.000
+[8] tokens=24 enrichment=0.063 zero_grad=0.000
+[9] tokens=27 enrichment=0.053 zero_grad=0.000
+[10] tokens=28 enrichment=0.109 zero_grad=0.000
+[11] tokens=51 enrichment=0.015 zero_grad=0.000
+[12] tokens=23 enrichment=-1.212 zero_grad=0.000
+[13] tokens=27 enrichment=-0.021 zero_grad=0.000
+[14] tokens=19 enrichment=-0.156 zero_grad=0.000
+[15] tokens=15 enrichment=-0.365 zero_grad=0.000
+[16] tokens=18 enrichment=-0.312 zero_grad=0.000
+[17] tokens=67 enrichment=0.262 zero_grad=0.000
+[18] tokens=18 enrichment=-0.071 zero_grad=0.000
+[19] tokens=58 enrichment=-0.028 zero_grad=0.000
+[20] tokens=68 enrichment=0.175 zero_grad=0.000
+[21] tokens=17 enrichment=-0.431 zero_grad=0.000
+[22] tokens=37 enrichment=nan zero_grad=0.000
+[23] tokens=15 enrichment=0.112 zero_grad=0.000
+[24] tokens=22 enrichment=-0.818 zero_grad=0.000
+[25] tokens=40 enrichment=-0.264 zero_grad=0.000
+[26] tokens=16 enrichment=0.005 zero_grad=0.000
+[27] tokens=28 enrichment=1.038 zero_grad=0.000
+[28] tokens=40 enrichment=0.177 zero_grad=0.000
+[29] tokens=13 enrichment=-0.365 zero_grad=0.000
+[30] tokens=69 enrichment=-0.009 zero_grad=0.000
+[31] tokens=38 enrichment=-0.052 zero_grad=0.000
+[32] tokens=95 enrichment=0.073 zero_grad=0.000
+[33] tokens=153 enrichment=-0.025 zero_grad=0.000
+[34] tokens=40 enrichment=0.369 zero_grad=0.000
+[35] tokens=42 enrichment=0.061 zero_grad=0.000
+[36] tokens=38 enrichment=-0.129 zero_grad=0.000
+[37] tokens=32 enrichment=-0.101 zero_grad=0.000
+[38] tokens=14 enrichment=-0.112 zero_grad=0.000
+[39] tokens=29 enrichment=-0.036 zero_grad=0.000
+[40] tokens=53 enrichment=0.240 zero_grad=0.000
+[41] tokens=29 enrichment=0.319 zero_grad=0.000
+[42] tokens=13 enrichment=-0.027 zero_grad=0.000
+[43] tokens=65 enrichment=-0.007 zero_grad=0.000
+[44] tokens=22 enrichment=-0.171 zero_grad=0.000
+[45] tokens=18 enrichment=0.041 zero_grad=0.000
+[46] tokens=54 enrichment=nan zero_grad=0.000
+[47] tokens=50 enrichment=0.057 zero_grad=0.000
+[48] tokens=25 enrichment=0.080 zero_grad=0.000
+[49] tokens=25 enrichment=0.032 zero_grad=0.000
+[50] tokens=227 enrichment=-0.040 zero_grad=0.000
+[51] tokens=31 enrichment=-0.568 zero_grad=0.000
+[52] tokens=39 enrichment=-0.066 zero_grad=0.000
+[53] tokens=24 enrichment=0.136 zero_grad=0.000
+[54] tokens=50 enrichment=0.075 zero_grad=0.000
+[55] tokens=67 enrichment=-0.114 zero_grad=0.000
+[56] tokens=75 enrichment=0.008 zero_grad=0.000
+[57] tokens=22 enrichment=0.070 zero_grad=0.000
+[58] tokens=20 enrichment=0.350 zero_grad=0.000
+[59] tokens=27 enrichment=-0.286 zero_grad=0.000
+[60] tokens=10 enrichment=nan zero_grad=1.000
+[61] tokens=36 enrichment=-0.180 zero_grad=0.000
+[62] tokens=40 enrichment=-0.306 zero_grad=0.000
+[63] tokens=29 enrichment=-0.125 zero_grad=0.000
+[64] tokens=40 enrichment=0.065 zero_grad=0.000
+[65] tokens=13 enrichment=1.019 zero_grad=0.769
+[66] tokens=33 enrichment=0.170 zero_grad=0.000
+[67] tokens=38 enrichment=-0.090 zero_grad=0.000
+[68] tokens=33 enrichment=0.226 zero_grad=0.000
+[69] tokens=20 enrichment=0.062 zero_grad=0.000
+[70] tokens=91 enrichment=-0.027 zero_grad=0.000
+[71] tokens=22 enrichment=-0.021 zero_grad=0.000
+[72] tokens=45 enrichment=0.070 zero_grad=0.000
+[73] tokens=61 enrichment=0.268 zero_grad=0.000
+[74] tokens=24 enrichment=-0.146 zero_grad=0.000
+[75] tokens=38 enrichment=0.141 zero_grad=0.000
+[76] tokens=33 enrichment=0.015 zero_grad=0.000
+[77] tokens=64 enrichment=-0.015 zero_grad=0.000
+[78] tokens=63 enrichment=0.015 zero_grad=0.000
+[79] tokens=22 enrichment=0.070 zero_grad=0.000
+[80] tokens=23 enrichment=-0.320 zero_grad=0.000
+[81] tokens=33 enrichment=0.027 zero_grad=0.000
+[82] tokens=83 enrichment=0.062 zero_grad=0.000
+[83] tokens=23 enrichment=0.236 zero_grad=0.000
+[84] tokens=17 enrichment=-1.218 zero_grad=0.000
+[85] tokens=41 enrichment=-0.019 zero_grad=0.000
+[86] tokens=49 enrichment=nan zero_grad=0.000
+[87] tokens=29 enrichment=0.088 zero_grad=0.000
+[88] tokens=28 enrichment=0.015 zero_grad=0.000
+[89] tokens=32 enrichment=-0.119 zero_grad=0.000
+[90] tokens=42 enrichment=-0.082 zero_grad=0.000
+[91] tokens=13 enrichment=-0.055 zero_grad=0.000
+[92] tokens=17 enrichment=0.109 zero_grad=0.000
+[93] tokens=44 enrichment=-0.030 zero_grad=0.000
+[94] tokens=43 enrichment=-0.269 zero_grad=0.000
+[95] tokens=22 enrichment=-0.181 zero_grad=0.000
+[96] tokens=96 enrichment=0.028 zero_grad=0.000
+[97] tokens=30 enrichment=0.046 zero_grad=0.000
+[98] tokens=38 enrichment=0.060 zero_grad=0.000
+[99] tokens=111 enrichment=0.127 zero_grad=0.000
+[100] tokens=16 enrichment=-0.536 zero_grad=0.000
+[101] tokens=81 enrichment=nan zero_grad=0.000
+[102] tokens=26 enrichment=-0.097 zero_grad=0.000
+[103] tokens=76 enrichment=-0.091 zero_grad=0.000
+[104] tokens=29 enrichment=0.095 zero_grad=0.000
+[105] tokens=24 enrichment=-0.081 zero_grad=0.000
+[106] tokens=20 enrichment=0.238 zero_grad=0.000
+[107] tokens=26 enrichment=-0.149 zero_grad=0.000
+[108] tokens=39 enrichment=0.107 zero_grad=0.000
+[109] tokens=29 enrichment=0.062 zero_grad=0.000
+[110] tokens=33 enrichment=0.069 zero_grad=0.000
+[111] tokens=20 enrichment=0.216 zero_grad=0.000
+[112] tokens=32 enrichment=-0.415 zero_grad=0.000
+[113] tokens=39 enrichment=0.029 zero_grad=0.000
+[114] tokens=60 enrichment=-0.106 zero_grad=0.000
+[115] tokens=63 enrichment=0.448 zero_grad=0.000
+[116] tokens=25 enrichment=0.338 zero_grad=0.000
+[117] tokens=25 enrichment=-0.132 zero_grad=0.000
+[118] tokens=30 enrichment=-0.182 zero_grad=0.000
+[119] tokens=40 enrichment=0.216 zero_grad=0.000
+[120] tokens=20 enrichment=-0.435 zero_grad=0.000
+[121] tokens=33 enrichment=0.051 zero_grad=0.000
+[122] tokens=21 enrichment=-0.078 zero_grad=0.000
+[123] tokens=27 enrichment=0.022 zero_grad=0.000
+[124] tokens=39 enrichment=0.120 zero_grad=0.000
+[125] tokens=49 enrichment=-0.135 zero_grad=0.000
+[126] tokens=23 enrichment=-0.201 zero_grad=0.000
+[127] tokens=9 enrichment=nan zero_grad=1.000
+[128] tokens=42 enrichment=0.118 zero_grad=0.000
+[129] tokens=54 enrichment=-0.018 zero_grad=0.000
+[130] tokens=31 enrichment=-0.593 zero_grad=0.000
+[131] tokens=28 enrichment=0.262 zero_grad=0.000
+[132] tokens=27 enrichment=0.047 zero_grad=0.000
+[133] tokens=36 enrichment=-0.297 zero_grad=0.000
+[134] tokens=17 enrichment=-0.219 zero_grad=0.000
+[135] tokens=31 enrichment=-0.143 zero_grad=0.000
+[136] tokens=18 enrichment=-0.460 zero_grad=0.000
+[137] tokens=28 enrichment=0.189 zero_grad=0.000
+[138] tokens=81 enrichment=-0.168 zero_grad=0.000
+[139] tokens=42 enrichment=-0.043 zero_grad=0.000
+[140] tokens=52 enrichment=0.066 zero_grad=0.000
+[141] tokens=148 enrichment=-0.206 zero_grad=0.000
+[142] tokens=56 enrichment=-0.007 zero_grad=0.000
+[143] tokens=112 enrichment=0.023 zero_grad=0.000
+[144] tokens=641 enrichment=-0.200 zero_grad=0.000
+[145] tokens=151 enrichment=0.269 zero_grad=0.000
+[146] tokens=42 enrichment=-0.089 zero_grad=0.000
+[147] tokens=63 enrichment=0.070 zero_grad=0.000
+[148] tokens=95 enrichment=nan zero_grad=0.000
+[149] tokens=128 enrichment=0.285 zero_grad=0.000
+[150] tokens=638 enrichment=-0.224 zero_grad=0.000
+[151] tokens=73 enrichment=0.015 zero_grad=0.000
+[152] tokens=90 enrichment=0.013 zero_grad=0.000
+[153] tokens=60 enrichment=-0.205 zero_grad=0.000
+[154] tokens=87 enrichment=0.046 zero_grad=0.000
+[155] tokens=150 enrichment=0.161 zero_grad=0.000
+[156] tokens=90 enrichment=-0.082 zero_grad=0.000
+[157] tokens=199 enrichment=-0.032 zero_grad=0.000
+[158] tokens=125 enrichment=-0.026 zero_grad=0.000
+[159] tokens=35 enrichment=-0.059 zero_grad=0.000
+[160] tokens=56 enrichment=0.152 zero_grad=0.000
+SUMMARY {"model": "Skywork/Skywork-OR1-Math-7B", "n": 161, "scored": 153, "oom": 0, "mean_zero_grad": 0.017200191113234592, "seconds": 32.9}

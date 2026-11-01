@@ -1,0 +1,191 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files:  50%|█████     | 1/2 [00:25<00:25, 25.80s/it]
+Fetching 2 files: 100%|██████████| 2/2 [00:41<00:00, 20.04s/it]
+Fetching 2 files: 100%|██████████| 2/2 [00:41<00:00, 20.90s/it]
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/426 [00:01<13:14,  1.87s/it]
+Loading weights:  25%|██▍       | 106/426 [00:01<00:04, 74.04it/s]
+Loading weights:  37%|███▋      | 159/426 [00:02<00:03, 82.32it/s]
+Loading weights:  45%|████▌     | 192/426 [00:02<00:02, 92.06it/s]
+Loading weights:  51%|█████     | 218/426 [00:03<00:02, 94.82it/s]
+Loading weights:  56%|█████▌    | 238/426 [00:03<00:02, 91.25it/s]
+Loading weights:  60%|█████▉    | 254/426 [00:03<00:01, 91.20it/s]
+Loading weights:  63%|██████▎   | 268/426 [00:03<00:01, 97.24it/s]
+Loading weights:  66%|██████▌   | 282/426 [00:03<00:01, 92.75it/s]
+Loading weights:  69%|██████▉   | 294/426 [00:03<00:01, 91.01it/s]
+Loading weights:  72%|███████▏  | 305/426 [00:03<00:01, 91.23it/s]
+Loading weights:  74%|███████▍  | 316/426 [00:04<00:01, 88.43it/s]
+Loading weights:  77%|███████▋  | 326/426 [00:04<00:01, 89.70it/s]
+Loading weights:  80%|███████▉  | 340/426 [00:04<00:00, 89.65it/s]
+Loading weights:  83%|████████▎ | 354/426 [00:04<00:00, 95.95it/s]
+Loading weights:  85%|████████▌ | 364/426 [00:04<00:00, 83.33it/s]
+Loading weights:  90%|████████▉ | 383/426 [00:04<00:00, 95.86it/s]
+Loading weights:  93%|█████████▎| 397/426 [00:05<00:00, 91.51it/s]
+Loading weights:  96%|█████████▋| 411/426 [00:05<00:00, 93.03it/s]
+Loading weights: 100%|██████████| 426/426 [00:05<00:00, 81.23it/s]
+[0] tokens=46 enrichment=nan zero_grad=0.000
+[1] tokens=33 enrichment=nan zero_grad=0.000
+[2] tokens=11 enrichment=nan zero_grad=0.000
+[3] tokens=72 enrichment=nan zero_grad=0.000
+[4] tokens=18 enrichment=nan zero_grad=0.000
+[5] tokens=48 enrichment=nan zero_grad=0.000
+[6] tokens=100 enrichment=nan zero_grad=0.000
+[7] tokens=26 enrichment=nan zero_grad=0.000
+[8] tokens=24 enrichment=nan zero_grad=0.000
+[9] tokens=27 enrichment=nan zero_grad=0.000
+[10] tokens=28 enrichment=nan zero_grad=0.000
+[11] tokens=51 enrichment=nan zero_grad=0.000
+[12] tokens=23 enrichment=nan zero_grad=0.000
+[13] tokens=27 enrichment=nan zero_grad=0.000
+[14] tokens=19 enrichment=nan zero_grad=0.000
+[15] tokens=15 enrichment=nan zero_grad=0.000
+[16] tokens=18 enrichment=nan zero_grad=0.000
+[17] tokens=67 enrichment=nan zero_grad=0.000
+[18] tokens=18 enrichment=nan zero_grad=0.000
+[19] tokens=58 enrichment=nan zero_grad=0.000
+[20] tokens=68 enrichment=nan zero_grad=0.000
+[21] tokens=17 enrichment=nan zero_grad=0.000
+[22] tokens=37 enrichment=nan zero_grad=0.000
+[23] tokens=14 enrichment=nan zero_grad=0.000
+[24] tokens=22 enrichment=nan zero_grad=0.000
+[25] tokens=40 enrichment=nan zero_grad=0.000
+[26] tokens=16 enrichment=nan zero_grad=0.000
+[27] tokens=28 enrichment=nan zero_grad=0.000
+[28] tokens=40 enrichment=nan zero_grad=0.000
+[29] tokens=13 enrichment=nan zero_grad=0.000
+[30] tokens=70 enrichment=nan zero_grad=0.000
+[31] tokens=38 enrichment=nan zero_grad=0.000
+[32] tokens=95 enrichment=nan zero_grad=0.000
+[33] tokens=154 enrichment=nan zero_grad=0.000
+[34] tokens=40 enrichment=nan zero_grad=0.000
+[35] tokens=42 enrichment=nan zero_grad=0.000
+[36] tokens=38 enrichment=nan zero_grad=0.000
+[37] tokens=32 enrichment=nan zero_grad=0.000
+[38] tokens=14 enrichment=nan zero_grad=0.000
+[39] tokens=29 enrichment=nan zero_grad=0.000
+[40] tokens=53 enrichment=nan zero_grad=0.000
+[41] tokens=29 enrichment=nan zero_grad=0.000
+[42] tokens=13 enrichment=nan zero_grad=0.000
+[43] tokens=65 enrichment=nan zero_grad=0.000
+[44] tokens=22 enrichment=nan zero_grad=0.000
+[45] tokens=18 enrichment=nan zero_grad=0.000
+[46] tokens=54 enrichment=nan zero_grad=0.000
+[47] tokens=50 enrichment=nan zero_grad=0.000
+[48] tokens=25 enrichment=nan zero_grad=0.000
+[49] tokens=25 enrichment=nan zero_grad=0.000
+[50] tokens=227 enrichment=nan zero_grad=0.000
+[51] tokens=31 enrichment=nan zero_grad=0.000
+[52] tokens=39 enrichment=nan zero_grad=0.000
+[53] tokens=24 enrichment=nan zero_grad=0.000
+[54] tokens=50 enrichment=nan zero_grad=0.000
+[55] tokens=67 enrichment=nan zero_grad=0.000
+[56] tokens=75 enrichment=nan zero_grad=0.000
+[57] tokens=22 enrichment=nan zero_grad=0.000
+[58] tokens=20 enrichment=nan zero_grad=0.000
+[59] tokens=27 enrichment=nan zero_grad=0.000
+[60] tokens=10 enrichment=nan zero_grad=0.000
+[61] tokens=36 enrichment=nan zero_grad=0.000
+[62] tokens=40 enrichment=nan zero_grad=0.000
+[63] tokens=29 enrichment=nan zero_grad=0.000
+[64] tokens=40 enrichment=nan zero_grad=0.000
+[65] tokens=13 enrichment=nan zero_grad=0.000
+[66] tokens=33 enrichment=nan zero_grad=0.000
+[67] tokens=38 enrichment=nan zero_grad=0.000
+[68] tokens=33 enrichment=nan zero_grad=0.000
+[69] tokens=20 enrichment=nan zero_grad=0.000
+[70] tokens=91 enrichment=nan zero_grad=0.000
+[71] tokens=22 enrichment=nan zero_grad=0.000
+[72] tokens=45 enrichment=nan zero_grad=0.000
+[73] tokens=61 enrichment=nan zero_grad=0.000
+[74] tokens=24 enrichment=nan zero_grad=0.000
+[75] tokens=38 enrichment=nan zero_grad=0.000
+[76] tokens=33 enrichment=nan zero_grad=0.000
+[77] tokens=64 enrichment=nan zero_grad=0.000
+[78] tokens=63 enrichment=nan zero_grad=0.000
+[79] tokens=22 enrichment=nan zero_grad=0.000
+[80] tokens=23 enrichment=nan zero_grad=0.000
+[81] tokens=33 enrichment=nan zero_grad=0.000
+[82] tokens=83 enrichment=nan zero_grad=0.000
+[83] tokens=23 enrichment=nan zero_grad=0.000
+[84] tokens=17 enrichment=nan zero_grad=0.000
+[85] tokens=41 enrichment=nan zero_grad=0.000
+[86] tokens=49 enrichment=nan zero_grad=0.000
+[87] tokens=29 enrichment=nan zero_grad=0.000
+[88] tokens=28 enrichment=nan zero_grad=0.000
+[89] tokens=32 enrichment=nan zero_grad=0.000
+[90] tokens=42 enrichment=nan zero_grad=0.000
+[91] tokens=12 enrichment=nan zero_grad=0.000
+[92] tokens=17 enrichment=nan zero_grad=0.000
+[93] tokens=44 enrichment=nan zero_grad=0.000
+[94] tokens=43 enrichment=nan zero_grad=0.000
+[95] tokens=22 enrichment=nan zero_grad=0.000
+[96] tokens=96 enrichment=nan zero_grad=0.000
+[97] tokens=30 enrichment=nan zero_grad=0.000
+[98] tokens=38 enrichment=nan zero_grad=0.000
+[99] tokens=111 enrichment=nan zero_grad=0.000
+[100] tokens=16 enrichment=nan zero_grad=0.000
+[101] tokens=81 enrichment=nan zero_grad=0.000
+[102] tokens=26 enrichment=nan zero_grad=0.000
+[103] tokens=76 enrichment=nan zero_grad=0.000
+[104] tokens=29 enrichment=nan zero_grad=0.000
+[105] tokens=24 enrichment=nan zero_grad=0.000
+[106] tokens=20 enrichment=nan zero_grad=0.000
+[107] tokens=26 enrichment=nan zero_grad=0.000
+[108] tokens=39 enrichment=nan zero_grad=0.000
+[109] tokens=29 enrichment=nan zero_grad=0.000
+[110] tokens=33 enrichment=nan zero_grad=0.000
+[111] tokens=20 enrichment=nan zero_grad=0.000
+[112] tokens=32 enrichment=nan zero_grad=0.000
+[113] tokens=39 enrichment=nan zero_grad=0.000
+[114] tokens=60 enrichment=nan zero_grad=0.000
+[115] tokens=63 enrichment=nan zero_grad=0.000
+[116] tokens=25 enrichment=nan zero_grad=0.000
+[117] tokens=25 enrichment=nan zero_grad=0.000
+[118] tokens=30 enrichment=nan zero_grad=0.000
+[119] tokens=40 enrichment=nan zero_grad=0.000
+[120] tokens=20 enrichment=nan zero_grad=0.000
+[121] tokens=33 enrichment=nan zero_grad=0.000
+[122] tokens=21 enrichment=nan zero_grad=0.000
+[123] tokens=27 enrichment=nan zero_grad=0.000
+[124] tokens=39 enrichment=nan zero_grad=0.000
+[125] tokens=49 enrichment=nan zero_grad=0.000
+[126] tokens=23 enrichment=nan zero_grad=0.000
+[127] tokens=9 enrichment=nan zero_grad=0.000
+[128] tokens=42 enrichment=nan zero_grad=0.000
+[129] tokens=54 enrichment=nan zero_grad=0.000
+[130] tokens=31 enrichment=nan zero_grad=0.000
+[131] tokens=28 enrichment=nan zero_grad=0.000
+[132] tokens=27 enrichment=nan zero_grad=0.000
+[133] tokens=36 enrichment=nan zero_grad=0.000
+[134] tokens=17 enrichment=nan zero_grad=0.000
+[135] tokens=31 enrichment=nan zero_grad=0.000
+[136] tokens=18 enrichment=nan zero_grad=0.000
+[137] tokens=28 enrichment=nan zero_grad=0.000
+[138] tokens=81 enrichment=nan zero_grad=0.000
+[139] tokens=42 enrichment=nan zero_grad=0.000
+[140] tokens=52 enrichment=nan zero_grad=0.000
+[141] tokens=155 enrichment=nan zero_grad=0.000
+[142] tokens=56 enrichment=nan zero_grad=0.000
+[143] tokens=113 enrichment=nan zero_grad=0.000
+[144] tokens=0 enrichment=nan zero_grad=nan
+[145] tokens=150 enrichment=nan zero_grad=0.000
+[146] tokens=42 enrichment=nan zero_grad=0.000
+[147] tokens=62 enrichment=nan zero_grad=0.000
+[148] tokens=95 enrichment=nan zero_grad=0.000
+[149] tokens=128 enrichment=nan zero_grad=0.000
+[150] tokens=0 enrichment=nan zero_grad=nan
+[151] tokens=73 enrichment=nan zero_grad=0.000
+[152] tokens=90 enrichment=nan zero_grad=0.000
+[153] tokens=59 enrichment=nan zero_grad=0.000
+[154] tokens=87 enrichment=nan zero_grad=0.000
+[155] tokens=149 enrichment=nan zero_grad=0.000
+[156] tokens=91 enrichment=nan zero_grad=0.000
+[157] tokens=202 enrichment=nan zero_grad=0.000
+[158] tokens=128 enrichment=nan zero_grad=0.000
+[159] tokens=35 enrichment=nan zero_grad=0.000
+[160] tokens=56 enrichment=nan zero_grad=0.000
+SUMMARY {"model": "Qwen/Qwen3.5-4B", "n": 161, "scored": 0, "oom": 0, "mean_zero_grad": 0.0, "seconds": 251.0}

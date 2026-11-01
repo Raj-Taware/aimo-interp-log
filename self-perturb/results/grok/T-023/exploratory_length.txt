@@ -1,0 +1,6 @@
+n 132 dropped 5 nonrobust 98
+auc enrichment 0.685 | auc short=nonrobust 0.744 | spearman(enrichment, log length) -0.368
+cv auc: length 0.736 | enrichment 0.674 | both 0.743
+length tercile n=46 nonrobust=43 auc=0.535
+length tercile n=49 nonrobust=36 auc=0.615
+length tercile n=44 nonrobust=24 auc=0.681

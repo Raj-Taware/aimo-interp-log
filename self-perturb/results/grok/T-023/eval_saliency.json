@@ -1,0 +1,41 @@
+{
+  "gate0": {
+    "allenai_Olmo-3-7B-Think": {
+      "scored": 0.963,
+      "zero_grad": 0.0,
+      "pass": true
+    },
+    "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B": {
+      "scored": 0.963,
+      "zero_grad": 0.0,
+      "pass": true
+    },
+    "Qwen_Qwen3.5-4B": {
+      "scored": 0.0,
+      "zero_grad": 0.0,
+      "pass": false
+    },
+    "Skywork_Skywork-OR1-Math-7B": {
+      "scored": 0.95,
+      "zero_grad": 0.0172,
+      "pass": true
+    }
+  },
+  "gate1": {
+    "n": 17,
+    "positives": 5,
+    "auc": 0.358,
+    "length_auc": 0.608,
+    "p": 0.806,
+    "pass": false
+  },
+  "gate2": {
+    "n": 132,
+    "positives": 98,
+    "auc": 0.685,
+    "length_auc": 0.256,
+    "p": 0.0005,
+    "pass": true
+  },
+  "pass": false
+}
