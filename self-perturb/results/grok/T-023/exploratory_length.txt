@@ -4,3 +4,7 @@ cv auc: length 0.736 | enrichment 0.674 | both 0.743
 length tercile n=46 nonrobust=43 auc=0.535
 length tercile n=49 nonrobust=36 auc=0.615
 length tercile n=44 nonrobust=24 auc=0.681
+
+T-020 self labels, same problems as a subset of the self-domain set (exploratory, not pre-registered):
+n=26, non-robust=11, enrichment AUC 0.345, p=0.907, best length 0.615
+T-020 labels disagree with the official ones (kappa -0.18), so this is a weak check.
