@@ -1,0 +1,9 @@
+n 137 non-robust 101 length best 0.744
+cos columns 36 ['rename_cos_d0.25', 'rename_cos_d0.5', 'rename_cos_d0.65', 'rename_cos_d0.8']
+mean drift auc 0.535 p 0.2765
+ distract         auc 0.556
+ number_jitter    auc 0.569
+ numerals         auc 0.422
+ rename           auc 0.485
+ rephrase         auc 0.414
+ typos            auc 0.466

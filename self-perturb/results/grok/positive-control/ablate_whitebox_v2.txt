@@ -1,0 +1,5 @@
+full {'width': 87, 'balanced': 0.602, 'auc': 0.665, 'accuracy': 0.644, 'accuracy_sd': 0.078}
+hidden {'width': 72, 'balanced': 0.607, 'auc': 0.663, 'accuracy': 0.645, 'accuracy_sd': 0.075}
+no_hidden {'width': 15, 'balanced': 0.552, 'auc': 0.61, 'accuracy': 0.591, 'accuracy_sd': 0.087}
+length {'width': 2, 'balanced': 0.634, 'auc': 0.754, 'accuracy': 0.702, 'accuracy_sd': 0.071}
+shuffled {'width': 72, 'balanced': 0.503, 'auc': 0.556, 'accuracy': 0.574, 'accuracy_sd': 0.069}
