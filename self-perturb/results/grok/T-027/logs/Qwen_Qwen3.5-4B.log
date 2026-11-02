@@ -1,0 +1,61 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files:  50%|█████     | 1/2 [00:28<00:28, 28.32s/it]
+Fetching 2 files: 100%|██████████| 2/2 [00:41<00:00, 19.53s/it]
+Fetching 2 files: 100%|██████████| 2/2 [00:41<00:00, 20.85s/it]
+[transformers] The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+
+Loading weights:   0%|          | 0/426 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/426 [00:01<12:10,  1.72s/it]
+Loading weights:  25%|██▍       | 106/426 [00:01<00:04, 79.18it/s]
+Loading weights:  36%|███▌      | 153/426 [00:02<00:02, 91.03it/s]
+Loading weights:  43%|████▎     | 184/426 [00:02<00:02, 100.67it/s]
+Loading weights:  49%|████▉     | 209/426 [00:02<00:02, 96.77it/s] 
+Loading weights:  54%|█████▎    | 228/426 [00:02<00:01, 101.12it/s]
+Loading weights:  58%|█████▊    | 245/426 [00:03<00:01, 105.50it/s]
+Loading weights:  61%|██████▏   | 261/426 [00:03<00:01, 98.32it/s] 
+Loading weights:  65%|██████▌   | 277/426 [00:03<00:01, 104.59it/s]
+Loading weights:  68%|██████▊   | 291/426 [00:03<00:01, 106.00it/s]
+Loading weights:  72%|███████▏  | 305/426 [00:03<00:01, 102.61it/s]
+Loading weights:  74%|███████▍  | 317/426 [00:03<00:01, 105.33it/s]
+Loading weights:  78%|███████▊  | 331/426 [00:03<00:00, 103.48it/s]
+Loading weights:  81%|████████  | 344/426 [00:03<00:00, 107.83it/s]
+Loading weights:  84%|████████▍ | 358/426 [00:04<00:00, 103.07it/s]
+Loading weights:  87%|████████▋ | 369/426 [00:04<00:00, 97.88it/s] 
+Loading weights:  90%|████████▉ | 383/426 [00:04<00:00, 106.48it/s]
+Loading weights:  93%|█████████▎| 397/426 [00:04<00:00, 104.61it/s]
+Loading weights:  96%|█████████▋| 411/426 [00:04<00:00, 101.43it/s]
+Loading weights: 100%|█████████▉| 424/426 [00:04<00:00, 107.68it/s]
+Loading weights: 100%|██████████| 426/426 [00:04<00:00, 89.27it/s] 
+[0] tier=0 gold=216 got=[None, None, None, None, ''] robust=False trunc=1.00
+[1] tier=1 gold=10735 got=['', '', '', None, None] robust=False trunc=1.00
+[2] tier=2 gold=453405 got=['', '', None, '', ''] robust=False trunc=1.00
+[3] tier=0 gold=536 got=['536', None, None, None, None] robust=False trunc=1.00
+[4] tier=1 gold=417 got=[None, None, None, None, None] robust=False trunc=1.00
+[5] tier=2 gold=73074 got=[None, None, None, None, ''] robust=False trunc=1.00
+[6] tier=0 gold=16597 got=['', '', None, None, ''] robust=False trunc=1.00
+[7] tier=1 gold=-1019 got=['-1019', '-1019', None, None, None] robust=False trunc=1.00
+[8] tier=2 gold=6699 got=[None, None, None, '', None] robust=False trunc=1.00
+[9] tier=0 gold=363 got=['', '', None, None, ''] robust=False trunc=1.00
+[10] tier=1 gold=83036 got=['', '', None, None, ''] robust=False trunc=1.00
+[11] tier=2 gold=-58269 got=[None, None, None, None, None] robust=False trunc=1.00
+[12] tier=0 gold=66 got=['', None, None, None, None] robust=False trunc=1.00
+[13] tier=1 gold=20700 got=[None, '', '', None, None] robust=False trunc=1.00
+[14] tier=2 gold=608640 got=['', '', None, None, ''] robust=False trunc=1.00
+[15] tier=0 gold=510 got=['', None, '', None, '510'] robust=False trunc=1.00
+[16] tier=1 gold=48 got=[None, None, None, None, None] robust=False trunc=1.00
+[17] tier=2 gold=2657 got=['', None, '', None, ''] robust=False trunc=1.00
+[18] tier=0 gold=23775 got=['', '', None, '', ''] robust=False trunc=1.00
+[19] tier=1 gold=-3124 got=['', None, '', None, ''] robust=False trunc=1.00
+[20] tier=2 gold=18120 got=[None, None, None, None, None] robust=False trunc=1.00
+[21] tier=0 gold=2431 got=['', '', '', None, None] robust=False trunc=1.00
+[22] tier=1 gold=13734 got=['', '', None, None, None] robust=False trunc=1.00
+[23] tier=2 gold=-73388 got=[None, None, None, None, None] robust=False trunc=1.00
+[24] tier=0 gold=39 got=['', None, '', None, ''] robust=False trunc=1.00
+[25] tier=1 gold=6213 got=['', '', None, None, None] robust=False trunc=1.00
+[26] tier=2 gold=118424 got=['', '', None, None, ''] robust=False trunc=1.00
+[27] tier=0 gold=-254 got=['-254', '', '', None, '-254'] robust=False trunc=1.00
+[28] tier=1 gold=521 got=[None, None, None, None, None] robust=False trunc=1.00
+[29] tier=2 gold=18646 got=[None, '', '', None, None] robust=False trunc=1.00
+SUMMARY {"model": "Qwen/Qwen3.5-4B", "n": 30, "robust_share": 0.0, "base_acc": 0.1, "truncated": 1.0, "pilot_pass": false, "seconds": 2816.7}

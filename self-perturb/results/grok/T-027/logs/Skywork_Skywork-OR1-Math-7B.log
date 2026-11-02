@@ -1,0 +1,68 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]
+Fetching 4 files:  25%|██▌       | 1/4 [00:09<00:27,  9.24s/it]
+Fetching 4 files:  50%|█████     | 2/4 [00:51<00:56, 28.49s/it]
+Fetching 4 files:  75%|███████▌  | 3/4 [00:51<00:15, 15.71s/it]
+Fetching 4 files: 100%|██████████| 4/4 [00:57<00:00, 11.80s/it]
+Fetching 4 files: 100%|██████████| 4/4 [00:57<00:00, 14.38s/it]
+
+Loading weights:   0%|          | 0/339 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/339 [00:09<50:53,  9.03s/it]
+Loading weights:   1%|          | 2/339 [00:09<21:27,  3.82s/it]
+Loading weights:  41%|████      | 138/339 [00:09<00:07, 26.69it/s]
+Loading weights:  44%|████▍     | 149/339 [00:10<00:06, 28.08it/s]
+Loading weights:  47%|████▋     | 160/339 [00:14<00:14, 12.19it/s]
+Loading weights:  51%|█████     | 172/339 [00:14<00:12, 13.87it/s]
+Loading weights:  53%|█████▎    | 178/339 [00:15<00:11, 13.98it/s]
+Loading weights:  58%|█████▊    | 196/339 [00:15<00:07, 19.38it/s]
+Loading weights:  60%|█████▉    | 203/339 [00:15<00:06, 20.48it/s]
+Loading weights:  62%|██████▏   | 209/339 [00:15<00:05, 22.56it/s]
+Loading weights:  65%|██████▍   | 220/339 [00:17<00:08, 14.19it/s]
+Loading weights:  68%|██████▊   | 232/339 [00:17<00:06, 15.71it/s]
+Loading weights:  70%|██████▉   | 236/339 [00:17<00:06, 16.14it/s]
+Loading weights:  72%|███████▏  | 244/339 [00:19<00:10,  9.17it/s]
+Loading weights:  73%|███████▎  | 247/339 [00:19<00:09,  9.82it/s]
+Loading weights:  76%|███████▌  | 256/339 [00:20<00:08,  9.79it/s]
+Loading weights:  76%|███████▌  | 258/339 [00:21<00:11,  7.06it/s]
+Loading weights:  79%|███████▉  | 268/339 [00:22<00:08,  7.94it/s]
+Loading weights:  80%|███████▉  | 270/339 [00:23<00:10,  6.85it/s]
+Loading weights:  83%|████████▎ | 280/339 [00:24<00:06,  9.02it/s]
+Loading weights:  86%|████████▌ | 292/339 [00:24<00:03, 13.44it/s]
+Loading weights:  87%|████████▋ | 294/339 [00:24<00:03, 13.41it/s]
+Loading weights:  90%|████████▉ | 304/339 [00:24<00:01, 18.40it/s]
+Loading weights:  93%|█████████▎| 316/339 [00:25<00:00, 23.44it/s]
+Loading weights:  97%|█████████▋| 328/339 [00:25<00:00, 31.74it/s]
+Loading weights:  98%|█████████▊| 333/339 [00:25<00:00, 32.62it/s]
+Loading weights: 100%|██████████| 339/339 [00:25<00:00, 13.35it/s]
+[0] tier=0 gold=216 got=[None, None, None, None, None] robust=False trunc=1.00
+[1] tier=1 gold=10735 got=[None, None, None, None, None] robust=False trunc=1.00
+[2] tier=2 gold=453405 got=[None, None, None, None, None] robust=False trunc=1.00
+[3] tier=0 gold=536 got=['536', None, '536', None, None] robust=False trunc=0.80
+[4] tier=1 gold=417 got=[None, None, None, None, None] robust=False trunc=1.00
+[5] tier=2 gold=73074 got=[None, None, None, None, None] robust=False trunc=1.00
+[6] tier=0 gold=16597 got=[None, None, None, None, None] robust=False trunc=1.00
+[7] tier=1 gold=-1019 got=['-1019', None, '-1019', '-1019', '-1019'] robust=False trunc=0.60
+[8] tier=2 gold=6699 got=[None, None, None, None, None] robust=False trunc=1.00
+[9] tier=0 gold=363 got=[None, None, None, None, '363'] robust=False trunc=1.00
+[10] tier=1 gold=83036 got=[None, None, None, None, None] robust=False trunc=1.00
+[11] tier=2 gold=-58269 got=[None, None, None, None, None] robust=False trunc=1.00
+[12] tier=0 gold=66 got=[None, None, None, None, None] robust=False trunc=1.00
+[13] tier=1 gold=20700 got=[None, None, None, None, None] robust=False trunc=1.00
+[14] tier=2 gold=608640 got=[None, None, None, None, None] robust=False trunc=1.00
+[15] tier=0 gold=510 got=['510', '510', None, '510', '510'] robust=False trunc=0.40
+[16] tier=1 gold=48 got=[None, None, None, None, None] robust=False trunc=1.00
+[17] tier=2 gold=2657 got=[None, None, None, None, None] robust=False trunc=1.00
+[18] tier=0 gold=23775 got=[None, None, None, None, None] robust=False trunc=1.00
+[19] tier=1 gold=-3124 got=[None, None, None, None, None] robust=False trunc=1.00
+[20] tier=2 gold=18120 got=[None, None, None, None, None] robust=False trunc=1.00
+[21] tier=0 gold=2431 got=[None, '2431', None, None, None] robust=False trunc=1.00
+[22] tier=1 gold=13734 got=[None, None, None, None, None] robust=False trunc=1.00
+[23] tier=2 gold=-73388 got=[None, None, None, None, None] robust=False trunc=1.00
+[24] tier=0 gold=39 got=[None, None, '39', None, None] robust=False trunc=1.00
+[25] tier=1 gold=6213 got=[None, None, None, None, None] robust=False trunc=1.00
+[26] tier=2 gold=118424 got=[None, None, None, None, None] robust=False trunc=1.00
+[27] tier=0 gold=-254 got=['-254', '-254', '-254', '-254', None] robust=False trunc=0.60
+[28] tier=1 gold=521 got=[None, None, None, None, None] robust=False trunc=1.00
+[29] tier=2 gold=18646 got=[None, None, None, None, None] robust=False trunc=1.00
+SUMMARY {"model": "Skywork/Skywork-OR1-Math-7B", "n": 30, "robust_share": 0.0, "base_acc": 0.13333333333333333, "truncated": 0.9466666666666668, "pilot_pass": false, "seconds": 2544.3}

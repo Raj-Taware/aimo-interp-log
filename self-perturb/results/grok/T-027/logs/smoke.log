@@ -1,0 +1,45 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]
+Fetching 2 files:  50%|█████     | 1/2 [01:04<01:04, 64.57s/it]
+Fetching 2 files: 100%|██████████| 2/2 [01:15<00:00, 32.97s/it]
+Fetching 2 files: 100%|██████████| 2/2 [01:15<00:00, 37.71s/it]
+
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/399 [00:01<07:44,  1.17s/it]
+Loading weights:   1%|          | 2/399 [00:13<51:46,  7.82s/it]
+Loading weights:  25%|██▍       | 98/399 [00:13<00:29, 10.30it/s]
+Loading weights:  36%|███▌      | 144/399 [00:14<00:16, 15.07it/s]
+Loading weights:  43%|████▎     | 171/399 [00:15<00:12, 17.70it/s]
+Loading weights:  47%|████▋     | 189/399 [00:15<00:09, 21.15it/s]
+Loading weights:  51%|█████▏    | 205/399 [00:16<00:08, 22.69it/s]
+Loading weights:  54%|█████▍    | 217/399 [00:17<00:10, 17.15it/s]
+Loading weights:  56%|█████▋    | 225/399 [00:19<00:13, 13.07it/s]
+Loading weights:  59%|█████▉    | 235/399 [00:20<00:13, 11.74it/s]
+Loading weights:  60%|██████    | 240/399 [00:20<00:13, 12.02it/s]
+Loading weights:  62%|██████▏   | 246/399 [00:22<00:16,  9.11it/s]
+Loading weights:  64%|██████▍   | 257/399 [00:23<00:16,  8.66it/s]
+Loading weights:  67%|██████▋   | 268/399 [00:24<00:16,  8.17it/s]
+Loading weights:  70%|██████▉   | 279/399 [00:26<00:14,  8.00it/s]
+Loading weights:  70%|███████   | 281/399 [00:26<00:14,  8.32it/s]
+Loading weights:  73%|███████▎  | 290/399 [00:27<00:14,  7.51it/s]
+Loading weights:  73%|███████▎  | 292/399 [00:28<00:13,  7.86it/s]
+Loading weights:  75%|███████▌  | 301/399 [00:29<00:13,  7.26it/s]
+Loading weights:  78%|███████▊  | 312/399 [00:31<00:11,  7.26it/s]
+Loading weights:  79%|███████▊  | 314/399 [00:31<00:11,  7.44it/s]
+Loading weights:  81%|████████  | 323/399 [00:32<00:10,  7.18it/s]
+Loading weights:  84%|████████▎ | 334/399 [00:34<00:09,  7.10it/s]
+Loading weights:  86%|████████▋ | 345/399 [00:35<00:07,  7.71it/s]
+Loading weights:  87%|████████▋ | 346/399 [00:35<00:06,  7.78it/s]
+Loading weights:  89%|████████▉ | 356/399 [00:36<00:05,  7.64it/s]
+Loading weights:  92%|█████████▏| 367/399 [00:38<00:04,  7.69it/s]
+Loading weights:  95%|█████████▍| 378/399 [00:39<00:02,  7.43it/s]
+Loading weights:  97%|█████████▋| 389/399 [00:41<00:01,  7.58it/s]
+Loading weights:  98%|█████████▊| 390/399 [00:41<00:01,  7.64it/s]
+Loading weights: 100%|██████████| 399/399 [00:41<00:00,  9.66it/s]
+[0] tier=0 gold=216 got=[None, None, None, None, None] robust=False trunc=1.00
+[1] tier=1 gold=10735 got=[None, None, None, None, None] robust=False trunc=1.00
+[2] tier=2 gold=453405 got=[None, None, None, None, None] robust=False trunc=1.00
+SUMMARY {"model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B", "n": 3, "robust_share": 0.0, "base_acc": 0.0, "truncated": 1.0, "pilot_pass": false, "seconds": 306.9}

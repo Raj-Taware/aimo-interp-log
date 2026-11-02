@@ -1,0 +1,80 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+[transformers] Unrecognized keys in `rope_parameters` for 'rope_type'='yarn': {'attn_factor'}
+
+Loading weights:   0%|          | 0/399 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/399 [00:01<11:10,  1.68s/it]
+Loading weights:   1%|          | 2/399 [00:02<06:25,  1.03it/s]
+Loading weights:   6%|▌         | 23/399 [00:02<00:26, 14.05it/s]
+Loading weights:   7%|▋         | 26/399 [00:03<00:31, 11.84it/s]
+Loading weights:  11%|█▏        | 45/399 [00:03<00:13, 26.15it/s]
+Loading weights:  13%|█▎        | 52/399 [00:03<00:12, 28.64it/s]
+Loading weights:  15%|█▍        | 59/399 [00:03<00:11, 30.32it/s]
+Loading weights:  18%|█▊        | 70/399 [00:03<00:09, 34.86it/s]
+Loading weights:  20%|██        | 81/399 [00:03<00:08, 39.39it/s]
+Loading weights:  22%|██▏       | 87/399 [00:04<00:07, 40.92it/s]
+Loading weights:  23%|██▎       | 92/399 [00:04<00:07, 41.82it/s]
+Loading weights:  26%|██▌       | 103/399 [00:04<00:06, 47.20it/s]
+Loading weights:  27%|██▋       | 109/399 [00:04<00:05, 48.86it/s]
+Loading weights:  29%|██▉       | 115/399 [00:04<00:05, 48.46it/s]
+Loading weights:  31%|███▏      | 125/399 [00:04<00:05, 50.33it/s]
+Loading weights:  33%|███▎      | 131/399 [00:04<00:05, 52.23it/s]
+Loading weights:  34%|███▍      | 137/399 [00:05<00:05, 47.97it/s]
+Loading weights:  37%|███▋      | 147/399 [00:05<00:06, 40.13it/s]
+Loading weights:  40%|████      | 160/399 [00:05<00:04, 50.39it/s]
+Loading weights:  42%|████▏     | 169/399 [00:05<00:04, 52.40it/s]
+Loading weights:  44%|████▍     | 175/399 [00:05<00:04, 53.12it/s]
+Loading weights:  45%|████▌     | 181/399 [00:05<00:04, 51.69it/s]
+Loading weights:  48%|████▊     | 191/399 [00:06<00:04, 47.96it/s]
+Loading weights:  51%|█████     | 202/399 [00:06<00:03, 50.37it/s]
+Loading weights:  53%|█████▎    | 213/399 [00:06<00:03, 50.32it/s]
+Loading weights:  56%|█████▌    | 224/399 [00:06<00:03, 49.80it/s]
+Loading weights:  59%|█████▉    | 235/399 [00:07<00:03, 46.84it/s]
+Loading weights:  62%|██████▏   | 246/399 [00:07<00:02, 53.95it/s]
+Loading weights:  64%|██████▍   | 257/399 [00:07<00:02, 48.99it/s]
+Loading weights:  66%|██████▌   | 263/399 [00:07<00:02, 48.16it/s]
+Loading weights:  68%|██████▊   | 270/399 [00:07<00:02, 51.58it/s]
+Loading weights:  70%|██████▉   | 279/399 [00:07<00:02, 51.07it/s]
+Loading weights:  73%|███████▎  | 290/399 [00:08<00:02, 45.98it/s]
+Loading weights:  75%|███████▌  | 301/399 [00:08<00:01, 49.03it/s]
+Loading weights:  78%|███████▊  | 312/399 [00:08<00:01, 50.03it/s]
+Loading weights:  81%|████████  | 323/399 [00:08<00:01, 47.96it/s]
+Loading weights:  84%|████████▎ | 334/399 [00:09<00:01, 46.95it/s]
+Loading weights:  86%|████████▋ | 345/399 [00:09<00:01, 47.18it/s]
+Loading weights:  89%|████████▉ | 356/399 [00:09<00:00, 47.02it/s]
+Loading weights:  90%|█████████ | 361/399 [00:09<00:00, 46.46it/s]
+Loading weights:  92%|█████████▏| 367/399 [00:09<00:00, 42.86it/s]
+Loading weights:  95%|█████████▍| 378/399 [00:10<00:00, 45.64it/s]
+Loading weights:  97%|█████████▋| 389/399 [00:10<00:00, 49.41it/s]
+Loading weights: 100%|██████████| 399/399 [00:10<00:00, 38.71it/s]
+[0] tier=0 gold=216 got=[None, None, None, None, None] robust=False trunc=1.00
+[1] tier=1 gold=10735 got=[None, None, None, None, None] robust=False trunc=1.00
+[2] tier=2 gold=453405 got=[None, None, None, None, None] robust=False trunc=1.00
+[3] tier=0 gold=536 got=[None, None, None, None, None] robust=False trunc=1.00
+[4] tier=1 gold=417 got=[None, None, None, None, None] robust=False trunc=1.00
+[5] tier=2 gold=73074 got=[None, None, None, None, None] robust=False trunc=1.00
+[6] tier=0 gold=16597 got=[None, None, None, None, None] robust=False trunc=1.00
+[7] tier=1 gold=-1019 got=[None, '-1019', None, None, None] robust=False trunc=0.80
+[8] tier=2 gold=6699 got=[None, None, None, None, None] robust=False trunc=1.00
+[9] tier=0 gold=363 got=[None, '363', None, None, None] robust=False trunc=0.80
+[10] tier=1 gold=83036 got=[None, None, None, None, None] robust=False trunc=1.00
+[11] tier=2 gold=-58269 got=[None, None, None, None, None] robust=False trunc=1.00
+[12] tier=0 gold=66 got=[None, None, None, None, None] robust=False trunc=1.00
+[13] tier=1 gold=20700 got=[None, None, None, None, None] robust=False trunc=1.00
+[14] tier=2 gold=608640 got=[None, None, None, None, None] robust=False trunc=1.00
+[15] tier=0 gold=510 got=[None, None, None, None, '510'] robust=False trunc=0.80
+[16] tier=1 gold=48 got=[None, None, None, None, None] robust=False trunc=1.00
+[17] tier=2 gold=2657 got=[None, None, None, None, None] robust=False trunc=1.00
+[18] tier=0 gold=23775 got=[None, None, None, None, None] robust=False trunc=1.00
+[19] tier=1 gold=-3124 got=[None, None, None, None, None] robust=False trunc=1.00
+[20] tier=2 gold=18120 got=[None, None, None, None, None] robust=False trunc=1.00
+[21] tier=0 gold=2431 got=[None, '2431', None, None, None] robust=False trunc=0.80
+[22] tier=1 gold=13734 got=[None, None, None, None, None] robust=False trunc=1.00
+[23] tier=2 gold=-73388 got=[None, None, None, None, None] robust=False trunc=1.00
+[24] tier=0 gold=39 got=[None, None, None, None, None] robust=False trunc=1.00
+[25] tier=1 gold=6213 got=[None, None, None, None, None] robust=False trunc=1.00
+[26] tier=2 gold=118424 got=[None, None, None, None, None] robust=False trunc=1.00
+[27] tier=0 gold=-254 got=[None, None, None, None, None] robust=False trunc=1.00
+[28] tier=1 gold=521 got=[None, None, None, None, None] robust=False trunc=1.00
+[29] tier=2 gold=18646 got=[None, None, None, None, None] robust=False trunc=1.00
+SUMMARY {"model": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B", "n": 30, "robust_share": 0.0, "base_acc": 0.0, "truncated": 0.9733333333333333, "pilot_pass": false, "seconds": 3067.2}
