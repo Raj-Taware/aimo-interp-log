@@ -8,6 +8,8 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{microtype}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
 \sloppy
 
 \title{A Real Effect, an Unprovable Margin: Hidden-State Drift and the\\Limits of Evaluating Robustness Probes on Small Models}
@@ -36,7 +38,23 @@ We make three contributions. (1) A generation-free white-box probe, with a test-
 
 \textbf{Transfer without labels.} One artifact per checkpoint standardises each feature with that model's own statistics over a shared problem set. The threshold is that model's median margin over 173 unlabelled AIME/AMC problems (v2b). This assumes balanced hidden labels, which we inferred from the all-False and always-True submissions both scoring 0.50.
 
-\textbf{Cost.} A full 14-case run across four models took about 83 s on the evaluation machine, against the 4200 s case limit. Code, artifacts and bundles are in the repository \cite{repo}; Appendix~\ref{app:repro} lists what is needed to reproduce the scores.
+\textbf{Cost.} A full 14-case run across four models took about 83 s on the evaluation machine, against the 4200 s case limit. Figure~\ref{fig:pipeline} summarises the pipeline. Code, artifacts and bundles are in the repository \cite{repo}, with the submission on branch \texttt{aimo-submission} and the follow-up studies on \texttt{main}; Appendix~\ref{app:repro} lists what is needed to reproduce the scores.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[font=\scriptsize, node distance=3mm and 3.5mm,
+  box/.style={draw, rounded corners=1pt, align=center, inner sep=2.5pt, minimum height=9mm},
+  arr/.style={-{Stealth[length=1.4mm]}}]
+\node[box] (p) {Problem $+$ 6\\perturbations};
+\node[box, right=of p] (f) {7 forward\\passes, no\\generation};
+\node[box, right=of f] (d) {Drift at 6 depths\\(72 white-box),\\next-token (15)};
+\node[box, right=of d] (c) {Logistic score,\\DeepSeek-trained,\\per-model scaling};
+\node[box, right=of c] (t) {Robust if above\\pool median};
+\draw[arr] (p) -- (f); \draw[arr] (f) -- (d); \draw[arr] (d) -- (c); \draw[arr] (c) -- (t);
+\end{tikzpicture}
+\caption{The submitted probe. No answer is generated; 173 unlabelled pool problems set each model's threshold.}
+\label{fig:pipeline}
+\end{figure}
 
 \section{White-box ablation}
 \label{sec:ablation}
@@ -104,6 +122,24 @@ T-027: out-of-distribution arithmetic set & Failed its pilot gate: 95--100\% of 
 
 After T-025 we scored v2's own drift with the same tests, as a positive control. It failed. On the self-domain set, unfitted mean drift scores AUC 0.54 ($p=0.28$) and the fitted hidden block 0.66, while length scores 0.74. A gate that rejects the signal behind our best score cannot be taken as evidence against other signals. One gate also compared with length in one direction only, which hid that short problems are the non-robust ones and made T-023's self-domain result look like a pass.
 
+\begin{table}[h]
+\centering
+\small
+\caption{The audit on the 137 self-domain problems (T-023: 132 scored). Stratified AUC compares only problems in the same length quartile, with $p$ from permutation inside quartiles.}
+\label{tab:audit}
+\begin{tabular}{lccc}
+\toprule
+Score & AUC & Stratified AUC & $p$ \\
+\midrule
+Problem length (short = non-robust) & 0.74 & --- & --- \\
+v2 hidden block, fitted out-of-fold (control) & 0.66 & 0.58 & 0.09 \\
+T-023 saliency & 0.69 & 0.65 & 0.008 \\
+T-024 patching recovery & 0.54 & 0.55 & 0.24 \\
+T-025 reasoning drift & 0.59 & 0.53 & 0.34 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 We then registered a length-matched gate: AUC computed only within length quartiles, with labels permuted inside quartiles, usable only if the fitted v2 block reached 0.60 at $p<0.05$. The control scored 0.58 ($p=0.09$), so by our own rule no verdict is drawn. For the record, T-024 scored 0.55, T-025 0.53 and T-023 0.65 ($p=0.008$). The last is the single signal to survive length, but it was found after looking, and it fell to 0.35 on the 26 T-020 labels, which are a weak check given their disagreement with the official labels.
 
 The results seem to conflict: a strong ablation on the test set, and a weak signal on the labelled set. Two explanations remain open and we cannot separate them. The drift signal may be real on competition problems, which are about three times longer than the MATH training problems, and absent on short ones. Or the 0.71 may be partly chance. A test of 14 cases cannot decide.
@@ -131,6 +167,8 @@ This work was done by one human author with AI assistance. Claude Code (Anthropi
 \appendix
 \section{Reproduction}
 \label{app:repro}
+
+\textbf{Branches.} Submission code and bundles: \texttt{aimo-submission}. Follow-up studies and this report: \texttt{main}.
 
 \textbf{Bundles.} \texttt{solution-v2b-poolthr-small.zip} (1014195), \texttt{solution-v2b-ablate-wbonly-small.zip} (1026158), \texttt{solution-v2b-ablate-nowb-small.zip} (1019496), under \texttt{results/submissions/}. Other IDs cited: 1014184, 1018269, 1018354.
 
