@@ -12,7 +12,7 @@
 \usetikzlibrary{positioning,arrows.meta}
 \sloppy
 
-\title{A Real Effect, an Unprovable Margin: Hidden-State Drift and the\\Limits of Evaluating Robustness Probes on Small Models}
+\title{A Real Effect, an Unprovable Margin:\\Hidden-State Drift and the Limits of Evaluating\\Robustness Probes on Small Models}
 
 \author{Raj Taware\\Independent researcher}
 
@@ -76,7 +76,7 @@ Without hidden-state block & 1019496 & 0.43 & 6/14 \\
 \end{tabular}
 \end{table}
 
-The white-box block keeps the whole score, and the remainder falls below chance. The effect is large at this resolution, four net cases. It is not statistically established: the two ablations disagree on 8 of 14 cases, split 6 to 2 in favour of the white-box signal (exact McNemar, two-sided $p=0.29$), and 10/14 itself occurs by chance with probability 0.09, before allowing for this being our best of many submissions. Offline nested CV on the labelled set agrees in direction: the hidden block reaches AUC 0.66 against 0.61 for the logit block and 0.56 for shuffled rows. Problem length alone, however, reaches 0.75 (Section~\ref{sec:audit}).
+The white-box block keeps the whole score, and the remainder falls below chance. The effect is large at this resolution, four net cases. It is not statistically established: the two ablations disagree on 8 of 14 cases, split 6 to 2 in favour of the white-box signal (exact McNemar, two-sided $p=0.29$), and 10/14 itself occurs by chance with probability 0.09, before allowing for this being our best of many submissions. Offline nested CV on the labelled set agrees in direction: the hidden block reaches AUC 0.66 against 0.61 for the logit block and 0.56 for shuffled rows. Problem length alone, however, reaches 0.74 (Section~\ref{sec:audit}).
 
 \begin{figure}[t]
 \centering
@@ -170,9 +170,9 @@ This work was done by one human author with AI assistance. Claude Code (Anthropi
 
 \textbf{Branches.} Submission code and bundles: \texttt{aimo-submission}. Follow-up studies and this report: \texttt{main}.
 
-\textbf{Bundles.} \texttt{solution-v2b-poolthr-small.zip} (1014195), \texttt{solution-v2b-ablate-wbonly-small.zip} (1026158), \texttt{solution-v2b-ablate-nowb-small.zip} (1019496), under \texttt{results/submissions/}. Other IDs cited: 1014184, 1018269, 1018354.
+\textbf{Bundles.} Under \texttt{results/submissions/}, with the prefix \texttt{solution-v2b-} and the suffix \texttt{-small.zip}: \texttt{poolthr} (1014195), \texttt{ablate-wbonly} (1026158), \texttt{ablate-nowb} (1019496). Other IDs cited: 1014184, 1018269, 1018354.
 
-\textbf{Training data.} The organisers' public labelled DeepSeek MATH problems; the 173 AIME/AMC pool problems in \texttt{results/grok/T-014/problems.jsonl}. No evaluation data.
+\textbf{Training data.} The organisers' public labelled DeepSeek MATH problems; the 173 AIME/AMC pool problems in \texttt{data/pool\_unlabelled.parquet}. No evaluation data.
 
 \textbf{Environment.} torch 2.11.0+cu128 (training features on 2$\times$T4), transformers 5.13.0, fp16, unbatched.
 
