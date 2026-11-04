@@ -9,6 +9,8 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{microtype}
+\input{glyphtounicode}
+\pdfgentounicode=1
 \usepackage{tikz}
 \usetikzlibrary{positioning,arrows.meta}
 \sloppy
@@ -141,7 +143,7 @@ T-025 reasoning drift & 0.59 & 0.53 & 0.34 \\
 \end{tabular}
 \end{table}
 
-We then registered a length-matched gate: AUC computed only within length quartiles, with labels permuted inside quartiles, usable only if the fitted v2 block reached 0.60 at $p<0.05$. The control scored 0.58 ($p=0.09$), so by our own rule no verdict is drawn. For the record, T-024 scored 0.55, T-025 0.53 and T-023 0.65 ($p=0.008$). The last is the single signal to survive length, but it was found after looking, and it fell to 0.35 on the 26 T-020 labels, which are a weak check given their disagreement with the official labels.
+Next we fixed a length-matched gate before scoring. It computes AUC only between problems in the same length quartile, and its null permutes labels within quartiles. We would trust the gate only if the fitted v2 block passed it (AUC $\ge 0.60$, $p<0.05$). The block scored 0.58 ($p=0.09$), so the gate gives no verdict on the other signals. Their scores were 0.55 (T-024), 0.53 (T-025) and 0.65 (T-023, $p=0.008$). T-023 is the only signal that remains after matching length. But we chose that analysis after seeing the data, and on the 26 T-020 labels T-023 scored 0.35. Those labels disagree with the official ones, so that check is also weak.
 
 The results seem to conflict: a strong ablation on the test set, and a weak signal on the labelled set. Two explanations remain open and we cannot separate them. The drift signal may be real on competition problems, which are about three times longer than the MATH training problems, and absent on short ones. Or the 0.71 may be partly chance. A test of 14 cases cannot decide.
 
