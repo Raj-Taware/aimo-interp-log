@@ -179,6 +179,6 @@ This work was done by one human author with AI assistance. Claude Code (Anthropi
 
 \textbf{Environment.} torch 2.11.0+cu128 (training features on 2$\times$T4), transformers 5.13.0, fp16, unbatched.
 
-\textbf{Pipeline.} \texttt{scripts/dump\_features.py}, \texttt{scripts/evaluate.py}, \texttt{scripts/calibrate\_per\_model.py}, \texttt{scripts/build\_bundle.py}. Ablations: \texttt{scripts/ablate\_whitebox.py}, The two ablation bundles were made from the v2b bundle by setting the dropped block's coefficients to zero and re-setting each threshold at the pool median. Follow-up studies: \texttt{self-perturb/scripts/} (\texttt{dump\_*}, \texttt{eval\_*}) with outputs in \texttt{self-perturb/results/grok/T-0xx/}. Pass criteria are in each \texttt{eval\_*} docstring, committed before its run.
+\textbf{Pipeline.} \texttt{scripts/dump\_features.py}, \texttt{scripts/evaluate.py}, \texttt{scripts/calibrate\_per\_model.py}, \texttt{scripts/build\_bundle.py}. Ablations: \texttt{scripts/ablate\_whitebox.py}. The two ablation bundles were made from the v2b bundle by setting the dropped block's coefficients to zero and re-setting each threshold at the pool median. Follow-up studies: \texttt{self-perturb/scripts/} (\texttt{dump\_*}, \texttt{eval\_*}) with outputs in \texttt{self-perturb/results/grok/T-0xx/}. Pass criteria are in each \texttt{eval\_*} docstring, committed before its run.
 
 \end{document}
