@@ -1,0 +1,9 @@
+﻿data/
+artifacts/
+dist/
+__pycache__/
+*.pyc
+.venv/
+getting-started/
+baselines/
+kaggle/

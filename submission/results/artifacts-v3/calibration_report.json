@@ -1,0 +1,58 @@
+{
+  "trained_on": "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B",
+  "subset": "v3new",
+  "chosen": {
+    "logisticregression__C": "0.01",
+    "selectkbest__k": "20"
+  },
+  "selected_features": [
+    "multidistract_cos_mean_d0.1",
+    "multidistract_cos_min_d0.1",
+    "multidistract_lognorm_absmax_d0.1",
+    "multidistract_poolcos_mean_d0.1",
+    "multidistract_cos_mean_d0.25",
+    "multidistract_cos_min_d0.25",
+    "multidistract_norm_mean_d0.25",
+    "multidistract_lognorm_absmax_d0.25",
+    "multidistract_poolcos_mean_d0.25",
+    "multidistract_poolcos_min_d0.25",
+    "multidistract_cos_mean_d0.4",
+    "multidistract_cos_min_d0.4",
+    "multidistract_norm_mean_d0.4",
+    "multidistract_lognorm_absmax_d0.4",
+    "multidistract_poolcos_min_d0.4",
+    "multidistract_kl_mean",
+    "numerals_poolcos_d0.25",
+    "typos_poolcos_d0.25",
+    "rephrase_poolcos_d0.25",
+    "number_jitter_poolcos_d0.25"
+  ],
+  "nested_cv_estimate": {
+    "balanced": 0.6426,
+    "auc": 0.682,
+    "accuracy": 0.6569,
+    "accuracy_std": 0.0624
+  },
+  "models": {
+    "deepseek-ai/DeepSeek-R1-0528-Qwen3-8B": {
+      "artifact": "deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.npz",
+      "pred_robust_rate": 0.504,
+      "auc_in_sample": 0.7343
+    },
+    "Qwen/Qwen3.5-4B": {
+      "artifact": "Qwen_Qwen3.5-4B.npz",
+      "pred_robust_rate": 0.504,
+      "auc_vs_deepseek_labels": 0.6612
+    },
+    "Skywork/Skywork-OR1-Math-7B": {
+      "artifact": "Skywork_Skywork-OR1-Math-7B.npz",
+      "pred_robust_rate": 0.504,
+      "auc_vs_deepseek_labels": 0.758
+    },
+    "allenai/Olmo-3-7B-Think": {
+      "artifact": "allenai_Olmo-3-7B-Think.npz",
+      "pred_robust_rate": 0.504,
+      "auc_vs_deepseek_labels": 0.657
+    }
+  }
+}

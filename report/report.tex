@@ -41,7 +41,7 @@ We make three contributions. (1) A generation-free white-box probe, with a test-
 
 \textbf{Transfer without labels.} One artifact per checkpoint standardises each feature with that model's own statistics over a shared problem set. The threshold is that model's median margin over 173 unlabelled AIME/AMC problems (v2b). This assumes balanced hidden labels, which we inferred from the all-False and always-True submissions both scoring 0.50.
 
-\textbf{Cost.} A full 14-case run across four models took about 83 s on the evaluation machine, against the 4200 s case limit. Figure~\ref{fig:pipeline} summarises the pipeline. Code, artifacts and bundles are in the repository \cite{repo}, with the submission on branch \texttt{aimo-submission} and the follow-up studies on \texttt{main}; Appendix~\ref{app:repro} lists what is needed to reproduce the scores.
+\textbf{Cost.} A full 14-case run across four models took about 83 s on the evaluation machine, against the 4200 s case limit. Figure~\ref{fig:pipeline} summarises the pipeline. Code, artifacts and bundles are in the repository \cite{repo}, with the submission in \texttt{submission/} and the follow-up studies in \texttt{self-perturb/}; Appendix~\ref{app:repro} lists what is needed to reproduce the scores.
 
 \begin{figure}[t]
 \centering
@@ -162,7 +162,7 @@ This work was done by one human author with AI assistance. Claude Code (Anthropi
 
 \begin{thebibliography}{9}
 \bibitem{aimo} AIMO Interpretability Challenge. \url{https://aimo-interp.github.io/}, 2026.
-\bibitem{repo} Anonymous. Self-perturbation probes for the AIMO Interpretability Challenge. Anonymised repositories: \url{https://anonymous.4open.science/r/aimo-interp-log} (\texttt{main}) and \url{https://anonymous.4open.science/r/aimo-interp-submission} (\texttt{aimo-submission}), 2026.
+\bibitem{repo} Anonymous. Self-perturbation probes for the AIMO Interpretability Challenge. Anonymised repository: \url{https://anonymous.4open.science/r/aimo-interp-log}, 2026.
 \bibitem{pathpatching} N. Goldowsky-Dill, C. MacLeod, L. Sato, A. Arora. Localizing model behavior with path patching. arXiv:2304.05969, 2023.
 \bibitem{saliency} A. Shrikumar, P. Greenside, A. Kundaje. Learning important features through propagating activation differences. In \emph{ICML}, 2017.
 \end{thebibliography}
@@ -171,7 +171,7 @@ This work was done by one human author with AI assistance. Claude Code (Anthropi
 \section{Reproduction}
 \label{app:repro}
 
-\textbf{Branches.} Submission code and bundles: \texttt{aimo-submission}. Follow-up studies and this report: \texttt{main}.
+\textbf{Layout.} Submission code and bundles are in \texttt{submission/}; the paths under Bundles, Training data and the first Pipeline sentence are relative to it. Follow-up studies are in \texttt{self-perturb/}, and this report is in \texttt{report/}.
 
 \textbf{Bundles.} Under \texttt{results/submissions/}, with the prefix \texttt{solution-v2b-} and the suffix \texttt{-small.zip}: \texttt{poolthr} (1014195), \texttt{ablate-wbonly} (1026158), \texttt{ablate-nowb} (1019496). Other IDs cited: 1014184, 1018269, 1018354.
 
@@ -179,6 +179,6 @@ This work was done by one human author with AI assistance. Claude Code (Anthropi
 
 \textbf{Environment.} torch 2.11.0+cu128 (training features on 2$\times$T4), transformers 5.13.0, fp16, unbatched.
 
-\textbf{Pipeline.} \texttt{scripts/dump\_features.py}, \texttt{scripts/evaluate.py}, \texttt{scripts/calibrate\_per\_model.py}, \texttt{scripts/build\_bundle.py}. Ablations: \texttt{scripts/ablate\_whitebox.py}, and the bundle ablation in commit \texttt{088db3c}. Follow-up studies: \texttt{self-perturb/scripts/} (\texttt{dump\_*}, \texttt{eval\_*}) with outputs in \texttt{self-perturb/results/grok/T-0xx/}. Pass criteria are in each \texttt{eval\_*} docstring, committed before its run.
+\textbf{Pipeline.} \texttt{scripts/dump\_features.py}, \texttt{scripts/evaluate.py}, \texttt{scripts/calibrate\_per\_model.py}, \texttt{scripts/build\_bundle.py}. Ablations: \texttt{scripts/ablate\_whitebox.py}, The two ablation bundles were made from the v2b bundle by setting the dropped block's coefficients to zero and re-setting each threshold at the pool median. Follow-up studies: \texttt{self-perturb/scripts/} (\texttt{dump\_*}, \texttt{eval\_*}) with outputs in \texttt{self-perturb/results/grok/T-0xx/}. Pass criteria are in each \texttt{eval\_*} docstring, committed before its run.
 
 \end{document}
