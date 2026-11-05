@@ -79,7 +79,7 @@ Without hidden-state block & 1019496 & 0.43 & 6/14 \\
 \end{tabular}
 \end{table}
 
-The white-box block keeps the whole score, and the remainder falls below chance. The effect is large at this resolution, four net cases. It is not statistically established: the two ablations disagree on 8 of 14 cases, split 6 to 2 in favour of the white-box signal (exact McNemar, two-sided $p=0.29$), and 10/14 itself occurs by chance with probability 0.09, before allowing for this being our best of many submissions. Offline nested CV on the labelled set agrees in direction: the hidden block reaches AUC 0.66 against 0.61 for the logit block and 0.56 for shuffled rows. Problem length alone, however, reaches 0.74 (Section~\ref{sec:audit}).
+The white-box block keeps the whole score, and the remainder falls below chance. At this resolution the effect is large, a difference of four cases, but it is not statistically established: the two ablations disagree on 8 of 14 cases, split 6 to 2 in favour of the white-box signal (exact McNemar, two-sided $p=0.29$), and 10/14 itself occurs by chance with probability 0.09, before allowing for this being our best of many submissions. Offline nested CV on the labelled set agrees in direction: the hidden block reaches AUC 0.66 against 0.61 for the logit block and 0.56 for shuffled rows. Problem length alone, however, reaches 0.74 (Section~\ref{sec:audit}).
 
 \begin{figure}[t]
 \centering
@@ -109,16 +109,16 @@ Study & Outcome \\
 T-019, v6: difficulty direction in question-only state & AUC 0.80 on train-main-v2, then 0.50 on the public test (Codabench 1018269, 1018354), including with a label-free pool-centred cut. \\
 T-020: self-labelling & 26 labels in 4 h, $\kappa=-0.18$ against official labels. Not a usable substitute. \\
 T-021: drift to a self-written domain rewrite & Adding white-box features lowered balanced accuracy from 0.67 to 0.58. \\
-T-022: answer-recall contrast & Models recall only 3--12 of 173 pool problems immediately. No contrast. Fallback direction AUC 0.63, null $p=0.23$. \\
+T-022: answer-recall contrast & Models recall only 3 to 12 of 173 pool problems immediately. No contrast. Fallback direction AUC 0.63, null $p=0.23$. \\
 T-023: gradient$\times$input on prose vs.\ mathematics & AUC 0.36 on train-main-v2. Self-domain 0.69 ($p<0.001$), yet length alone gives 0.74. Saliency was NaN for Qwen3.5-4B. \\
 T-024: activation patching at the answer position & Hook verified (identity KL 0), but AUC 0.39 and 0.54. Mechanism finding below. \\
 T-025: drift along a replayed reasoning trace & Teacher forcing gives exact alignment (identity drift $3\times10^{-7}$), but AUC 0.30 and 0.59. \\
-T-027: out-of-distribution arithmetic set & Failed its pilot gate: 95--100\% of answers exceeded the 1024-token cap, so no labels. The set was not tested. \\
+T-027: out-of-distribution arithmetic set & Failed its pilot gate: 95 to 100\% of answers exceeded the 1024-token cap, so no labels. The set was not tested. \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{One result that holds.} Activation patching \cite{pathpatching} replaces the answer-position state of a perturbed run with the original's at one layer. Patching at depth 0.25 removes 0--7\% of the output shift, at depth 0.5 removes 29--51\%, and at depth 0.75 removes 74--91\% (Figure~\ref{fig:main}, right). The pattern is the same on all four models: the perturbation's effect reaches the answer position between mid and late depth. This route did not predict the label, so it describes how perturbations travel, not which problems are robust.
+\textbf{One result that holds.} Activation patching \cite{pathpatching} replaces the answer-position state of a perturbed run with the original's at one layer. Patching at depth 0.25 removes 0 to 7\% of the output shift, at depth 0.5 it removes 29 to 51\%, and at depth 0.75 it removes 74 to 91\% (Figure~\ref{fig:main}, right). The pattern is the same on all four models: the perturbation's effect reaches the answer position between mid and late depth. This route did not predict the label, so it describes how perturbations travel, not which problems are robust.
 
 \section{Auditing the gates}
 \label{sec:audit}
@@ -134,7 +134,7 @@ After T-025 we scored v2's own drift with the same tests, as a positive control.
 \toprule
 Score & AUC & Stratified AUC & $p$ \\
 \midrule
-Problem length (short = non-robust) & 0.74 & --- & --- \\
+Problem length (short = non-robust) & 0.74 & n/a & n/a \\
 v2 hidden block, fitted out-of-fold (control) & 0.66 & 0.58 & 0.09 \\
 T-023 saliency & 0.69 & 0.65 & 0.008 \\
 T-024 patching recovery & 0.54 & 0.55 & 0.24 \\
@@ -145,7 +145,7 @@ T-025 reasoning drift & 0.59 & 0.53 & 0.34 \\
 
 Next we fixed a length-matched gate before scoring. It computes AUC only between problems in the same length quartile, and its null permutes labels within quartiles. We would trust the gate only if the fitted v2 block passed it (AUC $\ge 0.60$, $p<0.05$). The block scored 0.58 ($p=0.09$), so the gate gives no verdict on the other signals. Their scores were 0.55 (T-024), 0.53 (T-025) and 0.65 (T-023, $p=0.008$). T-023 is the only signal that remains after matching length. But we chose that analysis after seeing the data, and on the 26 T-020 labels T-023 scored 0.35. Those labels disagree with the official ones, so that check is also weak.
 
-The results seem to conflict: a strong ablation on the test set, and a weak signal on the labelled set. Two explanations remain open and we cannot separate them. The drift signal may be real on competition problems, which are about three times longer than the MATH training problems, and absent on short ones. Or the 0.71 may be partly chance. A test of 14 cases cannot decide.
+The results seem to conflict: a strong ablation on the test set, and a weak signal on the labelled set. Two explanations remain open and we cannot separate them. The drift signal may be real on competition problems, which are about three times longer than the MATH training problems, and absent on short ones, or the 0.71 may be partly chance. A test of 14 cases cannot tell these apart.
 
 \section{Recommendations}
 \label{sec:recs}

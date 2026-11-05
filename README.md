@@ -1,124 +1,56 @@
-# AIMO Interpretability Challenge — Research Log (Raj Taware)
+# Self-perturbation probes for the AIMO Interpretability Challenge
 
-> **Active work (2026-10-01 on):** `self-perturb/` holds the current method
-> (official best 0.7143, submission 951038). Claude and Grok coordinate through
-> `collab/` — start at `collab/BOARD.md`, rules in `collab/PROTOCOL.md`.
-> Everything below this note documents the earlier hybrid-cascade attempt.
+This repository holds the code, data and results behind the report in `report/`. The work targets the Small Models track of the [AIMO Interpretability Challenge](https://aimo-interp.github.io/).
 
-**Competition:** [AIMO Interpretability Challenge](https://aimo-interp.github.io/) · Codabench [#16180](https://www.codabench.org/competitions/16180/)  
-**Track:** Small Models  
-**Codabench user:** `rmtaware`  
-**Team:** solo (Raj Taware) · contact `rajmtaware@gmail.com`  
-**Repo purpose:** durable archive of code, probe artifacts, submission ZIPs, measured results, and method notes from the AIMO Interp Runner agent (NeurIPS 2026 / deadline 1 Nov 2026).
+The submitted probe predicts whether a model's answer is robust to rewording without generating an answer. It perturbs each problem six ways, runs one forward pass per prompt, and measures how far the last-token hidden state moves at six depths. A logistic classifier trained on the public DeepSeek labels turns these features into a score, and each model's threshold is the median score over 173 unlabelled AIME/AMC problems.
 
-> **Private archive.** Do not commit Codabench passwords, API tokens, or Kaggle credentials. Official scores below are copied from the Codabench API only — never invented.
+## Results on the public Small Models test
 
-## Official Codabench Small scores (measured)
+| Submission | Codabench ID | Accuracy |
+|---|---|---:|
+| Full probe (v2b) | 1014195 | 0.71 |
+| Hidden-state block only | 1026158 | 0.71 |
+| Without the hidden-state block | 1019496 | 0.43 |
 
-| Sub ID | Method | Accuracy | Coverage | Invalid |
-|--------|--------|---------:|---------:|--------:|
-| 949901 | hybrid-cascade (default 4 probes) | 0.4286 | 1.0 | 0 |
-| 949938 | all-False control | 0.5000 | 1.0 | 0 |
-| 949942 | always-True control | 0.5000 | 1.0 | 0 |
-| **949937** | **conservative hybrid** | **0.5714** | **1.0** | **0** |
-| 949966 | symmetric_confident | 0.5000 | 1.0 | 0 |
-
-**Best official so far: 0.5714** (submission 949937).  
-Hidden Small labels are **balanced** (all-False = always-True = 0.50). Local val-sample False-rate 0.625 is **not** the official ceiling.
-
-`symmetric_confident` (949966) **regressed to 0.50** — keep conservative as default.
-
-## Local val-sample (`run_local --small`, n=24)
-
-On CPU without CUDA, probe stages no-op → deterministic all-False:
-
-| Method | Accuracy | Coverage | Invalid |
-|--------|---------:|---------:|--------:|
-| all-False / hybrid CPU fallback / conservative / symmetric_confident | 0.625 | 1.0 | 0 |
+The public test has 14 cases, so these differences are not statistically significant (exact McNemar, two-sided p = 0.29). The report gives the details and the follow-up studies.
 
 ## Layout
 
-```
-README.md                 ← this file
-LOG.md                    ← chronological work log
-SHA256SUMS.txt            ← checksums for probes + submissions
-MANIFEST.txt              ← byte sizes
-code/hybrid-cascade/      ← solution.py + cascade / probe_infer / helpers
-artifacts/probes/         ← 4 last-token probe pickles + train metrics
-artifacts/research-loop/  ← CPU analysis JSON/CSV from early research
-submissions/              ← Codabench-ready ZIPs (Small track)
-training/                 ← Kaggle probe training script
-notes/                    ← living scoreboard + method taste + Fields draft
-tests/                    ← conservative / policy smoke tests
-docs/                     ← lab notebook + mini-paper draft (if present)
-```
+| Path | Contents |
+|---|---|
+| `report/` | Report source (`report.tex`), PDF, and the script that draws Figure 2 |
+| `submission/` | Code, features and Codabench bundles for the submitted probe and its two ablations |
+| `self-perturb/` | Follow-up studies: `scripts/dump_*` and `scripts/eval_*`, with outputs in `results/grok/T-0xx/` |
+| `collab/` | Task board, task specs and reports for the studies |
+| `docs/`, `LOG.md` | Lab notebook and chronological log |
+| `code/`, `artifacts/`, `submissions/`, `training/`, `notes/`, `tests/` | An earlier attempt, a hybrid cascade of last-token probes. See `code/hybrid-cascade/README.md` |
 
-## Small Models Track IDs
+## Reproducing
 
-- `Qwen/Qwen3.5-4B`
-- `Skywork/Skywork-OR1-Math-7B`
-- `allenai/Olmo-3-7B-Think`
-- `deepseek-ai/DeepSeek-R1-0528-Qwen3-8B`
+Appendix A of the report lists the scripts, bundles, training data and software versions. Paths in that appendix for the submission are relative to `submission/`. The pass criteria for each follow-up study are in the docstring of its `eval_*` script, committed before the run.
 
-## Probe artifacts (Kaggle T4×2, notebook `rajtaware10/aimo-interp-small-probes`)
+A full 14-case run over the four models took about 83 s on the challenge's evaluation machine. Offline features were computed on Kaggle with 2×T4 GPUs, torch 2.11.0 and transformers 5.13.0, in fp16 and without batching. Batching changes the features.
 
-| File | Model | Best layer (recorded) | Notes |
-|------|-------|----------------------:|-------|
-| `probe_Qwen_Qwen3.5-4B.pkl` | Qwen3.5-4B | 16 | OOF≈0.625 on n=24 proxy |
-| `probe_Skywork_Skywork-OR1-Math-7B.pkl` | Skywork-OR1-Math-7B | 7 | OOF≈0.625 |
-| `probe_allenai_Olmo-3-7B-Think.pkl` | Olmo-3-7B-Think | 8 | layer-select≈0.583 |
-| `probe_deepseek-ai_DeepSeek-R1-0528-Qwen3-8B.pkl` | DeepSeek-R1-0528-Qwen3-8B | 9 | OOF≈0.625 |
+## Earlier attempt
 
-See `artifacts/probes/probe_train_metrics.json` for machine-readable metrics. Val n=24 is smoke-only.
+Before the self-perturbation probe, we tried a budget-aware cascade of per-model last-token probes. Its official scores were:
 
-## Method (current best official)
+| Codabench ID | Method | Accuracy |
+|---|---|---:|
+| 949901 | Hybrid cascade, default policy | 0.4286 |
+| 949937 | Conservative hybrid | 0.5714 |
+| 949966 | Symmetric confident policy | 0.5000 |
+| 949938 | All-False control | 0.5000 |
+| 949942 | Always-True control | 0.5000 |
 
-**Budget-aware hybrid cascade** with last-token representation probes:
+The two controls both scored 0.50, so the hidden labels are balanced.
 
-1. Optional early uncertainty / CF stages (may no-op without CUDA / budget).
-2. Per-`model_id` probe inference from `artifacts/`.
-3. **Conservative policy** (949937): True only if mean margin ≥ 0.5 and ≥75% seed margins ≥ 0; cascade aborts to all-False if batch True-rate > 0.35.
-4. Coverage-safe fallback: all-False.
+## Not included
 
-Later variant `symmetric_confident` (in code + ZIP): softer True τ (0.30), harder seed agree (0.90), True-rate abort 0.50, symmetric ±τ False gate. See `code/hybrid-cascade/README.md`.
-
-## Codabench upload path (API)
-
-Browser upload from the agent box fails (gibberish HTML). Working API flow for account `rmtaware`:
-
-1. `POST /api/api-token-auth/`
-2. `POST /api/datasets/` (`type=submission`, `file_size`, `request_sassy_file_name`)
-3. `PUT` bytes to `sassy_url`
-4. `PUT /api/datasets/completed/<key>/`
-5. `POST /api/submissions/` with `phase=30038`, `tasks=[36241]` (Small Model Track), `data=<dataset UUID>`
-
-Phase **30038** = Competition phase. Small task pk **36241** / UUID `5b30ceda-7a5f-442c-a58d-9fe770e2f69c`.
-
-## Reproduce locally (getting-started)
-
-Upstream kit: https://github.com/aimo-interp/getting-started
-
-```bash
-# from a checkout of getting-started, copy code/hybrid-cascade → solutions/hybrid-cascade
-uv run scripts/run_local.py --small --solution-dir solutions/hybrid-cascade
-```
-
-Expect coverage=1.0, invalid_predictions=0. Accuracy on CPU without models ≈ 0.625 (all-False on val-sample).
-
-## What is intentionally omitted
-
-- Codabench / Kaggle passwords and tokens
-- Full HF model weights (probes only)
-- `solution-trained-probe-small.zip` (~27 MB starting-kit DeepSeek probe) — not our primary path
-- Fields Model compute form (draft parked pending Raj review)
+The repository has no passwords, API tokens or model weights, and no competition test data.
 
 ## Sources
 
-- https://aimo-interp.github.io/
-- https://github.com/aimo-interp/getting-started
-- https://www.codabench.org/competitions/16180/
+- Challenge: https://aimo-interp.github.io/
+- Starter kit: https://github.com/aimo-interp/getting-started
 - Proposal paper: arXiv 2607.13899
-
-## License / competition rules
-
-Respect Codabench offline Docker rules (no internet at eval). This archive is for Raj’s research continuity; redistributing competition data or solutions outside the team may violate competition terms — keep **private** until you decide otherwise.
