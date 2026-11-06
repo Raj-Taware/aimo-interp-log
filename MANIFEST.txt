@@ -31,8 +31,8 @@
 404	./submissions/solution-all-false-small.zip
 519	./submissions/solution-always-true-small.zip
 2878569	./submissions/solution-hybrid-cascade-small-conservative.zip
-2879602	./submissions/solution-hybrid-cascade-small-symmetric-confident.zip
-2879602	./submissions/solution-hybrid-cascade-small.zip
+2879596	./submissions/solution-hybrid-cascade-small-symmetric-confident.zip
+2879596	./submissions/solution-hybrid-cascade-small.zip
 1028260	./submissions/solution-uncertainty-profiling-small.zip
 6338	./tests/test_hybrid_cascade_conservative.py
 30719	./training/kaggle_aimo_small_probes.py
